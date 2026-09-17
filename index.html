@@ -57,6 +57,15 @@
     background: var(--surface);
   }
   .links a:hover { border-color: var(--accent); color: var(--accent); }
+  .links a.primary { background: var(--accent); border-color: var(--accent); color: #04211f; font-weight: 600; }
+  .links a.primary:hover { filter: brightness(1.1); color: #04211f; }
+
+  .work { display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); margin-bottom: 28px; }
+  .work div { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 16px 18px; }
+  .work h3 { margin: 0 0 6px; font-size: 15px; }
+  .work p { margin: 0; color: var(--muted); font-size: 14.5px; }
+  .cta { font-size: 17px; max-width: 66ch; }
+  .cta a { font-weight: 600; }
 
   section { padding: 44px 0; border-bottom: 1px solid var(--line); }
   h2 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.09em; color: var(--muted); margin: 0 0 22px; font-weight: 600; }
@@ -101,6 +110,7 @@
       it is in the repository.
     </p>
     <div class="links">
+      <a class="primary" href="#work">Work with me</a>
       <a href="https://github.com/dkautomation23">GitHub</a>
       <a href="https://github.com/dkautomation23?tab=repositories&amp;sort=stargazers">All tools</a>
     </div>
@@ -142,7 +152,7 @@
     <h2>Integration tooling — TypeScript</h2>
 
     <div class="tool">
-      <h3><a href="https://github.com/dkautomation23/webhook-replay">webhook-replay</a></h3>
+      <h3><a href="https://github.com/dkautomation23/webhook-rewind">webhook-rewind</a></h3>
       <p>Record the webhooks a provider sends you once, then replay them at your own code as often as you need — re-signed for Meta, GitHub, Shopify or Stripe, so the receiver runs its real verification instead of having it switched off for the debugging session.</p>
       <p class="tags"><span>TypeScript</span><span>30 tests</span><span>no runtime dependencies</span></p>
     </div>
@@ -209,9 +219,39 @@
   </div>
 </section>
 
+<section id="work">
+  <div class="wrap">
+    <h2>Work with me</h2>
+    <div class="work">
+      <div>
+        <h3>Something breaks and nobody notices</h3>
+        <p>A workflow that stopped running, an API that changed shape, a feed half-empty for a fortnight. Monitoring that names the failure, not a dashboard nobody opens.</p>
+      </div>
+      <div>
+        <h3>Two systems that will not agree</h3>
+        <p>Webhooks into a CRM, a bank statement against invoices, a catalogue against a supplier feed. Signature verification, de-duplication, retries and the 3am cases.</p>
+      </div>
+      <div>
+        <h3>Data that has to be right</h3>
+        <p>Migration checks, reconciliation, audits of a catalogue, a domain's mail or a site's crawlability — with the numbers reproducible rather than asserted.</p>
+      </div>
+      <div>
+        <h3>Rescue work</h3>
+        <p>An automation someone else built and left. I will read it and tell you honestly whether it is worth repairing or worth replacing.</p>
+      </div>
+    </div>
+    <p class="cta">
+      Tell me what breaks today and what it costs you:
+      <a href="mailto:hello@dkautomation.dev?subject=Project%20enquiry">hello@dkautomation.dev</a>.
+      You get back an approach and a number, or an honest “this is not my job”
+      and who to ask instead.
+    </p>
+  </div>
+</section>
+
 <footer>
   <div class="wrap">
-    Open an issue on any repository to get in touch, or find me at
+    Open an issue on any repository, write to <a href="mailto:hello@dkautomation.dev">hello@dkautomation.dev</a>, or find me at
     <a href="https://github.com/dkautomation23">github.com/dkautomation23</a>.
     Everything here is MIT licensed.
   </div>
