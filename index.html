@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dmytro Galko — business automation in Python, Rust and TypeScript</title>
+<meta name="description" content="I build the unglamorous tools businesses run every day: data reconciliation, catalogue and deliverability audits, webhook-to-CRM integrations, and the monitoring that tells you an automation stopped working before a customer does.">
+<meta property="og:title" content="Dmytro Galko — business automation">
+<meta property="og:description" content="Data CLIs, API integrations and monitoring. Every tool ships with tests, CI and a reproducible benchmark.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dkautomation23.github.io/">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%2316A085'/><text y='68' x='50' font-size='56' text-anchor='middle' fill='%23fff' font-family='monospace'>&gt;_</text></svg>">
+<style>
+  :root {
+    --bg: #ffffff;
+    --surface: #f6f8fa;
+    --text: #1f2328;
+    --muted: #59636e;
+    --line: #d1d9e0;
+    --accent: #0f766e;
+    --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0d1117;
+      --surface: #151b23;
+      --text: #e6edf3;
+      --muted: #9198a1;
+      --line: #2f3742;
+      --accent: #2dd4bf;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0d1117; --surface: #151b23; --text: #e6edf3;
+    --muted: #9198a1; --line: #2f3742; --accent: #2dd4bf;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 820px; margin: 0 auto; padding: 0 16px; }
+
+  header { padding: 72px 0 40px; border-bottom: 1px solid var(--line); }
+  h1 { font-size: clamp(28px, 5vw, 38px); line-height: 1.2; margin: 0 0 6px; letter-spacing: -0.02em; }
+  .role { color: var(--muted); font-size: 17px; margin: 0 0 24px; }
+  .lede { font-size: 18px; max-width: 62ch; margin: 0 0 20px; }
+  .proof { color: var(--muted); max-width: 62ch; margin: 0; }
+  .links { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 10px; }
+  .links a {
+    display: inline-block; padding: 8px 15px; border: 1px solid var(--line);
+    border-radius: 6px; color: var(--text); text-decoration: none; font-size: 15px;
+    background: var(--surface);
+  }
+  .links a:hover { border-color: var(--accent); color: var(--accent); }
+
+  section { padding: 44px 0; border-bottom: 1px solid var(--line); }
+  h2 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.09em; color: var(--muted); margin: 0 0 22px; font-weight: 600; }
+
+  .tool { padding: 18px 0; border-top: 1px solid var(--line); }
+  .tool:first-of-type { border-top: 0; padding-top: 0; }
+  .tool h3 { margin: 0 0 6px; font-size: 17px; font-weight: 600; }
+  .tool h3 a { color: var(--text); text-decoration: none; border-bottom: 2px solid var(--accent); }
+  .tool h3 a:hover { color: var(--accent); }
+  .tool p { margin: 0 0 8px; color: var(--muted); max-width: 70ch; }
+  .tags { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+  .tags span { display: inline-block; padding: 2px 7px; border: 1px solid var(--line); border-radius: 4px; margin-right: 5px; }
+
+  pre {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 6px;
+    padding: 14px 16px; overflow-x: auto; font-family: var(--mono); font-size: 13.5px;
+    line-height: 1.6; margin: 0 0 16px;
+  }
+  .note { color: var(--muted); font-size: 15px; max-width: 66ch; }
+  ul.plain { margin: 0; padding-left: 20px; color: var(--muted); max-width: 66ch; }
+  ul.plain li { margin-bottom: 8px; }
+
+  footer { padding: 36px 0 64px; color: var(--muted); font-size: 14px; }
+  a { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <h1>Dmytro Galko</h1>
+    <p class="role">Business automation — Python, Rust, TypeScript. Bulgaria, working with clients across the EU, UK and US.</p>
+    <p class="lede">
+      I build the unglamorous tools businesses run every day: data reconciliation,
+      catalogue and deliverability audits, webhook-to-CRM integrations, and the
+      monitoring that tells you an automation stopped working before a customer does.
+    </p>
+    <p class="proof">
+      Everything below is open source and runs on a clean machine with one command.
+      Each repository has its own tests in CI, documents what it deliberately does
+      <em>not</em> do, and where a README claims a number, the script that produced
+      it is in the repository.
+    </p>
+    <div class="links">
+      <a href="https://github.com/dkautomation23">GitHub</a>
+      <a href="https://github.com/dkautomation23?tab=repositories&amp;sort=stargazers">All tools</a>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>Command-line tools — Rust</h2>
+
+    <div class="tool">
+      <h3><a href="https://github.com/dkautomation23/csvdiff">csvdiff</a></h3>
+      <p>Diffs two CSV exports by key and reports what actually changed. Two million rows in 2.8 seconds, a per-column breakdown with counted transitions, and number/null normalisation — so a migration report reads as 9 809 real changes instead of 995 000 rows of timestamp noise.</p>
+      <p class="tags"><span>Rust</span><span>13 tests</span><span>benchmark in repo</span><span>prebuilt binaries</span></p>
+    </div>
+
+    <div class="tool">
+      <h3><a href="https://github.com/dkautomation23/leakscan">leakscan</a></h3>
+      <p>Offline check of what leaves with a file before you send it: tracked changes with the deleted text still readable, review comments, hidden worksheets, PDF attachments, GPS coordinates in photos, validated card and IBAN numbers.</p>
+      <p class="tags"><span>Rust</span><span>38 tests</span><span>no network at any point</span></p>
+    </div>
+
+    <div class="tool">
+      <h3><a href="https://github.com/dkautomation23/imgdupe">imgdupe</a></h3>
+      <p>Perceptual-hash duplicate finder. Complete-linkage grouping, so unrelated pictures never chain together through a path of small steps — and it writes a delete script for you to read instead of deleting anything itself.</p>
+      <p class="tags"><span>Rust</span><span>19 tests</span><span>benchmark in repo</span></p>
+    </div>
+
+    <div class="tool">
+      <h3><a href="https://github.com/dkautomation23/linkscan">linkscan</a></h3>
+      <p>Crawls a site and reports the links that are genuinely broken, keeping bot protection and slow third parties out of the "broken" column — which is why the report still gets read after the second run.</p>
+      <p class="tags"><span>Rust</span><span>15 tests</span><span>exit code for CI</span></p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Integration tooling — TypeScript</h2>
+
+    <div class="tool">
+      <h3><a href="https://github.com/dkautomation23/webhook-replay">webhook-replay</a></h3>
+      <p>Record the webhooks a provider sends you once, then replay them at your own code as often as you need — re-signed for Meta, GitHub, Shopify or Stripe, so the receiver runs its real verification instead of having it switched off for the debugging session.</p>
+      <p class="tags"><span>TypeScript</span><span>30 tests</span><span>no runtime dependencies</span></p>
+    </div>
+
+    <div class="tool">
+      <h3><a href="https://github.com/dkautomation23/api-drift">api-drift</a></h3>
+      <p>Records the shape of a JSON API and reports when it changes: removed fields, changed types, values that can now be null. Exits non-zero in CI, so a partner's silent rename stops being something you find out about two weeks later.</p>
+      <p class="tags"><span>TypeScript</span><span>25 tests</span><span>runs in cron or CI</span></p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Business automation — Python</h2>
+
+    <div class="tool">
+      <h3><a href="https://github.com/dkautomation23/invoice-reconciler">invoice-reconciler</a></h3>
+      <p>Matches a bank statement against open invoices in five passes — references, part payments, batch transfers, instalments — and reports only what does not add up. Standard library only.</p>
+      <p class="tags"><span>Python</span><span>24 checks</span><span>no dependencies</span></p>
+    </div>
+
+    <div class="tool">
+      <h3><a href="https://github.com/dkautomation23/whatsapp-crm-connector">whatsapp-crm-connector</a></h3>
+      <p>WhatsApp Business Cloud webhooks into a CRM: signature verification, instant acknowledgement plus queue, de-duplication, conversations logged against both the contact and the company, the 24-hour window, token refresh.</p>
+      <p class="tags"><span>Python</span><span>FastAPI</span><span>42 tests</span></p>
+    </div>
+
+    <div class="tool">
+      <h3><a href="https://github.com/dkautomation23/email-deliverability-check">email-deliverability-check</a></h3>
+      <p>Finds why a domain's mail lands in spam: SPF lookup limit, duplicated records, revoked DKIM keys, DMARC stuck at <code>p=none</code>, missing MTA-STS. DNS only — no access to the mailbox needed, batch mode for client lists.</p>
+      <p class="tags"><span>Python</span><span>17 checks</span><span>batch mode</span></p>
+    </div>
+
+    <div class="tool">
+      <h3><a href="https://github.com/dkautomation23/lead-responder">lead-responder</a></h3>
+      <p>Answers a web enquiry in under a second: scores it, writes a personal reply, offers real call slots, escalates the hot ones and files the spam. Rules live in YAML, no API keys.</p>
+      <p class="tags"><span>Python</span><span>19 checks</span><span>rules in YAML</span></p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Try one in thirty seconds</h2>
+    <pre>curl -sSL https://github.com/dkautomation23/csvdiff/releases/latest/download/csvdiff-v1.0.0-x86_64-unknown-linux-gnu.tar.gz | tar xz
+./csvdiff-v1.0.0-x86_64-unknown-linux-gnu/csvdiff before.csv after.csv --key customer_id --ignore updated_at</pre>
+    <p class="note">
+      Every release carries a binary for Linux, macOS (Apple silicon) and Windows,
+      each built and tested on the platform it targets rather than cross-compiled.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>How I work</h2>
+    <ul class="plain">
+      <li><strong>The boring part is the product.</strong> Error handling, retries, de-duplication and the alert that fires when a workflow goes quiet are what make an automation worth paying for; the happy path is the easy half.</li>
+      <li><strong>Claims come with the script that proves them.</strong> A number in a README that cannot be reproduced is worth less than no number.</li>
+      <li><strong>Every tool documents its limits.</strong> Knowing where something stops being reliable is the difference between a tool and a liability.</li>
+      <li><strong>Credentials never travel in the work.</strong> Secrets are redacted before anything is written to disk, and no repository here holds one.</li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    Open an issue on any repository to get in touch, or find me at
+    <a href="https://github.com/dkautomation23">github.com/dkautomation23</a>.
+    Everything here is MIT licensed.
+  </div>
+</footer>
+
+</body>
+</html>
