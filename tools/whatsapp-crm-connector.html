@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>whatsapp-crm-connector — WhatsApp Business Cloud webhooks into a CRM</title>
+<meta name="description" content="The parts of a WhatsApp integration that are not the happy path: signature verification, an instant acknowledgement with the work moved to a queue, de-duplication of repeated deliveries, conversations logged against both the contact and the company, the 24-hour window, and token refresh.">
+<meta name="keywords" content="WhatsApp Business API, CRM integration, webhook, Meta Graph API, message deduplication">
+<link rel="canonical" href="https://dkautomation23.github.io/tools/whatsapp-crm-connector.html">
+<meta property="og:title" content="whatsapp-crm-connector — WhatsApp Business Cloud webhooks into a CRM">
+<meta property="og:description" content="The parts of a WhatsApp integration that are not the happy path: signature verification, an instant acknowledgement with the work moved to a queue, de-duplication of repeated deliveries, conversations logged against both the contact and the company, the 24-hour window, and token refresh.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dkautomation23.github.io/tools/whatsapp-crm-connector.html">
+<link rel="stylesheet" href="../style.css">
+<link rel="icon" href="../favicon.svg">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"whatsapp-crm-connector","alternateName":"WhatsApp Business Cloud webhooks into a CRM","description":"The parts of a WhatsApp integration that are not the happy path: signature verification, an instant acknowledgement with the work moved to a queue, de-duplication of repeated deliveries, conversations logged against both the contact and the company, the 24-hour window, and token refresh.","applicationCategory":"DeveloperApplication","operatingSystem":"Linux, macOS, Windows","url":"https://dkautomation23.github.io/tools/whatsapp-crm-connector.html","codeRepository":"https://github.com/dkautomation23/whatsapp-crm-connector","license":"https://opensource.org/licenses/MIT","keywords":"WhatsApp Business API, CRM integration, webhook, Meta Graph API, message deduplication","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"author":{"@type":"Person","name":"Dmytro Galko","url":"https://dkautomation23.github.io","email":"hello@dkautomation.dev"}}</script>
+</head>
+<body>
+
+<header class="compact">
+  <div class="wrap">
+    <p class="crumb"><a href="../">Dmytro Galko</a> · open-source tools</p>
+    <h1>whatsapp-crm-connector</h1>
+    <p class="role">WhatsApp Business Cloud webhooks into a CRM</p>
+    <p class="lede">The parts of a WhatsApp integration that are not the happy path: signature verification, an instant acknowledgement with the work moved to a queue, de-duplication of repeated deliveries, conversations logged against both the contact and the company, the 24-hour window, and token refresh.</p>
+    <div class="links">
+      <a class="primary" href="https://github.com/dkautomation23/whatsapp-crm-connector">Source on GitHub</a>
+      <a href="../#work">Work with me</a>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>What it does</h2>
+    <ul class="plain">
+      <li>Verifies the Meta signature over the raw body, and rejects a forged one.</li>
+      <li>Answers within milliseconds and processes afterwards, because Meta retries anything slow.</li>
+      <li>Runs offline with one command, against recorded payloads.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>How it is proved</h2>
+    <p class="note">42 tests, including a forged signature that must be refused.</p>
+    <p class="tags"><span>Python</span><span>FastAPI</span><span>42 tests</span></p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>People find this looking for</h2>
+    <p class="note">WhatsApp Cloud API webhook to CRM, verify X-Hub-Signature-256, 24 hour window token refresh.</p>
+    <p class="cta">
+      If that is your week and you would rather someone else did it, write to
+      <a href="mailto:hello@dkautomation.dev?subject=whatsapp-crm-connector">hello@dkautomation.dev</a>
+      or <a href="https://github.com/dkautomation23/whatsapp-crm-connector/issues/new/choose">open an issue</a>.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a href="../">All tools</a> ·
+    <a href="https://github.com/dkautomation23/whatsapp-crm-connector">whatsapp-crm-connector on GitHub</a> ·
+    MIT licensed
+  </div>
+</footer>
+
+</body>
+</html>

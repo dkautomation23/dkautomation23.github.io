@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>email-deliverability-check — Find out why a domain's mail lands in spam</title>
+<meta name="description" content="Checks the things that actually put mail in the spam folder: the SPF ten-lookup limit, duplicated records, DKIM keys that have been revoked, DMARC stuck at p=none, and a missing MTA-STS policy. DNS only - no access to the mailbox is needed, which makes it usable on a prospect's domain.">
+<meta name="keywords" content="email deliverability, SPF, DKIM, DMARC, MTA-STS, email authentication">
+<link rel="canonical" href="https://dkautomation23.github.io/tools/email-deliverability-check.html">
+<meta property="og:title" content="email-deliverability-check — Find out why a domain's mail lands in spam">
+<meta property="og:description" content="Checks the things that actually put mail in the spam folder: the SPF ten-lookup limit, duplicated records, DKIM keys that have been revoked, DMARC stuck at p=none, and a missing MTA-STS policy. DNS only - no access to the mailbox is needed, which makes it usable on a prospect's domain.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dkautomation23.github.io/tools/email-deliverability-check.html">
+<link rel="stylesheet" href="../style.css">
+<link rel="icon" href="../favicon.svg">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"email-deliverability-check","alternateName":"Find out why a domain's mail lands in spam","description":"Checks the things that actually put mail in the spam folder: the SPF ten-lookup limit, duplicated records, DKIM keys that have been revoked, DMARC stuck at p=none, and a missing MTA-STS policy. DNS only - no access to the mailbox is needed, which makes it usable on a prospect's domain.","applicationCategory":"DeveloperApplication","operatingSystem":"Linux, macOS, Windows","url":"https://dkautomation23.github.io/tools/email-deliverability-check.html","codeRepository":"https://github.com/dkautomation23/email-deliverability-check","license":"https://opensource.org/licenses/MIT","keywords":"email deliverability, SPF, DKIM, DMARC, MTA-STS, email authentication","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"author":{"@type":"Person","name":"Dmytro Galko","url":"https://dkautomation23.github.io","email":"hello@dkautomation.dev"}}</script>
+</head>
+<body>
+
+<header class="compact">
+  <div class="wrap">
+    <p class="crumb"><a href="../">Dmytro Galko</a> · open-source tools</p>
+    <h1>email-deliverability-check</h1>
+    <p class="role">Find out why a domain's mail lands in spam</p>
+    <p class="lede">Checks the things that actually put mail in the spam folder: the SPF ten-lookup limit, duplicated records, DKIM keys that have been revoked, DMARC stuck at p=none, and a missing MTA-STS policy. DNS only - no access to the mailbox is needed, which makes it usable on a prospect's domain.</p>
+    <div class="links">
+      <a class="primary" href="https://github.com/dkautomation23/email-deliverability-check">Source on GitHub</a>
+      <a href="../#work">Work with me</a>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>What it does</h2>
+    <ul class="plain">
+      <li>Resolves and counts SPF lookups the way a receiving server does.</li>
+      <li>Batch mode for a list of client domains, with CSV output.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>How it is proved</h2>
+    <p class="note">17 offline checks over recorded DNS answers.</p>
+    <p class="tags"><span>Python</span><span>17 checks</span><span>DNS only</span></p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>People find this looking for</h2>
+    <p class="note">why emails go to spam, SPF too many lookups, DMARC p=none, DKIM revoked, MTA-STS missing.</p>
+    <p class="cta">
+      If that is your week and you would rather someone else did it, write to
+      <a href="mailto:hello@dkautomation.dev?subject=email-deliverability-check">hello@dkautomation.dev</a>
+      or <a href="https://github.com/dkautomation23/email-deliverability-check/issues/new/choose">open an issue</a>.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a href="../">All tools</a> ·
+    <a href="https://github.com/dkautomation23/email-deliverability-check">email-deliverability-check on GitHub</a> ·
+    MIT licensed
+  </div>
+</footer>
+
+</body>
+</html>

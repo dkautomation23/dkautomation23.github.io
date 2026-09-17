@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>leakscan — See what leaves with a file before you send it</title>
+<meta name="description" content="An offline check of everything a file carries that you did not mean to send: tracked changes with the deleted text still readable, review comments, worksheets hidden at the veryHidden level, attachments inside a PDF, GPS coordinates in photos, and validated card and IBAN numbers.">
+<meta name="keywords" content="data loss prevention, document security, GDPR, metadata removal, EXIF, redaction">
+<link rel="canonical" href="https://dkautomation23.github.io/tools/leakscan.html">
+<meta property="og:title" content="leakscan — See what leaves with a file before you send it">
+<meta property="og:description" content="An offline check of everything a file carries that you did not mean to send: tracked changes with the deleted text still readable, review comments, worksheets hidden at the veryHidden level, attachments inside a PDF, GPS coordinates in photos, and validated card and IBAN numbers.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dkautomation23.github.io/tools/leakscan.html">
+<link rel="stylesheet" href="../style.css">
+<link rel="icon" href="../favicon.svg">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"leakscan","alternateName":"See what leaves with a file before you send it","description":"An offline check of everything a file carries that you did not mean to send: tracked changes with the deleted text still readable, review comments, worksheets hidden at the veryHidden level, attachments inside a PDF, GPS coordinates in photos, and validated card and IBAN numbers.","applicationCategory":"DeveloperApplication","operatingSystem":"Linux, macOS, Windows","url":"https://dkautomation23.github.io/tools/leakscan.html","codeRepository":"https://github.com/dkautomation23/leakscan","license":"https://opensource.org/licenses/MIT","keywords":"data loss prevention, document security, GDPR, metadata removal, EXIF, redaction","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"author":{"@type":"Person","name":"Dmytro Galko","url":"https://dkautomation23.github.io","email":"hello@dkautomation.dev"}}</script>
+</head>
+<body>
+
+<header class="compact">
+  <div class="wrap">
+    <p class="crumb"><a href="../">Dmytro Galko</a> · open-source tools</p>
+    <h1>leakscan</h1>
+    <p class="role">See what leaves with a file before you send it</p>
+    <p class="lede">An offline check of everything a file carries that you did not mean to send: tracked changes with the deleted text still readable, review comments, worksheets hidden at the veryHidden level, attachments inside a PDF, GPS coordinates in photos, and validated card and IBAN numbers.</p>
+    <div class="links">
+      <a class="primary" href="https://github.com/dkautomation23/leakscan">Source on GitHub</a>
+      <a href="../#work">Work with me</a>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>What it does</h2>
+    <ul class="plain">
+      <li>Reads the file formats directly - no network access at any point, so it is safe on material that must not leave the machine.</li>
+      <li>Validates card and IBAN numbers rather than matching digit patterns, which is the difference between a finding and noise.</li>
+      <li>Reports what it found and where, and changes nothing.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>How it is proved</h2>
+    <p class="note">38 tests across office documents, PDFs and images.</p>
+    <p class="tags"><span>Rust</span><span>38 tests</span><span>no network</span><span>prebuilt binaries</span></p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>People find this looking for</h2>
+    <p class="note">check document for hidden data before sending, tracked changes deleted text, EXIF GPS in photos, hidden worksheet.</p>
+    <p class="cta">
+      If that is your week and you would rather someone else did it, write to
+      <a href="mailto:hello@dkautomation.dev?subject=leakscan">hello@dkautomation.dev</a>
+      or <a href="https://github.com/dkautomation23/leakscan/issues/new/choose">open an issue</a>.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a href="../">All tools</a> ·
+    <a href="https://github.com/dkautomation23/leakscan">leakscan on GitHub</a> ·
+    MIT licensed
+  </div>
+</footer>
+
+</body>
+</html>

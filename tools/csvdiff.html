@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>csvdiff — Diff two CSV exports by key and see what actually changed</title>
+<meta name="description" content="&quot;The data does not match after the migration&quot; is a week of work, and it always starts with two exports and a spreadsheet. csvdiff compares them by key and reports what moved, per column, with the transitions counted.">
+<meta name="keywords" content="CSV diff, data migration, data quality, reconciliation, ETL testing">
+<link rel="canonical" href="https://dkautomation23.github.io/tools/csvdiff.html">
+<meta property="og:title" content="csvdiff — Diff two CSV exports by key and see what actually changed">
+<meta property="og:description" content="&quot;The data does not match after the migration&quot; is a week of work, and it always starts with two exports and a spreadsheet. csvdiff compares them by key and reports what moved, per column, with the transitions counted.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dkautomation23.github.io/tools/csvdiff.html">
+<link rel="stylesheet" href="../style.css">
+<link rel="icon" href="../favicon.svg">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"csvdiff","alternateName":"Diff two CSV exports by key and see what actually changed","description":"\"The data does not match after the migration\" is a week of work, and it always starts with two exports and a spreadsheet. csvdiff compares them by key and reports what moved, per column, with the transitions counted.","applicationCategory":"DeveloperApplication","operatingSystem":"Linux, macOS, Windows","url":"https://dkautomation23.github.io/tools/csvdiff.html","codeRepository":"https://github.com/dkautomation23/csvdiff","license":"https://opensource.org/licenses/MIT","keywords":"CSV diff, data migration, data quality, reconciliation, ETL testing","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"author":{"@type":"Person","name":"Dmytro Galko","url":"https://dkautomation23.github.io","email":"hello@dkautomation.dev"}}</script>
+</head>
+<body>
+
+<header class="compact">
+  <div class="wrap">
+    <p class="crumb"><a href="../">Dmytro Galko</a> · open-source tools</p>
+    <h1>csvdiff</h1>
+    <p class="role">Diff two CSV exports by key and see what actually changed</p>
+    <p class="lede">&quot;The data does not match after the migration&quot; is a week of work, and it always starts with two exports and a spreadsheet. csvdiff compares them by key and reports what moved, per column, with the transitions counted.</p>
+    <div class="links">
+      <a class="primary" href="https://github.com/dkautomation23/csvdiff">Source on GitHub</a>
+      <a href="../#work">Work with me</a>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>What it does</h2>
+    <ul class="plain">
+      <li>Two million rows, 131 MB, in 2.8 seconds, holding about 60 bytes per row of the old file.</li>
+      <li>Treats 1000, 1000.00 and 1.000,00 as one value, and empty, NULL, NaN and \N as one nothing - while keeping the cents in money.</li>
+      <li>Calls out broken rows and duplicate keys instead of quietly diffing them.</li>
+      <li>Exit code 1 when anything differs, so it works as a gate.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>How it is proved</h2>
+    <p class="note">The benchmark is a script in the repository: it builds both exports from a fixed seed, so the timing repeats on any machine.</p>
+    <p class="tags"><span>Rust</span><span>13 tests</span><span>prebuilt binaries for Linux, macOS and Windows</span></p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>People find this looking for</h2>
+    <p class="note">compare two CSV files by key, data migration verification, CSV diff tool large files.</p>
+    <p class="cta">
+      If that is your week and you would rather someone else did it, write to
+      <a href="mailto:hello@dkautomation.dev?subject=csvdiff">hello@dkautomation.dev</a>
+      or <a href="https://github.com/dkautomation23/csvdiff/issues/new/choose">open an issue</a>.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a href="../">All tools</a> ·
+    <a href="https://github.com/dkautomation23/csvdiff">csvdiff on GitHub</a> ·
+    MIT licensed
+  </div>
+</footer>
+
+</body>
+</html>

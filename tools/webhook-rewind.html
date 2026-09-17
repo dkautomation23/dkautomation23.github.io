@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>webhook-rewind — Record webhooks once, replay them re-signed</title>
+<meta name="description" content="A webhook handler breaks in production and you need the payload that broke it. The provider will send you the next event, not that one. A payload copied out of a log fails signature verification, because every provider signs the raw bytes. webhook-rewind keeps the body as bytes from capture to repla">
+<meta name="keywords" content="webhook testing, webhook replay, HMAC signature, Stripe webhook, Shopify webhook, WhatsApp Cloud API, integration debugging">
+<link rel="canonical" href="https://dkautomation23.github.io/tools/webhook-rewind.html">
+<meta property="og:title" content="webhook-rewind — Record webhooks once, replay them re-signed">
+<meta property="og:description" content="A webhook handler breaks in production and you need the payload that broke it. The provider will send you the next event, not that one. A payload copied out of a log fails signature verification, because every provider signs the raw bytes. webhook-rewind keeps the body as bytes from capture to repla">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dkautomation23.github.io/tools/webhook-rewind.html">
+<link rel="stylesheet" href="../style.css">
+<link rel="icon" href="../favicon.svg">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"webhook-rewind","alternateName":"Record webhooks once, replay them re-signed","description":"A webhook handler breaks in production and you need the payload that broke it. The provider will send you the next event, not that one. A payload copied out of a log fails signature verification, because every provider signs the raw bytes. webhook-rewind keeps the body as bytes from capture to replay and re-signs it with your own secret.","applicationCategory":"DeveloperApplication","operatingSystem":"Linux, macOS, Windows","url":"https://dkautomation23.github.io/tools/webhook-rewind.html","codeRepository":"https://github.com/dkautomation23/webhook-rewind","license":"https://opensource.org/licenses/MIT","keywords":"webhook testing, webhook replay, HMAC signature, Stripe webhook, Shopify webhook, WhatsApp Cloud API, integration debugging","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"author":{"@type":"Person","name":"Dmytro Galko","url":"https://dkautomation23.github.io","email":"hello@dkautomation.dev"}}</script>
+</head>
+<body>
+
+<header class="compact">
+  <div class="wrap">
+    <p class="crumb"><a href="../">Dmytro Galko</a> · open-source tools</p>
+    <h1>webhook-rewind</h1>
+    <p class="role">Record webhooks once, replay them re-signed</p>
+    <p class="lede">A webhook handler breaks in production and you need the payload that broke it. The provider will send you the next event, not that one. A payload copied out of a log fails signature verification, because every provider signs the raw bytes. webhook-rewind keeps the body as bytes from capture to replay and re-signs it with your own secret.</p>
+    <div class="links">
+      <a class="primary" href="https://github.com/dkautomation23/webhook-rewind">Source on GitHub</a>
+      <a href="../#work">Work with me</a>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>What it does</h2>
+    <ul class="plain">
+      <li>Captures every inbound request to a JSON Lines file, answering 200 immediately so the provider does not back off.</li>
+      <li>Re-signs on replay for Meta (WhatsApp, Instagram, Messenger), GitHub, Shopify and Stripe.</li>
+      <li>Gives Stripe a fresh timestamp, because its tolerance window rejects the recorded one.</li>
+      <li>Redacts Authorization, Cookie and API-key headers before anything reaches disk.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>How it is proved</h2>
+    <p class="note">Every signing scheme is checked against an independent implementation of the verifying side, not against a frozen digest. 30 tests, none of which touch a network.</p>
+    <p class="tags"><span>TypeScript</span><span>30 tests</span><span>no runtime dependencies</span></p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>People find this looking for</h2>
+    <p class="note">replay webhook locally, re-sign webhook signature, test Stripe Shopify WhatsApp webhook without provider.</p>
+    <p class="cta">
+      If that is your week and you would rather someone else did it, write to
+      <a href="mailto:hello@dkautomation.dev?subject=webhook-rewind">hello@dkautomation.dev</a>
+      or <a href="https://github.com/dkautomation23/webhook-rewind/issues/new/choose">open an issue</a>.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a href="../">All tools</a> ·
+    <a href="https://github.com/dkautomation23/webhook-rewind">webhook-rewind on GitHub</a> ·
+    MIT licensed
+  </div>
+</footer>
+
+</body>
+</html>

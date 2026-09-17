@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>invoice-reconciler — Match a bank statement against open invoices</title>
+<meta name="description" content="Matches payments to invoices in five passes - references, part payments, batch transfers, instalments - and reports only what does not add up. The cases that make manual reconciliation slow are the ones it is built around.">
+<meta name="keywords" content="bank reconciliation, invoice matching, accounts receivable, finance automation, bookkeeping">
+<link rel="canonical" href="https://dkautomation23.github.io/tools/invoice-reconciler.html">
+<meta property="og:title" content="invoice-reconciler — Match a bank statement against open invoices">
+<meta property="og:description" content="Matches payments to invoices in five passes - references, part payments, batch transfers, instalments - and reports only what does not add up. The cases that make manual reconciliation slow are the ones it is built around.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dkautomation23.github.io/tools/invoice-reconciler.html">
+<link rel="stylesheet" href="../style.css">
+<link rel="icon" href="../favicon.svg">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"invoice-reconciler","alternateName":"Match a bank statement against open invoices","description":"Matches payments to invoices in five passes - references, part payments, batch transfers, instalments - and reports only what does not add up. The cases that make manual reconciliation slow are the ones it is built around.","applicationCategory":"DeveloperApplication","operatingSystem":"Linux, macOS, Windows","url":"https://dkautomation23.github.io/tools/invoice-reconciler.html","codeRepository":"https://github.com/dkautomation23/invoice-reconciler","license":"https://opensource.org/licenses/MIT","keywords":"bank reconciliation, invoice matching, accounts receivable, finance automation, bookkeeping","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"author":{"@type":"Person","name":"Dmytro Galko","url":"https://dkautomation23.github.io","email":"hello@dkautomation.dev"}}</script>
+</head>
+<body>
+
+<header class="compact">
+  <div class="wrap">
+    <p class="crumb"><a href="../">Dmytro Galko</a> · open-source tools</p>
+    <h1>invoice-reconciler</h1>
+    <p class="role">Match a bank statement against open invoices</p>
+    <p class="lede">Matches payments to invoices in five passes - references, part payments, batch transfers, instalments - and reports only what does not add up. The cases that make manual reconciliation slow are the ones it is built around.</p>
+    <div class="links">
+      <a class="primary" href="https://github.com/dkautomation23/invoice-reconciler">Source on GitHub</a>
+      <a href="../#work">Work with me</a>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>What it does</h2>
+    <ul class="plain">
+      <li>Detects the date convention of each file rather than assuming one.</li>
+      <li>Drops a shortfall that a later payment covered, instead of reporting it twice.</li>
+      <li>Writes the exception list as CSV or JSON for whoever has to chase it.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>How it is proved</h2>
+    <p class="note">Standard library only: it runs on any Python 3.10+ with nothing installed.</p>
+    <p class="tags"><span>Python</span><span>24 checks</span><span>no dependencies</span></p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>People find this looking for</h2>
+    <p class="note">reconcile bank statement with invoices automatically, payment matching script, part payment batch transfer.</p>
+    <p class="cta">
+      If that is your week and you would rather someone else did it, write to
+      <a href="mailto:hello@dkautomation.dev?subject=invoice-reconciler">hello@dkautomation.dev</a>
+      or <a href="https://github.com/dkautomation23/invoice-reconciler/issues/new/choose">open an issue</a>.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a href="../">All tools</a> ·
+    <a href="https://github.com/dkautomation23/invoice-reconciler">invoice-reconciler on GitHub</a> ·
+    MIT licensed
+  </div>
+</footer>
+
+</body>
+</html>

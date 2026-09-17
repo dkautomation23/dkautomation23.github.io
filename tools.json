@@ -1,0 +1,125 @@
+[
+  {
+    "slug": "cra-report",
+    "name": "cra-report",
+    "tagline": "EU Cyber Resilience Act Article 14 reporting tool",
+    "search": "CRA Article 14 reporting tool, actively exploited vulnerability 24 hours, ENISA notification, SBOM KEV cross-reference",
+    "summary": "Since 11 September 2026 a manufacturer placing a product with digital elements on the EU market has 24 hours to notify ENISA of an actively exploited vulnerability in it. Finding vulnerabilities is not the hard part - any scanner hands you a hundred. cra-report says which of them starts the statutory clock, and drafts the Article 14 notification for the ones that do.",
+    "how": [
+      "Reads a CycloneDX or SPDX SBOM, package-lock.json, Cargo.lock or a pinned requirements.txt.",
+      "Asks OSV what is known about those exact versions, across npm, PyPI, crates.io, Go, Maven, NuGet, RubyGems and Packagist.",
+      "Cross-references every CVE against the CISA KEV catalogue - the list of vulnerabilities observed being exploited in the wild.",
+      "Writes the Article 14(1) early warning with both deadlines counted from now, and marks what only a person can answer."
+    ],
+    "proof": "On a dependency tree containing log4j-core 2.14.1 it reports 2 findings with a deadline out of 19 advisories, both flagged as used in ransomware campaigns. On lodash 4.17.15 it reports 0 out of 6 - equally worth being able to say.",
+    "stack": ["TypeScript", "28 tests", "no runtime dependencies", "no API key"],
+    "keywords": ["cyber resilience act", "CRA compliance", "Article 14", "ENISA reporting", "SBOM", "CISA KEV", "vulnerability management", "devsecops"]
+  },
+  {
+    "slug": "webhook-rewind",
+    "name": "webhook-rewind",
+    "tagline": "Record webhooks once, replay them re-signed",
+    "search": "replay webhook locally, re-sign webhook signature, test Stripe Shopify WhatsApp webhook without provider",
+    "summary": "A webhook handler breaks in production and you need the payload that broke it. The provider will send you the next event, not that one. A payload copied out of a log fails signature verification, because every provider signs the raw bytes. webhook-rewind keeps the body as bytes from capture to replay and re-signs it with your own secret.",
+    "how": [
+      "Captures every inbound request to a JSON Lines file, answering 200 immediately so the provider does not back off.",
+      "Re-signs on replay for Meta (WhatsApp, Instagram, Messenger), GitHub, Shopify and Stripe.",
+      "Gives Stripe a fresh timestamp, because its tolerance window rejects the recorded one.",
+      "Redacts Authorization, Cookie and API-key headers before anything reaches disk."
+    ],
+    "proof": "Every signing scheme is checked against an independent implementation of the verifying side, not against a frozen digest. 30 tests, none of which touch a network.",
+    "stack": ["TypeScript", "30 tests", "no runtime dependencies"],
+    "keywords": ["webhook testing", "webhook replay", "HMAC signature", "Stripe webhook", "Shopify webhook", "WhatsApp Cloud API", "integration debugging"]
+  },
+  {
+    "slug": "api-drift",
+    "name": "api-drift",
+    "tagline": "Catch a partner API changing shape before it breaks you",
+    "search": "detect API response schema change, API contract monitoring, breaking change detection JSON",
+    "summary": "Integrations rarely break loudly. A partner renames order_id to orderId, or starts sending total as a number, and nothing throws - the field reads as undefined and a fortnight of rows go out empty before anyone notices. api-drift records the shape of a response and tells you when it changes.",
+    "how": [
+      "Infers a schema from one or several sample responses, so a sometimes-absent field is recorded as optional rather than becoming tomorrow's false alarm.",
+      "Classifies each change from the point of view of code that already consumes the old shape: removed field, changed type, became nullable and became optional are breaking; a new field is not.",
+      "Stores the baseline as one JSON file with sorted keys, meant to be committed - so the change shows up in code review.",
+      "Treats a non-2xx answer or a non-JSON body as an outage, not as drift."
+    ],
+    "proof": "Reproducible from two fixtures in the repository: it reports a rename as its two halves, a string that became a number, and a value that can now be null.",
+    "stack": ["TypeScript", "25 tests", "runs in cron or CI"],
+    "keywords": ["API monitoring", "schema drift", "contract testing", "breaking changes", "integration reliability"]
+  },
+  {
+    "slug": "csvdiff",
+    "name": "csvdiff",
+    "tagline": "Diff two CSV exports by key and see what actually changed",
+    "search": "compare two CSV files by key, data migration verification, CSV diff tool large files",
+    "summary": "\"The data does not match after the migration\" is a week of work, and it always starts with two exports and a spreadsheet. csvdiff compares them by key and reports what moved, per column, with the transitions counted.",
+    "how": [
+      "Two million rows, 131 MB, in 2.8 seconds, holding about 60 bytes per row of the old file.",
+      "Treats 1000, 1000.00 and 1.000,00 as one value, and empty, NULL, NaN and \\N as one nothing - while keeping the cents in money.",
+      "Calls out broken rows and duplicate keys instead of quietly diffing them.",
+      "Exit code 1 when anything differs, so it works as a gate."
+    ],
+    "proof": "The benchmark is a script in the repository: it builds both exports from a fixed seed, so the timing repeats on any machine.",
+    "stack": ["Rust", "13 tests", "prebuilt binaries for Linux, macOS and Windows"],
+    "keywords": ["CSV diff", "data migration", "data quality", "reconciliation", "ETL testing"]
+  },
+  {
+    "slug": "leakscan",
+    "name": "leakscan",
+    "tagline": "See what leaves with a file before you send it",
+    "search": "check document for hidden data before sending, tracked changes deleted text, EXIF GPS in photos, hidden worksheet",
+    "summary": "An offline check of everything a file carries that you did not mean to send: tracked changes with the deleted text still readable, review comments, worksheets hidden at the veryHidden level, attachments inside a PDF, GPS coordinates in photos, and validated card and IBAN numbers.",
+    "how": [
+      "Reads the file formats directly - no network access at any point, so it is safe on material that must not leave the machine.",
+      "Validates card and IBAN numbers rather than matching digit patterns, which is the difference between a finding and noise.",
+      "Reports what it found and where, and changes nothing."
+    ],
+    "proof": "38 tests across office documents, PDFs and images.",
+    "stack": ["Rust", "38 tests", "no network", "prebuilt binaries"],
+    "keywords": ["data loss prevention", "document security", "GDPR", "metadata removal", "EXIF", "redaction"]
+  },
+  {
+    "slug": "invoice-reconciler",
+    "name": "invoice-reconciler",
+    "tagline": "Match a bank statement against open invoices",
+    "search": "reconcile bank statement with invoices automatically, payment matching script, part payment batch transfer",
+    "summary": "Matches payments to invoices in five passes - references, part payments, batch transfers, instalments - and reports only what does not add up. The cases that make manual reconciliation slow are the ones it is built around.",
+    "how": [
+      "Detects the date convention of each file rather than assuming one.",
+      "Drops a shortfall that a later payment covered, instead of reporting it twice.",
+      "Writes the exception list as CSV or JSON for whoever has to chase it."
+    ],
+    "proof": "Standard library only: it runs on any Python 3.10+ with nothing installed.",
+    "stack": ["Python", "24 checks", "no dependencies"],
+    "keywords": ["bank reconciliation", "invoice matching", "accounts receivable", "finance automation", "bookkeeping"]
+  },
+  {
+    "slug": "whatsapp-crm-connector",
+    "name": "whatsapp-crm-connector",
+    "tagline": "WhatsApp Business Cloud webhooks into a CRM",
+    "search": "WhatsApp Cloud API webhook to CRM, verify X-Hub-Signature-256, 24 hour window token refresh",
+    "summary": "The parts of a WhatsApp integration that are not the happy path: signature verification, an instant acknowledgement with the work moved to a queue, de-duplication of repeated deliveries, conversations logged against both the contact and the company, the 24-hour window, and token refresh.",
+    "how": [
+      "Verifies the Meta signature over the raw body, and rejects a forged one.",
+      "Answers within milliseconds and processes afterwards, because Meta retries anything slow.",
+      "Runs offline with one command, against recorded payloads."
+    ],
+    "proof": "42 tests, including a forged signature that must be refused.",
+    "stack": ["Python", "FastAPI", "42 tests"],
+    "keywords": ["WhatsApp Business API", "CRM integration", "webhook", "Meta Graph API", "message deduplication"]
+  },
+  {
+    "slug": "email-deliverability-check",
+    "name": "email-deliverability-check",
+    "tagline": "Find out why a domain's mail lands in spam",
+    "search": "why emails go to spam, SPF too many lookups, DMARC p=none, DKIM revoked, MTA-STS missing",
+    "summary": "Checks the things that actually put mail in the spam folder: the SPF ten-lookup limit, duplicated records, DKIM keys that have been revoked, DMARC stuck at p=none, and a missing MTA-STS policy. DNS only - no access to the mailbox is needed, which makes it usable on a prospect's domain.",
+    "how": [
+      "Resolves and counts SPF lookups the way a receiving server does.",
+      "Batch mode for a list of client domains, with CSV output."
+    ],
+    "proof": "17 offline checks over recorded DNS answers.",
+    "stack": ["Python", "17 checks", "DNS only"],
+    "keywords": ["email deliverability", "SPF", "DKIM", "DMARC", "MTA-STS", "email authentication"]
+  }
+]

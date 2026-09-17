@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>cra-report — EU Cyber Resilience Act Article 14 reporting tool</title>
+<meta name="description" content="Since 11 September 2026 a manufacturer placing a product with digital elements on the EU market has 24 hours to notify ENISA of an actively exploited vulnerability in it. Finding vulnerabilities is not the hard part - any scanner hands you a hundred. cra-report says which of them starts the statutor">
+<meta name="keywords" content="cyber resilience act, CRA compliance, Article 14, ENISA reporting, SBOM, CISA KEV, vulnerability management, devsecops">
+<link rel="canonical" href="https://dkautomation23.github.io/tools/cra-report.html">
+<meta property="og:title" content="cra-report — EU Cyber Resilience Act Article 14 reporting tool">
+<meta property="og:description" content="Since 11 September 2026 a manufacturer placing a product with digital elements on the EU market has 24 hours to notify ENISA of an actively exploited vulnerability in it. Finding vulnerabilities is not the hard part - any scanner hands you a hundred. cra-report says which of them starts the statutor">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dkautomation23.github.io/tools/cra-report.html">
+<link rel="stylesheet" href="../style.css">
+<link rel="icon" href="../favicon.svg">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"cra-report","alternateName":"EU Cyber Resilience Act Article 14 reporting tool","description":"Since 11 September 2026 a manufacturer placing a product with digital elements on the EU market has 24 hours to notify ENISA of an actively exploited vulnerability in it. Finding vulnerabilities is not the hard part - any scanner hands you a hundred. cra-report says which of them starts the statutory clock, and drafts the Article 14 notification for the ones that do.","applicationCategory":"DeveloperApplication","operatingSystem":"Linux, macOS, Windows","url":"https://dkautomation23.github.io/tools/cra-report.html","codeRepository":"https://github.com/dkautomation23/cra-report","license":"https://opensource.org/licenses/MIT","keywords":"cyber resilience act, CRA compliance, Article 14, ENISA reporting, SBOM, CISA KEV, vulnerability management, devsecops","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"author":{"@type":"Person","name":"Dmytro Galko","url":"https://dkautomation23.github.io","email":"hello@dkautomation.dev"}}</script>
+</head>
+<body>
+
+<header class="compact">
+  <div class="wrap">
+    <p class="crumb"><a href="../">Dmytro Galko</a> · open-source tools</p>
+    <h1>cra-report</h1>
+    <p class="role">EU Cyber Resilience Act Article 14 reporting tool</p>
+    <p class="lede">Since 11 September 2026 a manufacturer placing a product with digital elements on the EU market has 24 hours to notify ENISA of an actively exploited vulnerability in it. Finding vulnerabilities is not the hard part - any scanner hands you a hundred. cra-report says which of them starts the statutory clock, and drafts the Article 14 notification for the ones that do.</p>
+    <div class="links">
+      <a class="primary" href="https://github.com/dkautomation23/cra-report">Source on GitHub</a>
+      <a href="../#work">Work with me</a>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>What it does</h2>
+    <ul class="plain">
+      <li>Reads a CycloneDX or SPDX SBOM, package-lock.json, Cargo.lock or a pinned requirements.txt.</li>
+      <li>Asks OSV what is known about those exact versions, across npm, PyPI, crates.io, Go, Maven, NuGet, RubyGems and Packagist.</li>
+      <li>Cross-references every CVE against the CISA KEV catalogue - the list of vulnerabilities observed being exploited in the wild.</li>
+      <li>Writes the Article 14(1) early warning with both deadlines counted from now, and marks what only a person can answer.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>How it is proved</h2>
+    <p class="note">On a dependency tree containing log4j-core 2.14.1 it reports 2 findings with a deadline out of 19 advisories, both flagged as used in ransomware campaigns. On lodash 4.17.15 it reports 0 out of 6 - equally worth being able to say.</p>
+    <p class="tags"><span>TypeScript</span><span>28 tests</span><span>no runtime dependencies</span><span>no API key</span></p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>People find this looking for</h2>
+    <p class="note">CRA Article 14 reporting tool, actively exploited vulnerability 24 hours, ENISA notification, SBOM KEV cross-reference.</p>
+    <p class="cta">
+      If that is your week and you would rather someone else did it, write to
+      <a href="mailto:hello@dkautomation.dev?subject=cra-report">hello@dkautomation.dev</a>
+      or <a href="https://github.com/dkautomation23/cra-report/issues/new/choose">open an issue</a>.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a href="../">All tools</a> ·
+    <a href="https://github.com/dkautomation23/cra-report">cra-report on GitHub</a> ·
+    MIT licensed
+  </div>
+</footer>
+
+</body>
+</html>

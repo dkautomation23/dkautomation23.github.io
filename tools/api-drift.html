@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>api-drift — Catch a partner API changing shape before it breaks you</title>
+<meta name="description" content="Integrations rarely break loudly. A partner renames order_id to orderId, or starts sending total as a number, and nothing throws - the field reads as undefined and a fortnight of rows go out empty before anyone notices. api-drift records the shape of a response and tells you when it changes.">
+<meta name="keywords" content="API monitoring, schema drift, contract testing, breaking changes, integration reliability">
+<link rel="canonical" href="https://dkautomation23.github.io/tools/api-drift.html">
+<meta property="og:title" content="api-drift — Catch a partner API changing shape before it breaks you">
+<meta property="og:description" content="Integrations rarely break loudly. A partner renames order_id to orderId, or starts sending total as a number, and nothing throws - the field reads as undefined and a fortnight of rows go out empty before anyone notices. api-drift records the shape of a response and tells you when it changes.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dkautomation23.github.io/tools/api-drift.html">
+<link rel="stylesheet" href="../style.css">
+<link rel="icon" href="../favicon.svg">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"api-drift","alternateName":"Catch a partner API changing shape before it breaks you","description":"Integrations rarely break loudly. A partner renames order_id to orderId, or starts sending total as a number, and nothing throws - the field reads as undefined and a fortnight of rows go out empty before anyone notices. api-drift records the shape of a response and tells you when it changes.","applicationCategory":"DeveloperApplication","operatingSystem":"Linux, macOS, Windows","url":"https://dkautomation23.github.io/tools/api-drift.html","codeRepository":"https://github.com/dkautomation23/api-drift","license":"https://opensource.org/licenses/MIT","keywords":"API monitoring, schema drift, contract testing, breaking changes, integration reliability","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"author":{"@type":"Person","name":"Dmytro Galko","url":"https://dkautomation23.github.io","email":"hello@dkautomation.dev"}}</script>
+</head>
+<body>
+
+<header class="compact">
+  <div class="wrap">
+    <p class="crumb"><a href="../">Dmytro Galko</a> · open-source tools</p>
+    <h1>api-drift</h1>
+    <p class="role">Catch a partner API changing shape before it breaks you</p>
+    <p class="lede">Integrations rarely break loudly. A partner renames order_id to orderId, or starts sending total as a number, and nothing throws - the field reads as undefined and a fortnight of rows go out empty before anyone notices. api-drift records the shape of a response and tells you when it changes.</p>
+    <div class="links">
+      <a class="primary" href="https://github.com/dkautomation23/api-drift">Source on GitHub</a>
+      <a href="../#work">Work with me</a>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>What it does</h2>
+    <ul class="plain">
+      <li>Infers a schema from one or several sample responses, so a sometimes-absent field is recorded as optional rather than becoming tomorrow's false alarm.</li>
+      <li>Classifies each change from the point of view of code that already consumes the old shape: removed field, changed type, became nullable and became optional are breaking; a new field is not.</li>
+      <li>Stores the baseline as one JSON file with sorted keys, meant to be committed - so the change shows up in code review.</li>
+      <li>Treats a non-2xx answer or a non-JSON body as an outage, not as drift.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>How it is proved</h2>
+    <p class="note">Reproducible from two fixtures in the repository: it reports a rename as its two halves, a string that became a number, and a value that can now be null.</p>
+    <p class="tags"><span>TypeScript</span><span>25 tests</span><span>runs in cron or CI</span></p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>People find this looking for</h2>
+    <p class="note">detect API response schema change, API contract monitoring, breaking change detection JSON.</p>
+    <p class="cta">
+      If that is your week and you would rather someone else did it, write to
+      <a href="mailto:hello@dkautomation.dev?subject=api-drift">hello@dkautomation.dev</a>
+      or <a href="https://github.com/dkautomation23/api-drift/issues/new/choose">open an issue</a>.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a href="../">All tools</a> ·
+    <a href="https://github.com/dkautomation23/api-drift">api-drift on GitHub</a> ·
+    MIT licensed
+  </div>
+</footer>
+
+</body>
+</html>
