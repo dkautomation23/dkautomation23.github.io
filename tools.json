@@ -14,7 +14,7 @@
     "proof": "Run against chewy.com on the day it was written: checkout, fulfilment and order declared, neither catalogue capability, protocol seven months behind. allbirds.com the same day: eight capabilities on the current version. Both profiles are recorded in the repository as test fixtures.",
     "stack": [
       "TypeScript",
-      "33 tests",
+      "50 tests",
       "no runtime dependencies",
       "refuses private addresses"
     ],
@@ -70,10 +70,10 @@
       "Gives Stripe a fresh timestamp, because its tolerance window rejects the recorded one.",
       "Redacts Authorization, Cookie and API-key headers before anything reaches disk."
     ],
-    "proof": "Every signing scheme is checked against an independent implementation of the verifying side, not against a frozen digest. 30 tests, none of which touch a network.",
+    "proof": "Every signing scheme is checked against an independent implementation of the verifying side, not against a frozen digest. 34 tests, none of which touch a network.",
     "stack": [
       "TypeScript",
-      "30 tests",
+      "34 tests",
       "no runtime dependencies"
     ],
     "keywords": [
@@ -101,7 +101,7 @@
     "proof": "Reproducible from two fixtures in the repository: it reports a rename as its two halves, a string that became a number, and a value that can now be null.",
     "stack": [
       "TypeScript",
-      "25 tests",
+      "29 tests",
       "runs in cron or CI"
     ],
     "keywords": [
