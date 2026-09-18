@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ucp-audit — Is your shop reachable by AI shopping agents?</title>
+<meta name="description" content="Google and Shopify's Universal Commerce Protocol lets AI agents shop: every business publishes a machine-readable profile at /.well-known/ucp and agents read it to decide what they can do with that shop. The failure mode is silence - offer checkout without declaring a searchable catalogue and no age">
+<meta name="keywords" content="universal commerce protocol, UCP, agentic commerce, Shopify, AI shopping agents, merchant readiness, ecommerce audit">
+<link rel="canonical" href="https://dkautomation23.github.io/tools/ucp-audit.html">
+<meta property="og:title" content="ucp-audit — Is your shop reachable by AI shopping agents?">
+<meta property="og:description" content="Google and Shopify's Universal Commerce Protocol lets AI agents shop: every business publishes a machine-readable profile at /.well-known/ucp and agents read it to decide what they can do with that shop. The failure mode is silence - offer checkout without declaring a searchable catalogue and no age">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dkautomation23.github.io/tools/ucp-audit.html">
+<link rel="stylesheet" href="../style.css">
+<link rel="icon" href="../favicon.svg">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"ucp-audit","alternateName":"Is your shop reachable by AI shopping agents?","description":"Google and Shopify's Universal Commerce Protocol lets AI agents shop: every business publishes a machine-readable profile at /.well-known/ucp and agents read it to decide what they can do with that shop. The failure mode is silence - offer checkout without declaring a searchable catalogue and no agent will ever surface your products, with no error page and no warning anywhere.","applicationCategory":"DeveloperApplication","operatingSystem":"Linux, macOS, Windows","url":"https://dkautomation23.github.io/tools/ucp-audit.html","codeRepository":"https://github.com/dkautomation23/ucp-audit","license":"https://opensource.org/licenses/MIT","keywords":"universal commerce protocol, UCP, agentic commerce, Shopify, AI shopping agents, merchant readiness, ecommerce audit","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"author":{"@type":"Person","name":"Dmytro Galko","url":"https://dkautomation23.github.io","email":"hello@dkautomation.dev"}}</script>
+</head>
+<body>
+
+<header class="compact">
+  <div class="wrap">
+    <p class="crumb"><a href="../">Dmytro Galko</a> · open-source tools</p>
+    <h1>ucp-audit</h1>
+    <p class="role">Is your shop reachable by AI shopping agents?</p>
+    <p class="lede">Google and Shopify's Universal Commerce Protocol lets AI agents shop: every business publishes a machine-readable profile at /.well-known/ucp and agents read it to decide what they can do with that shop. The failure mode is silence - offer checkout without declaring a searchable catalogue and no agent will ever surface your products, with no error page and no warning anywhere.</p>
+    <div class="links">
+      <a class="primary" href="https://github.com/dkautomation23/ucp-audit">Source on GitHub</a>
+      <a href="../#work">Work with me</a>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>What it does</h2>
+    <ul class="plain">
+      <li>Reads the profile the way an agent does and reports what an agent would conclude.</li>
+      <li>Catches the case that matters most: checkout offered while catalog.search and catalog.lookup are missing, so an agent can pay for what it already knows about and discover nothing.</li>
+      <li>Finds the contradictions a profile carries silently - a capability requiring a newer protocol than the profile declares, an extends pointing at a capability that is not offered, a plaintext endpoint, a transport with nowhere to send a request.</li>
+      <li>Compares your protocol version against the published spec, because each release has added shopping capabilities.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>How it is proved</h2>
+    <p class="note">Run against chewy.com on the day it was written: checkout, fulfilment and order declared, neither catalogue capability, protocol seven months behind. allbirds.com the same day: eight capabilities on the current version. Both profiles are recorded in the repository as test fixtures.</p>
+    <p class="tags"><span>TypeScript</span><span>33 tests</span><span>no runtime dependencies</span><span>refuses private addresses</span></p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>People find this looking for</h2>
+    <p class="note">Universal Commerce Protocol readiness, /.well-known/ucp check, agentic commerce merchant audit, why AI agents do not show my products.</p>
+    <p class="cta">
+      If that is your week and you would rather someone else did it, write to
+      <a href="mailto:hello@dkautomation.dev?subject=ucp-audit">hello@dkautomation.dev</a>
+      or <a href="https://github.com/dkautomation23/ucp-audit/issues/new/choose">open an issue</a>.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a href="../">All tools</a> ·
+    <a href="https://github.com/dkautomation23/ucp-audit">ucp-audit on GitHub</a> ·
+    MIT licensed
+  </div>
+</footer>
+
+</body>
+</html>

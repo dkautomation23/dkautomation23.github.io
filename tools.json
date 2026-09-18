@@ -1,5 +1,34 @@
 [
   {
+    "slug": "ucp-audit",
+    "name": "ucp-audit",
+    "tagline": "Is your shop reachable by AI shopping agents?",
+    "search": "Universal Commerce Protocol readiness, /.well-known/ucp check, agentic commerce merchant audit, why AI agents do not show my products",
+    "summary": "Google and Shopify's Universal Commerce Protocol lets AI agents shop: every business publishes a machine-readable profile at /.well-known/ucp and agents read it to decide what they can do with that shop. The failure mode is silence - offer checkout without declaring a searchable catalogue and no agent will ever surface your products, with no error page and no warning anywhere.",
+    "how": [
+      "Reads the profile the way an agent does and reports what an agent would conclude.",
+      "Catches the case that matters most: checkout offered while catalog.search and catalog.lookup are missing, so an agent can pay for what it already knows about and discover nothing.",
+      "Finds the contradictions a profile carries silently - a capability requiring a newer protocol than the profile declares, an extends pointing at a capability that is not offered, a plaintext endpoint, a transport with nowhere to send a request.",
+      "Compares your protocol version against the published spec, because each release has added shopping capabilities."
+    ],
+    "proof": "Run against chewy.com on the day it was written: checkout, fulfilment and order declared, neither catalogue capability, protocol seven months behind. allbirds.com the same day: eight capabilities on the current version. Both profiles are recorded in the repository as test fixtures.",
+    "stack": [
+      "TypeScript",
+      "33 tests",
+      "no runtime dependencies",
+      "refuses private addresses"
+    ],
+    "keywords": [
+      "universal commerce protocol",
+      "UCP",
+      "agentic commerce",
+      "Shopify",
+      "AI shopping agents",
+      "merchant readiness",
+      "ecommerce audit"
+    ]
+  },
+  {
     "slug": "cra-report",
     "name": "cra-report",
     "tagline": "EU Cyber Resilience Act Article 14 reporting tool",
@@ -12,8 +41,22 @@
       "Writes the Article 14(1) early warning with both deadlines counted from now, and marks what only a person can answer."
     ],
     "proof": "On a dependency tree containing log4j-core 2.14.1 it reports 2 findings with a deadline out of 19 advisories, both flagged as used in ransomware campaigns. On lodash 4.17.15 it reports 0 out of 6 - equally worth being able to say.",
-    "stack": ["TypeScript", "28 tests", "no runtime dependencies", "no API key"],
-    "keywords": ["cyber resilience act", "CRA compliance", "Article 14", "ENISA reporting", "SBOM", "CISA KEV", "vulnerability management", "devsecops"]
+    "stack": [
+      "TypeScript",
+      "28 tests",
+      "no runtime dependencies",
+      "no API key"
+    ],
+    "keywords": [
+      "cyber resilience act",
+      "CRA compliance",
+      "Article 14",
+      "ENISA reporting",
+      "SBOM",
+      "CISA KEV",
+      "vulnerability management",
+      "devsecops"
+    ]
   },
   {
     "slug": "webhook-rewind",
@@ -28,8 +71,20 @@
       "Redacts Authorization, Cookie and API-key headers before anything reaches disk."
     ],
     "proof": "Every signing scheme is checked against an independent implementation of the verifying side, not against a frozen digest. 30 tests, none of which touch a network.",
-    "stack": ["TypeScript", "30 tests", "no runtime dependencies"],
-    "keywords": ["webhook testing", "webhook replay", "HMAC signature", "Stripe webhook", "Shopify webhook", "WhatsApp Cloud API", "integration debugging"]
+    "stack": [
+      "TypeScript",
+      "30 tests",
+      "no runtime dependencies"
+    ],
+    "keywords": [
+      "webhook testing",
+      "webhook replay",
+      "HMAC signature",
+      "Stripe webhook",
+      "Shopify webhook",
+      "WhatsApp Cloud API",
+      "integration debugging"
+    ]
   },
   {
     "slug": "api-drift",
@@ -44,8 +99,18 @@
       "Treats a non-2xx answer or a non-JSON body as an outage, not as drift."
     ],
     "proof": "Reproducible from two fixtures in the repository: it reports a rename as its two halves, a string that became a number, and a value that can now be null.",
-    "stack": ["TypeScript", "25 tests", "runs in cron or CI"],
-    "keywords": ["API monitoring", "schema drift", "contract testing", "breaking changes", "integration reliability"]
+    "stack": [
+      "TypeScript",
+      "25 tests",
+      "runs in cron or CI"
+    ],
+    "keywords": [
+      "API monitoring",
+      "schema drift",
+      "contract testing",
+      "breaking changes",
+      "integration reliability"
+    ]
   },
   {
     "slug": "csvdiff",
@@ -60,8 +125,18 @@
       "Exit code 1 when anything differs, so it works as a gate."
     ],
     "proof": "The benchmark is a script in the repository: it builds both exports from a fixed seed, so the timing repeats on any machine.",
-    "stack": ["Rust", "13 tests", "prebuilt binaries for Linux, macOS and Windows"],
-    "keywords": ["CSV diff", "data migration", "data quality", "reconciliation", "ETL testing"]
+    "stack": [
+      "Rust",
+      "13 tests",
+      "prebuilt binaries for Linux, macOS and Windows"
+    ],
+    "keywords": [
+      "CSV diff",
+      "data migration",
+      "data quality",
+      "reconciliation",
+      "ETL testing"
+    ]
   },
   {
     "slug": "leakscan",
@@ -75,8 +150,20 @@
       "Reports what it found and where, and changes nothing."
     ],
     "proof": "38 tests across office documents, PDFs and images.",
-    "stack": ["Rust", "38 tests", "no network", "prebuilt binaries"],
-    "keywords": ["data loss prevention", "document security", "GDPR", "metadata removal", "EXIF", "redaction"]
+    "stack": [
+      "Rust",
+      "38 tests",
+      "no network",
+      "prebuilt binaries"
+    ],
+    "keywords": [
+      "data loss prevention",
+      "document security",
+      "GDPR",
+      "metadata removal",
+      "EXIF",
+      "redaction"
+    ]
   },
   {
     "slug": "invoice-reconciler",
@@ -90,8 +177,18 @@
       "Writes the exception list as CSV or JSON for whoever has to chase it."
     ],
     "proof": "Standard library only: it runs on any Python 3.10+ with nothing installed.",
-    "stack": ["Python", "24 checks", "no dependencies"],
-    "keywords": ["bank reconciliation", "invoice matching", "accounts receivable", "finance automation", "bookkeeping"]
+    "stack": [
+      "Python",
+      "24 checks",
+      "no dependencies"
+    ],
+    "keywords": [
+      "bank reconciliation",
+      "invoice matching",
+      "accounts receivable",
+      "finance automation",
+      "bookkeeping"
+    ]
   },
   {
     "slug": "whatsapp-crm-connector",
@@ -105,8 +202,18 @@
       "Runs offline with one command, against recorded payloads."
     ],
     "proof": "42 tests, including a forged signature that must be refused.",
-    "stack": ["Python", "FastAPI", "42 tests"],
-    "keywords": ["WhatsApp Business API", "CRM integration", "webhook", "Meta Graph API", "message deduplication"]
+    "stack": [
+      "Python",
+      "FastAPI",
+      "42 tests"
+    ],
+    "keywords": [
+      "WhatsApp Business API",
+      "CRM integration",
+      "webhook",
+      "Meta Graph API",
+      "message deduplication"
+    ]
   },
   {
     "slug": "email-deliverability-check",
@@ -119,7 +226,18 @@
       "Batch mode for a list of client domains, with CSV output."
     ],
     "proof": "17 offline checks over recorded DNS answers.",
-    "stack": ["Python", "17 checks", "DNS only"],
-    "keywords": ["email deliverability", "SPF", "DKIM", "DMARC", "MTA-STS", "email authentication"]
+    "stack": [
+      "Python",
+      "17 checks",
+      "DNS only"
+    ],
+    "keywords": [
+      "email deliverability",
+      "SPF",
+      "DKIM",
+      "DMARC",
+      "MTA-STS",
+      "email authentication"
+    ]
   }
 ]
