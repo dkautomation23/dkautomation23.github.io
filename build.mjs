@@ -130,6 +130,9 @@ for (const tool of tools) {
 const today = new Date().toISOString().slice(0, 10);
 const urls = [
   { loc: `${SITE}/`, priority: "1.0" },
+  // The survey is the only page here that is data rather than a tool, and the
+  // one most likely to be linked to from elsewhere.
+  { loc: `${SITE}/ucp-survey.html`, priority: "0.9" },
   ...tools.map((tool) => ({ loc: `${SITE}/tools/${tool.slug}.html`, priority: "0.8" })),
 ];
 writeFileSync(

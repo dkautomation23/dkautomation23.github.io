@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What AI shopping agents actually see: 5,356 Shopify storefronts, 2026-09-18</title>
+<meta name="description" content="Every live Shopify storefront publishes an agent profile; 47.5% of them will not let an agent sign the shopper in. A census of 5,356 live Shopify storefronts with the tool, the domain list and the raw results published so anyone can repeat it.">
+<meta name="keywords" content="UCP adoption, Universal Commerce Protocol, agentic commerce data, AI shopping agents, Shopify, well-known ucp, identity linking">
+<link rel="canonical" href="https://dkautomation23.github.io/ucp-survey.html">
+<meta property="og:title" content="What AI shopping agents actually see in 5,356 Shopify shops">
+<meta property="og:description" content="Every live Shopify storefront publishes an agent profile; 47.5% of them will not let an agent sign the shopper in.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://dkautomation23.github.io/ucp-survey.html">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="favicon.svg">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Universal Commerce Protocol adoption among live Shopify storefronts","description":"A census of 5,356 live Shopify storefronts taken on 2026-09-18: how many publish a Universal Commerce Protocol profile at /.well-known/ucp, which protocol version they publish, and which capabilities an AI shopping agent actually finds there.","url":"https://dkautomation23.github.io/ucp-survey.html","license":"https://opensource.org/licenses/MIT","creator":{"@type":"Person","name":"Dmytro Galko","url":"https://dkautomation23.github.io","email":"hello@dkautomation.dev"},"dateCreated":"2026-09-18","temporalCoverage":"2026-09-18","isAccessibleForFree":true,"variableMeasured":["UCP profile published","protocol version","declared capabilities","identity linking availability"],"keywords":"Universal Commerce Protocol, UCP adoption, agentic commerce, AI shopping agents, Shopify, well-known ucp, identity linking","distribution":[{"@type":"DataDownload","name":"Per-domain results","encodingFormat":"text/csv","contentUrl":"https://github.com/dkautomation23/ucp-audit/blob/main/survey/2026-09-18-results.csv"},{"@type":"DataDownload","name":"Aggregate","encodingFormat":"application/json","contentUrl":"https://github.com/dkautomation23/ucp-audit/blob/main/survey/2026-09-18-aggregate.json"}],"measurementTechnique":"One HTTPS GET of /.well-known/ucp per domain, four at a time, with a pause and an honest user agent. Domains that refused or did not answer are reported separately and never counted as broken."}</script>
+</head>
+<body>
+
+<header class="compact">
+  <div class="wrap">
+    <p class="crumb"><a href="./">Dmytro Galko</a> · open data</p>
+    <h1>What AI shopping agents actually see</h1>
+    <p class="role">A census of 5,356 live Shopify storefronts · 2026-09-18</p>
+    <p class="lede">
+      Google and Shopify published the Universal Commerce Protocol so an agent
+      can read a shop, find a product and buy it. The obvious question is how
+      many shops actually speak it — and nobody had published a count. Here is
+      one, with the tool, the domain list and the raw results, so anyone can
+      repeat it and get their own number.
+    </p>
+    <p class="proof">
+      The short answer surprised me: adoption is not the problem. 98.9% of these
+      shops publish a valid profile, all of them on the current
+      2026-08-25 release, none with a blocker. Shopify turned it on for
+      everyone, so "does my shop support it" is already answered. The real
+      variation is one capability — and it is the one that decides whether the
+      agent is a stranger or your customer.
+    </p>
+    <div class="links">
+      <a class="primary" href="https://github.com/dkautomation23/ucp-audit">The tool and the raw data</a>
+      <a href="#method">How it was measured</a>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>Half of them treat the agent as a stranger</h2>
+    <table class="data">
+      <tbody>
+        <tr><th>Agent can sign the shopper into their account</th><td>2,784</td><td>52.5%</td></tr>
+        <tr><th>Agent can only act as a guest</th><td>2,515</td><td>47.5%</td></tr>
+      </tbody>
+    </table>
+    <p class="note">
+      <code>dev.ucp.common.identity_linking</code> is the only capability these
+      5,299 shops differ on; the other eight are identical everywhere. Without
+      it the agent can browse and buy, but as an anonymous visitor: no saved
+      address, no order history, no loyalty tier, no "the usual". For a
+      returning customer that is the difference between a checkout and a form.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>What 5,356 shops answered</h2>
+    <table class="data">
+      <tbody>
+        <tr><th>Profile read and audited</th><td>5,299</td><td>98.9%</td></tr>
+        <tr><th>No profile published at all</th><td>11</td><td>0.2%</td></tr>
+        <tr><th>Refused the request (403, 429)</th><td>13</td><td>0.2%</td></tr>
+        <tr><th>Answered something that is not a profile</th><td>1</td><td>0.0%</td></tr>
+        <tr><th>No answer</th><td>32</td><td>0.6%</td></tr>
+      </tbody>
+    </table>
+    <p class="note">
+      46 shops (0.9%) could not be checked either way. They are
+      counted here and nowhere else: a shop that refused the request is not a
+      shop that failed the audit, and none of them appears in any percentage
+      above or below.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>What an agent is allowed to do</h2>
+    <p class="note">
+      How often each capability appears among the 5,299 audited shops.
+    </p>
+    <table class="data">
+      <tbody>
+        <tr><th><code>dev.shopify.catalog</code><br><span class="hint">use Shopify's own catalogue extension</span></th><td>5,299</td><td>100.0%</td></tr>
+        <tr><th><code>dev.ucp.shopping.cart</code><br><span class="hint">put it in a cart</span></th><td>5,299</td><td>100.0%</td></tr>
+        <tr><th><code>dev.ucp.shopping.catalog.lookup</code><br><span class="hint">look a product up by id</span></th><td>5,299</td><td>100.0%</td></tr>
+        <tr><th><code>dev.ucp.shopping.catalog.search</code><br><span class="hint">find a product by searching</span></th><td>5,299</td><td>100.0%</td></tr>
+        <tr><th><code>dev.ucp.shopping.checkout</code><br><span class="hint">complete the purchase</span></th><td>5,299</td><td>100.0%</td></tr>
+        <tr><th><code>dev.ucp.shopping.discount</code><br><span class="hint">apply a discount code</span></th><td>5,299</td><td>100.0%</td></tr>
+        <tr><th><code>dev.ucp.shopping.fulfillment</code><br><span class="hint">see delivery options</span></th><td>5,299</td><td>100.0%</td></tr>
+        <tr><th><code>dev.ucp.shopping.order</code><br><span class="hint">read the order afterwards</span></th><td>5,299</td><td>100.0%</td></tr>
+        <tr><th><code>dev.ucp.common.identity_linking</code><br><span class="hint">sign the shopper into their own account</span></th><td>2,784</td><td>52.5%</td></tr>
+      </tbody>
+    </table>
+    <p class="note">
+      Eight of the nine are <code>dev.ucp.*</code>, the protocol's own namespace. The
+      ninth, <code>dev.shopify.catalog</code>, is a platform extension — evidence
+      that the extension mechanism is being used in production and not only in
+      the specification.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Which version they publish</h2>
+    <table class="data">
+      <tbody>
+        <tr><th>2026-08-25</th><td>5,299</td><td>100.0%</td></tr>
+      </tbody>
+    </table>
+    <p class="note">
+      Not one audited shop is behind the 2026-08-25 release. A platform-wide rollout has no long tail of old versions, which is the opposite of what a self-hosted protocol looks like a year in.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Blockers found: none</h2>
+    <p class="note">
+      The audit looks for twelve ways a profile can be published and still be
+      useless to an agent — a checkout with no searchable catalogue, a capability
+      declared without the schema needed to call it, an extension naming a parent
+      that is not there, an endpoint on plain HTTP. Across 5,299 shops it found
+      none of them. Worth stating plainly: the tool is not measuring nothing —
+      the same twelve checks do fire on hand-written profiles, which is what they
+      were written against.
+    </p>
+  </div>
+</section>
+
+<section id="method">
+  <div class="wrap">
+    <h2>How it was measured</h2>
+    <ul class="plain">
+      <li><strong>Population.</strong> Every domain in the Tranco top 300,000 whose DNS points at Shopify's documented storefront address, 23.227.38.0/24, or at a <code>*.myshopify.com</code> name: 5,356 shops. Discovery asked a public resolver, never the shop.</li>
+      <li><strong>Measurement.</strong> One HTTPS GET of <code>/.well-known/ucp</code> per shop, four at a time, with a pause, an honest user agent naming the tool, and no attempt to get around anything that said no.</li>
+      <li><strong>Date.</strong> 2026-09-18, against the 2026-08-25 release of the specification.</li>
+      <li><strong>Tool.</strong> <a href="https://github.com/dkautomation23/ucp-audit">ucp-audit</a> — open source, zero runtime dependencies, tests on recorded responses.</li>
+      <li><strong>Repeat it.</strong> The domain list, both scripts and the raw per-domain results are in <a href="https://github.com/dkautomation23/ucp-audit/tree/main/survey">the repository</a>. <code>ucp-audit --batch survey/domains.txt --csv out.csv</code> rebuilds every table above.</li>
+    </ul>
+    <h2>What this does not say</h2>
+    <ul class="plain">
+      <li><strong>Shopify shops are not all of commerce.</strong> They are the shops the specification reaches first, which is why they are the population — and why 98.9% adoption says more about one platform's rollout than about the industry.</li>
+      <li><strong>Publishing a profile is not completing a sale.</strong> The audit reads what a shop declares; whether its checkout actually completes for an agent is a different measurement and is not claimed here.</li>
+      <li><strong>Shops behind a CDN that blocks unknown clients are under-represented</strong> among the audited. That share is printed above rather than folded into a nicer number.</li>
+      <li><strong>The population is traffic-ranked.</strong> Shops too small for the Tranco top 300,000 are not in it, and they may look different.</li>
+    </ul>
+    <p class="cta">
+      Want this run against your own shops, or the identity-linking gap closed on
+      yours? Write to <a href="mailto:hello@dkautomation.dev?subject=UCP%20survey">hello@dkautomation.dev</a>
+      or <a href="https://github.com/dkautomation23/ucp-audit/issues/new/choose">open an issue</a>.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a href="./">All tools</a> ·
+    <a href="https://github.com/dkautomation23/ucp-audit">ucp-audit on GitHub</a> ·
+    Data and code MIT licensed
+  </div>
+</footer>
+
+</body>
+</html>

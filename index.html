@@ -40,6 +40,18 @@
 
 <section>
   <div class="wrap">
+    <h2>Open data — what AI shopping agents actually see</h2>
+
+    <div class="tool">
+      <h3><a href="ucp-survey.html">A census of 5,356 live Shopify storefronts</a></h3>
+      <p>Google and Shopify published the Universal Commerce Protocol so an agent can read a shop and buy from it. Nobody had published a count of how many shops actually speak it, so I measured it: 98.9% publish a valid profile, every one of them on the current release, none with a blocker. The only thing they differ on is whether an agent may sign the shopper into their own account — and 47.5% do not allow it, which turns a returning customer into an anonymous visitor.</p>
+      <p class="tags"><span>5,356 shops</span><span>2026-09-18</span><span>domain list and raw results published</span><span>repeatable in one command</span></p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
     <h2>Command-line tools — Rust</h2>
 
     <div class="tool">
@@ -75,13 +87,13 @@
     <div class="tool">
       <h3><a href="tools/webhook-rewind.html">webhook-rewind</a></h3>
       <p>Record the webhooks a provider sends you once, then replay them at your own code as often as you need — re-signed for Meta, GitHub, Shopify or Stripe, so the receiver runs its real verification instead of having it switched off for the debugging session.</p>
-      <p class="tags"><span>TypeScript</span><span>30 tests</span><span>no runtime dependencies</span></p>
+      <p class="tags"><span>TypeScript</span><span>34 tests</span><span>no runtime dependencies</span></p>
     </div>
 
     <div class="tool">
       <h3><a href="tools/ucp-audit.html">ucp-audit</a></h3>
       <p>Google and Shopify's Universal Commerce Protocol lets AI agents shop: every business publishes a profile at <code>/.well-known/ucp</code> and agents read it to decide what they can do. The failure mode is silence — offer checkout without declaring a searchable catalogue and no agent ever surfaces your products. This reads the profile the way an agent does.</p>
-      <p class="tags"><span>TypeScript</span><span>33 tests</span><span>no runtime dependencies</span><span>refuses private addresses</span></p>
+      <p class="tags"><span>TypeScript</span><span>43 tests</span><span>no runtime dependencies</span><span>refuses private addresses</span></p>
     </div>
 
     <div class="tool">
@@ -93,7 +105,7 @@
     <div class="tool">
       <h3><a href="tools/api-drift.html">api-drift</a></h3>
       <p>Records the shape of a JSON API and reports when it changes: removed fields, changed types, values that can now be null. Exits non-zero in CI, so a partner's silent rename stops being something you find out about two weeks later.</p>
-      <p class="tags"><span>TypeScript</span><span>25 tests</span><span>runs in cron or CI</span></p>
+      <p class="tags"><span>TypeScript</span><span>29 tests</span><span>runs in cron or CI</span></p>
     </div>
   </div>
 </section>
