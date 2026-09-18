@@ -60,6 +60,9 @@ function page(tool) {
 <meta property="og:description" content="${escape(tool.summary.slice(0, 300))}">
 <meta property="og:type" content="website">
 <meta property="og:url" content="${url}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="../style.css">
 <link rel="icon" href="../favicon.svg">
 <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>

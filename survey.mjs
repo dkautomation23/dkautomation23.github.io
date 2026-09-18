@@ -124,6 +124,9 @@ const html = `<!doctype html>
 <meta property="og:description" content="${escape(headline)}.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="${SITE}/ucp-survey.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="style.css">
 <link rel="icon" href="favicon.svg">
 <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
