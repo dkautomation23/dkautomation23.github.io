@@ -14,7 +14,7 @@
     "proof": "Run against chewy.com on the day it was written: checkout, fulfilment and order declared, neither catalogue capability, protocol seven months behind. allbirds.com the same day: eight capabilities on the current version. Both profiles are recorded in the repository as test fixtures.",
     "stack": [
       "TypeScript",
-      "50 tests",
+      "53 tests",
       "no runtime dependencies",
       "refuses private addresses"
     ],
@@ -43,7 +43,7 @@
     "proof": "On a dependency tree containing log4j-core 2.14.1 it reports 2 findings with a deadline out of 19 advisories, both flagged as used in ransomware campaigns. On lodash 4.17.15 it reports 0 out of 6 - equally worth being able to say.",
     "stack": [
       "TypeScript",
-      "28 tests",
+      "31 tests",
       "no runtime dependencies",
       "no API key"
     ],
