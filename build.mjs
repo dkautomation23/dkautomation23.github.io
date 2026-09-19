@@ -136,6 +136,7 @@ const urls = [
   // The survey is the only page here that is data rather than a tool, and the
   // one most likely to be linked to from elsewhere.
   { loc: `${SITE}/ucp-survey.html`, priority: "0.9" },
+  { loc: `${SITE}/security-txt-survey.html`, priority: "0.9" },
   ...tools.map((tool) => ({ loc: `${SITE}/tools/${tool.slug}.html`, priority: "0.8" })),
 ];
 writeFileSync(
