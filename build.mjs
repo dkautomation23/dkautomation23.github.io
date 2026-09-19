@@ -75,6 +75,7 @@ function page(tool) {
     <h1>${escape(tool.name)}</h1>
     <p class="role">${escape(tool.tagline)}</p>
     <p class="lede">${escape(tool.summary)}</p>
+    ${tool.npm ? `<p class="run">Try it: <code>npx ${escape(tool.npm)}</code></p>` : ""}
     <div class="links">
       <a class="primary" href="${GITHUB}/${tool.slug}">Source on GitHub</a>
       <a href="../#work">Work with me</a>

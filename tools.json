@@ -26,7 +26,8 @@
       "AI shopping agents",
       "merchant readiness",
       "ecommerce audit"
-    ]
+    ],
+    "npm": "ucp-audit"
   },
   {
     "slug": "cra-report",
@@ -56,7 +57,8 @@
       "CISA KEV",
       "vulnerability management",
       "devsecops"
-    ]
+    ],
+    "npm": "cra-report"
   },
   {
     "slug": "well-known-audit",
@@ -89,7 +91,8 @@
       "mta-sts",
       "site audit",
       "cli"
-    ]
+    ],
+    "npm": "well-known-audit"
   },
   {
     "slug": "webhook-rewind",
@@ -117,7 +120,8 @@
       "Shopify webhook",
       "WhatsApp Cloud API",
       "integration debugging"
-    ]
+    ],
+    "npm": "webhook-rewind"
   },
   {
     "slug": "api-drift",
@@ -143,7 +147,8 @@
       "contract testing",
       "breaking changes",
       "integration reliability"
-    ]
+    ],
+    "npm": "api-shape-drift"
   },
   {
     "slug": "csvdiff",

@@ -26,6 +26,7 @@
     <h1>webhook-rewind</h1>
     <p class="role">Record webhooks once, replay them re-signed</p>
     <p class="lede">A webhook handler breaks in production and you need the payload that broke it. The provider will send you the next event, not that one. A payload copied out of a log fails signature verification, because every provider signs the raw bytes. webhook-rewind keeps the body as bytes from capture to replay and re-signs it with your own secret.</p>
+    <p class="run">Try it: <code>npx webhook-rewind</code></p>
     <div class="links">
       <a class="primary" href="https://github.com/dkautomation23/webhook-rewind">Source on GitHub</a>
       <a href="../#work">Work with me</a>

@@ -110,6 +110,9 @@
   table.data td:last-child { color: var(--muted); }
   table.data .hint { color: var(--muted); font-size: 13px; font-weight: 400; }
 
+  .run { font-size: 15px; margin: 0 0 8px; }
+  .run code { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 2px 7px; }
+
   footer { padding: 36px 0 64px; color: var(--muted); font-size: 14px; }
   a { color: var(--accent); }
   a:hover { color: var(--accent-hover); }
