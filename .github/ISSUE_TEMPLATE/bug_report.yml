@@ -1,0 +1,22 @@
+name: Something on the site is wrong
+description: A wrong number, a dead link, or a page that does not render
+labels: ["bug"]
+body:
+  - type: input
+    id: page
+    attributes:
+      label: Which page
+      placeholder: https://dkautomation23.github.io/ucp-survey.html
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is wrong
+      description: For a wrong number, say what it should be and how you know.
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and screen width, if it is a layout problem

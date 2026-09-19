@@ -1,0 +1,15 @@
+name: Suggest something
+description: A page that would be worth having, or data worth publishing
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: What would you want to find here?
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Who would use it, and for what?
+      description: This site publishes measurements, not opinions.
