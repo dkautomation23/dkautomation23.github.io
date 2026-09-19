@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A map of your content, and a locked door</title>
+<meta name="description" content="10.6% of the sites that publish an llms.txt also ban, by name, at least one of the AI crawlers that would read it. Measured on 2026-09-19 across the 1,500 most visited sites, with the tool, the domain list and the raw results published.">
+<meta name="keywords" content="llms.txt, AI crawlers, robots.txt, GPTBot, ClaudeBot, link rot, open data">
+<link rel="canonical" href="https://dkautomation23.github.io/llms-txt-conformance.html">
+<meta property="og:title" content="A map of your content, and a locked door">
+<meta property="og:description" content="10.6% of the sites that publish an llms.txt also ban, by name, at least one of the AI crawlers that would read it.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://dkautomation23.github.io/llms-txt-conformance.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="favicon.svg">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"llms.txt conformance and link health across the most visited sites","description":"A census of the 1,500 most visited sites, taken on 2026-09-19: not how many publish an llms.txt, which is already known, but whether the files they publish have the shape the specification describes, whether the links inside them still resolve, and how often a site publishes one while banning the crawlers that would read it.","url":"https://dkautomation23.github.io/llms-txt-conformance.html","license":"https://opensource.org/licenses/MIT","creator":{"@type":"Person","name":"Dmytro Galko","url":"https://dkautomation23.github.io","email":"hello@dkautomation.dev"},"dateCreated":"2026-09-19","temporalCoverage":"2026-09-19","isAccessibleForFree":true,"variableMeasured":["llms.txt published","llms.txt conforms to the documented shape","links inside llms.txt that resolve","named AI crawler blocked in robots.txt"],"keywords":"llms.txt, AI crawlers, robots.txt, GPTBot, ClaudeBot, link rot, open data, site audit","distribution":[{"@type":"DataDownload","name":"Per-domain results","encodingFormat":"text/csv","contentUrl":"https://github.com/dkautomation23/well-known-audit/blob/main/survey/2026-09-19-llms-conformance.csv"}],"measurementTechnique":"4 domains at a time, 250ms between batches, 300ms between link checks, at most 8 links per site, no retries, honest User-Agent"}</script>
+</head>
+<body>
+
+<header class="compact">
+  <div class="wrap">
+    <p class="crumb"><a href="./">Dmytro Galko</a> · open data</p>
+    <h1>A map of your content, and a locked door</h1>
+    <p class="role">llms.txt conformance across the 1,500 most visited sites · 2026-09-19</p>
+    <p class="lede">
+      How many sites publish an <code>llms.txt</code> has been counted several
+      times this year, and the answers agree. This is the next question, which
+      nobody seems to have asked: of the files that exist, how many actually
+      work — the right shape, live links inside, and a robots.txt that lets the
+      reader in.
+    </p>
+    <p class="proof">
+      An <code>llms.txt</code> is a map an assistant follows to your content.
+      A map with dead streets on it is worse than no map: the assistant spends
+      its one visit on a 404 and leaves. Nothing tells you when that happens.
+    </p>
+    <div class="links">
+      <a class="primary" href="https://github.com/dkautomation23/well-known-audit">The tool and the raw data</a>
+      <a href="#method">How it was measured</a>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>The finding</h2>
+    <p class="note">
+      13 of the 123 sites publishing a usable
+      <code>llms.txt</code> — 10.6% — also name at least one AI crawler in
+      their <code>robots.txt</code> and forbid it outright. They wrote a guide
+      for a reader they are not letting through the door.
+    </p>
+    <p class="note">
+      This is not the wildcard rule being read as a ban. Only a group naming the
+      crawler explicitly counts here, and only <code>Disallow: /</code> counts as
+      a block, because anything looser inflates the number.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Do the files have the documented shape?</h2>
+    <table class="data">
+      <tbody>
+        <tr><th>Publish an <code>llms.txt</code></th><td>123</td><td>16.1% of 765 answered</td></tr>
+        <tr><th>Have the documented shape</th><td>107</td><td>87%</td></tr>
+        <tr><th>No heading</th><td>3</td><td></td></tr>
+        <tr><th>No sections</th><td>7</td><td></td></tr>
+        <tr><th>No links at all</th><td>12</td><td></td></tr>
+      </tbody>
+    </table>
+    <p class="note">
+      A file with no links in it is a file that points an assistant nowhere. It
+      exists, it would be counted as adoption by every published figure, and it
+      does nothing.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Do the links inside still work?</h2>
+    <table class="data">
+      <tbody>
+        <tr><th>Sites with at least one dead link</th><td>15</td><td>13.5% of 111</td></tr>
+        <tr><th>Links checked</th><td>864</td><td></td></tr>
+        <tr><th>Resolved</th><td>797</td><td></td></tr>
+        <tr><th>Dead</th><td>36</td><td>4.2%</td></tr>
+        <tr><th>Could not verify</th><td>31</td><td>not counted as dead</td></tr>
+      </tbody>
+    </table>
+    <p class="note">
+      At most eight links per site were followed, spaced out, so this is a floor
+      and not a ceiling: a site with one dead link among its first eight may have
+      more further down.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Who is banned by name</h2>
+    <table class="data">
+      <thead><tr><th>Crawler</th><th>Blocked outright</th><th>Share</th></tr></thead>
+      <tbody>
+        <tr><th><code>GPTBot</code></th><td>106</td><td>15.7%</td></tr>
+        <tr><th><code>ClaudeBot</code></th><td>109</td><td>16.1%</td></tr>
+        <tr><th><code>Google-Extended</code></th><td>94</td><td>13.9%</td></tr>
+        <tr><th><code>CCBot</code></th><td>129</td><td>19.1%</td></tr>
+        <tr><th><code>PerplexityBot</code></th><td>89</td><td>13.2%</td></tr>
+        <tr><th><code>Bytespider</code></th><td>114</td><td>16.9%</td></tr>
+        <tr><th><code>Applebot-Extended</code></th><td>75</td><td>11.1%</td></tr>
+      </tbody>
+    </table>
+    <p class="note">
+      Out of 675 sites that publish a <code>robots.txt</code> at all. A crawler
+      that is never mentioned is counted as not mentioned, never as allowed and
+      never as blocked.
+    </p>
+  </div>
+</section>
+
+<section id="method">
+  <div class="wrap">
+    <h2>How it was measured, and what it cannot tell you</h2>
+    <p class="note">
+      Population: Tranco list V3YPN, top 1500 domains. Run on 2026-09-19 with
+      <code>well-known-audit/survey/llms-conformance.mjs</code>.
+    </p>
+    <p class="note">
+      Politeness: 4 domains at a time, 250ms between batches, 300ms between link checks, at most 8 links per site, no retries, honest User-Agent. A refusal is recorded as a
+      refusal and never retried.
+    </p>
+    <p class="note">
+      Of 1,500 domains, 735 could not be asked at all:
+      418 never answered — most of these are CDN and
+      infrastructure names that carry no website —
+      133 refused the request, and
+      184 answer 200 to a path that cannot exist, so
+      nothing they return is evidence of anything. None of the three is inside
+      any percentage on this page.
+    </p>
+    <p class="note">
+      each domain is first asked for a path that cannot exist; a 200 there means the site answers 200 to anything, and it is excluded from every rate.
+    </p>
+    <p class="note">
+      only a group naming the crawler explicitly counts; the wildcard group is not evidence about a named bot, and only Disallow: / counts as a full block.
+    </p>
+    <p class="note">
+      What this cannot tell you: whether any assistant actually read these
+      files, and whether a site meant to publish one — a large share of
+      <code>llms.txt</code> files on the web are written by a platform or a
+      plugin rather than chosen by the publisher.
+    </p>
+    <p class="note">
+      Want to know what your own domains publish?
+      <code>npx well-known-audit yourdomain.com</code>, or write to
+      <a href="mailto:hello@dkautomation.dev?subject=llms.txt%20conformance">hello@dkautomation.dev</a>.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a href="./">All tools</a> ·
+    <a href="https://github.com/dkautomation23/well-known-audit">well-known-audit on GitHub</a> ·
+    Data and code MIT licensed
+  </div>
+</footer>
+
+</body>
+</html>
