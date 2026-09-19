@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>well-known-audit — Every file your site publishes at its root, checked at once</title>
+<meta name="description" content="A site publishes a dozen small files at its root and under /.well-known/ that nobody owns: security.txt, robots.txt, llms.txt, assetlinks.json, apple-app-site-association, mta-sts.txt and the rest. Each one is checked by a different tool, or by nobody. This reads all of them in one run and says whic">
+<meta name="keywords" content="security.txt, RFC 9116, well-known, llms.txt, robots.txt, assetlinks.json, apple-app-site-association, mta-sts, site audit, cli">
+<link rel="canonical" href="https://dkautomation23.github.io/tools/well-known-audit.html">
+<meta property="og:title" content="well-known-audit — Every file your site publishes at its root, checked at once">
+<meta property="og:description" content="A site publishes a dozen small files at its root and under /.well-known/ that nobody owns: security.txt, robots.txt, llms.txt, assetlinks.json, apple-app-site-association, mta-sts.txt and the rest. Each one is checked by a different tool, or by nobody. This reads all of them in one run and says whic">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dkautomation23.github.io/tools/well-known-audit.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../style.css">
+<link rel="icon" href="../favicon.svg">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"well-known-audit","alternateName":"Every file your site publishes at its root, checked at once","description":"A site publishes a dozen small files at its root and under /.well-known/ that nobody owns: security.txt, robots.txt, llms.txt, assetlinks.json, apple-app-site-association, mta-sts.txt and the rest. Each one is checked by a different tool, or by nobody. This reads all of them in one run and says which are missing, which are malformed, and which have quietly expired - starting with security.txt, whose Expires field makes the file formally invalid once the date passes.","applicationCategory":"DeveloperApplication","operatingSystem":"Linux, macOS, Windows","url":"https://dkautomation23.github.io/tools/well-known-audit.html","codeRepository":"https://github.com/dkautomation23/well-known-audit","license":"https://opensource.org/licenses/MIT","keywords":"security.txt, RFC 9116, well-known, llms.txt, robots.txt, assetlinks.json, apple-app-site-association, mta-sts, site audit, cli","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"author":{"@type":"Person","name":"Dmytro Galko","url":"https://dkautomation23.github.io","email":"hello@dkautomation.dev"}}</script>
+</head>
+<body>
+
+<header class="compact">
+  <div class="wrap">
+    <p class="crumb"><a href="../">Dmytro Galko</a> · open-source tools</p>
+    <h1>well-known-audit</h1>
+    <p class="role">Every file your site publishes at its root, checked at once</p>
+    <p class="lede">A site publishes a dozen small files at its root and under /.well-known/ that nobody owns: security.txt, robots.txt, llms.txt, assetlinks.json, apple-app-site-association, mta-sts.txt and the rest. Each one is checked by a different tool, or by nobody. This reads all of them in one run and says which are missing, which are malformed, and which have quietly expired - starting with security.txt, whose Expires field makes the file formally invalid once the date passes.</p>
+    <div class="links">
+      <a class="primary" href="https://github.com/dkautomation23/well-known-audit">Source on GitHub</a>
+      <a href="../#work">Work with me</a>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>What it does</h2>
+    <ul class="plain">
+      <li>Reads twelve well-known and root files in one pass, four requests at a time, and reports them together.</li>
+      <li>Validates security.txt against RFC 9116: a Contact line is required, an Expires line is required, and a date in the past means the file is no longer valid - it counts the days either way.</li>
+      <li>Catches the common silent failure: apple-app-site-association or assetlinks.json served as HTML, which iOS and Android quietly ignore.</li>
+      <li>Refuses private and loopback addresses, checks every redirect hop rather than the first URL, and stops reading a body at 5 MB.</li>
+      <li>Audits a list of domains in one run and writes the totals as CSV, one polite domain at a time.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>How it is proved</h2>
+    <p class="note">Run against the Tranco top 500 on 2026-09-18: of the 158 sites that publish a security.txt, 92 have no Expires field at all and 6 have expired - nearly two thirds are invalid under RFC 9116. Four of the flagged sites were checked by hand with curl before the number was published. 106 tests, none of which touch a network.</p>
+    <p class="tags"><span>TypeScript</span><span>99 tests</span><span>no runtime dependencies</span><span>refuses private addresses</span></p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>People find this looking for</h2>
+    <p class="note">security.txt expired check, RFC 9116 Expires validator, well-known files audit, llms.txt robots.txt assetlinks checker.</p>
+    <p class="cta">
+      If that is your week and you would rather someone else did it, write to
+      <a href="mailto:hello@dkautomation.dev?subject=well-known-audit">hello@dkautomation.dev</a>
+      or <a href="https://github.com/dkautomation23/well-known-audit/issues/new/choose">open an issue</a>.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a href="../">All tools</a> ·
+    <a href="https://github.com/dkautomation23/well-known-audit">well-known-audit on GitHub</a> ·
+    MIT licensed
+  </div>
+</footer>
+
+</body>
+</html>

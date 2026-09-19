@@ -46,6 +46,12 @@
     <h2>Open data — what AI shopping agents actually see</h2>
 
     <div class="tool">
+      <h3><a href="security-txt-survey.html">Half the security.txt files at the top of the web are invalid</a></h3>
+      <p>A <code>security.txt</code> tells a researcher where to report a hole in your site, and RFC 9116 makes its <code>Expires</code> field mandatory — an expired file is, in the words of the specification, as good as no file. Of the 158 such files among the 500 most visited sites, 92 carry no <code>Expires</code> at all and 6 have expired: 62% are not valid. Nothing warns when that happens.</p>
+      <p class="tags"><span>500 sites</span><span>2026-09-18</span><span>raw results published</span><span>repeatable in one command</span></p>
+    </div>
+
+    <div class="tool">
       <h3><a href="ucp-survey.html">A census of 5,356 live Shopify storefronts</a></h3>
       <p>Google and Shopify published the Universal Commerce Protocol so an agent can read a shop and buy from it. Nobody had published a count of how many shops actually speak it, so I measured it: 98.9% publish a valid profile, every one of them on the current release, none with a blocker. The only thing they differ on is whether an agent may sign the shopper into their own account — and 47.5% do not allow it, which turns a returning customer into an anonymous visitor.</p>
       <p class="tags"><span>5,356 shops</span><span>2026-09-18</span><span>domain list and raw results published</span><span>repeatable in one command</span></p>
@@ -60,25 +66,25 @@
     <div class="tool">
       <h3><a href="tools/csvdiff.html">csvdiff</a></h3>
       <p>Diffs two CSV exports by key and reports what actually changed. Two million rows in 2.8 seconds, a per-column breakdown with counted transitions, and number/null normalisation — so a migration report reads as 9 809 real changes instead of 995 000 rows of timestamp noise.</p>
-      <p class="tags"><span>Rust</span><span>13 tests</span><span>benchmark in repo</span><span>prebuilt binaries</span></p>
+      <p class="tags"><span>Rust</span><span>16 tests</span><span>benchmark in repo</span><span>prebuilt binaries</span></p>
     </div>
 
     <div class="tool">
       <h3><a href="tools/leakscan.html">leakscan</a></h3>
       <p>Offline check of what leaves with a file before you send it: tracked changes with the deleted text still readable, review comments, hidden worksheets, PDF attachments, GPS coordinates in photos, validated card and IBAN numbers.</p>
-      <p class="tags"><span>Rust</span><span>38 tests</span><span>no network at any point</span></p>
+      <p class="tags"><span>Rust</span><span>41 tests</span><span>no network at any point</span></p>
     </div>
 
     <div class="tool">
       <h3><a href="https://github.com/dkautomation23/imgdupe">imgdupe</a></h3>
       <p>Perceptual-hash duplicate finder. Complete-linkage grouping, so unrelated pictures never chain together through a path of small steps — and it writes a delete script for you to read instead of deleting anything itself.</p>
-      <p class="tags"><span>Rust</span><span>19 tests</span><span>benchmark in repo</span></p>
+      <p class="tags"><span>Rust</span><span>23 tests</span><span>benchmark in repo</span></p>
     </div>
 
     <div class="tool">
       <h3><a href="https://github.com/dkautomation23/linkscan">linkscan</a></h3>
       <p>Crawls a site and reports the links that are genuinely broken, keeping bot protection and slow third parties out of the "broken" column — which is why the report still gets read after the second run.</p>
-      <p class="tags"><span>Rust</span><span>15 tests</span><span>exit code for CI</span></p>
+      <p class="tags"><span>Rust</span><span>28 tests</span><span>exit code for CI</span></p>
     </div>
   </div>
 </section>
@@ -90,13 +96,19 @@
     <div class="tool">
       <h3><a href="tools/webhook-rewind.html">webhook-rewind</a></h3>
       <p>Record the webhooks a provider sends you once, then replay them at your own code as often as you need — re-signed for Meta, GitHub, Shopify or Stripe, so the receiver runs its real verification instead of having it switched off for the debugging session.</p>
-      <p class="tags"><span>TypeScript</span><span>34 tests</span><span>no runtime dependencies</span></p>
+      <p class="tags"><span>TypeScript</span><span>35 tests</span><span>no runtime dependencies</span></p>
+    </div>
+
+    <div class="tool">
+      <h3><a href="tools/well-known-audit.html">well-known-audit</a></h3>
+      <p>A site publishes a dozen small files at its root — <code>security.txt</code>, <code>robots.txt</code>, <code>llms.txt</code>, <code>assetlinks.json</code>, <code>mta-sts.txt</code> — each checked by a different tool or by nobody. This reads all of them in one run and says which are missing, malformed, or quietly expired. RFC 9116 gives <code>security.txt</code> an <code>Expires</code> date; past it, the file is no longer valid, and almost nobody notices.</p>
+      <p class="tags"><span>TypeScript</span><span>106 tests</span><span>no runtime dependencies</span><span>refuses private addresses</span></p>
     </div>
 
     <div class="tool">
       <h3><a href="tools/ucp-audit.html">ucp-audit</a></h3>
       <p>Google and Shopify's Universal Commerce Protocol lets AI agents shop: every business publishes a profile at <code>/.well-known/ucp</code> and agents read it to decide what they can do. The failure mode is silence — offer checkout without declaring a searchable catalogue and no agent ever surfaces your products. This reads the profile the way an agent does.</p>
-      <p class="tags"><span>TypeScript</span><span>53 tests</span><span>no runtime dependencies</span><span>refuses private addresses</span></p>
+      <p class="tags"><span>TypeScript</span><span>59 tests</span><span>no runtime dependencies</span><span>refuses private addresses</span></p>
     </div>
 
     <div class="tool">
@@ -108,7 +120,7 @@
     <div class="tool">
       <h3><a href="tools/api-drift.html">api-drift</a></h3>
       <p>Records the shape of a JSON API and reports when it changes: removed fields, changed types, values that can now be null. Exits non-zero in CI, so a partner's silent rename stops being something you find out about two weeks later.</p>
-      <p class="tags"><span>TypeScript</span><span>29 tests</span><span>runs in cron or CI</span></p>
+      <p class="tags"><span>TypeScript</span><span>31 tests</span><span>runs in cron or CI</span></p>
     </div>
   </div>
 </section>

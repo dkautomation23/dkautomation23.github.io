@@ -23,11 +23,16 @@ const REPO = `${GITHUB}/ucp-audit`;
 
 const source = process.argv[2];
 if (!source) {
-  process.stderr.write("usage: node survey.mjs <aggregate.json>\n");
+  process.stderr.write("usage: node survey.mjs <aggregate.json> [census-aggregate.json]\n");
   process.exit(2);
 }
 
+// The second measurement is optional: the page renders without it, and the
+// first one keeps its own date rather than being rewritten.
+const censusSource = process.argv[3];
+
 const run = JSON.parse(readFileSync(source, "utf8"));
+const census = censusSource ? JSON.parse(readFileSync(censusSource, "utf8")) : null;
 const s = run.summary;
 const date = (run.checkedAt ?? "").slice(0, 10);
 
@@ -278,7 +283,57 @@ ${blockers
 </section>`
 }
 
-<section id="method">
+${
+  !census
+    ? ""
+    : (() => {
+        const c = census.summary;
+        const answered = c.total - c.byOutcome.unreachable - (c.byOutcome.blocked ?? 0);
+        const date = (census.checkedAt ?? "").slice(0, 10);
+        return `<section>
+  <div class="wrap">
+    <h2>And outside Shopify: ${num(c.checked)} of ${num(answered)}</h2>
+    <p class="note">
+      The measurement above covers one platform, which was the honest limit of
+      it. So the same question was put to the web at large: of the
+      ${num(c.total)} most visited sites in the world, asked on ${date}, how many
+      publish a Universal Commerce Protocol profile at all? No commerce
+      classifier is involved - publishing one is itself the signal, and every
+      retailer large enough to matter to a shopping agent is inside that range.
+    </p>
+    <table class="data">
+      <tbody>
+        <tr><th>Published a profile</th><td>${num(c.checked)}</td><td>${pct(c.checked, answered)}</td></tr>
+        <tr><th>Answered, no profile</th><td>${num(c.byOutcome["no-profile"] ?? 0)}</td><td>${pct(c.byOutcome["no-profile"] ?? 0, answered)}</td></tr>
+        <tr><th>Answered with something that is not a profile</th><td>${num((c.byOutcome["not-json"] ?? 0) + (c.byOutcome.invalid ?? 0))}</td><td>${pct((c.byOutcome["not-json"] ?? 0) + (c.byOutcome.invalid ?? 0), answered)}</td></tr>
+      </tbody>
+    </table>
+    <p class="note">
+      ${num(c.byOutcome.unreachable + (c.byOutcome.blocked ?? 0))} of the ${num(c.total)} did not answer or refused the
+      request, and are excluded from every percentage above rather than counted
+      as "no profile". Many of them are not websites at all - the list of most
+      visited domains is full of content-delivery and API hostnames that serve
+      nothing at their root - and the rest were asked with a ${census.method.timeouts.split(";")[0].replace("s on the first pass", "-second")} limit,
+      which a slow site can miss - so every one of them was asked again with a
+      longer limit, and ${num(census.retried ?? 0)} answered on that second pass. What still did not
+      answer is counted as unverified rather than quietly folded into a nicer
+      number.
+    </p>
+    ${census.finding ? `<p class="proof">${escape(census.finding)}</p>` : ""}
+    <p class="proof">
+      Taken together, the two measurements say something neither says alone:
+      inside Shopify the protocol is universal, and outside it, at the top of
+      the web, it is not there yet. An agent's shopping world is currently the
+      shops one company switched on.
+    </p>
+  </div>
+</section>
+
+<section id="method">`;
+      })()
+}
+
+
   <div class="wrap">
     <h2>How it was measured</h2>
     <ul class="plain">

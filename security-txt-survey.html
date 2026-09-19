@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Half the security.txt files at the top of the web are invalid</title>
+<meta name="description" content="62.0% of the security.txt files at the top of the web are not valid under RFC 9116. Measured on 2026-09-18 across the 500 most visited sites, with the tool, the domain list and the raw results published.">
+<meta name="keywords" content="security.txt, RFC 9116, Expires field, vulnerability disclosure, well-known files, open data">
+<link rel="canonical" href="https://dkautomation23.github.io/security-txt-survey.html">
+<meta property="og:title" content="Half the security.txt files at the top of the web are invalid">
+<meta property="og:description" content="62.0% of the security.txt files at the top of the web are not valid under RFC 9116.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://dkautomation23.github.io/security-txt-survey.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="favicon.svg">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"security.txt validity across the most visited sites","description":"A census of the 500 most visited sites, taken on 2026-09-18: how many publish a security.txt, how many of those carry the Expires field RFC 9116 requires, and how many have expired.","url":"https://dkautomation23.github.io/security-txt-survey.html","license":"https://opensource.org/licenses/MIT","creator":{"@type":"Person","name":"Dmytro Galko","url":"https://dkautomation23.github.io","email":"hello@dkautomation.dev"},"dateCreated":"2026-09-18","temporalCoverage":"2026-09-18","isAccessibleForFree":true,"variableMeasured":["security.txt published","Expires field present","Expires date in the past"],"keywords":"security.txt, RFC 9116, Expires, vulnerability disclosure, well-known files, site audit, open data","distribution":[{"@type":"DataDownload","name":"Per-domain results","encodingFormat":"text/csv","contentUrl":"https://github.com/dkautomation23/well-known-audit/blob/main/survey/2026-09-18-top500.csv"}],"measurementTechnique":"One HTTPS GET per file, four at a time per domain, one domain at a time. Domains that never answered are reported separately and never counted as publishing nothing."}</script>
+</head>
+<body>
+
+<header class="compact">
+  <div class="wrap">
+    <p class="crumb"><a href="./">Dmytro Galko</a> · open data</p>
+    <h1>Where to report a hole, and nobody watching</h1>
+    <p class="role">security.txt across the 500 most visited sites · 2026-09-18</p>
+    <p class="lede">
+      A <code>security.txt</code> file tells a researcher who found a hole in
+      your site where to send it. <a href="https://www.rfc-editor.org/rfc/rfc9116">RFC 9116</a>
+      makes one field mandatory — <code>Expires</code> — precisely because a
+      contact address nobody has confirmed in three years is worse than none:
+      the specification treats an expired file as invalid, exactly like a
+      missing one.
+    </p>
+    <p class="proof">
+      Nothing breaks when that date passes. No browser warns, no scanner
+      complains, no dashboard turns red. So this is a count of how often it has
+      already happened at the top of the web.
+    </p>
+    <div class="links">
+      <a class="primary" href="https://github.com/dkautomation23/well-known-audit">The tool and the raw data</a>
+      <a href="#method">How it was measured</a>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>Of the 158 files that exist</h2>
+    <table class="data">
+      <tbody>
+        <tr><th>Valid today</th><td>60</td><td>38.0%</td></tr>
+        <tr><th>No <code>Expires</code> field at all</th><td>92</td><td>58.2%</td></tr>
+        <tr><th>Expired</th><td>6</td><td>3.8%</td></tr>
+      </tbody>
+    </table>
+    <p class="note">
+      98 of 158 — 62.0% — are not valid files under the
+      specification they are written to. The commonest failure is not an expired
+      date but no date at all: the field was never added, and nothing ever asked
+      for it.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Who publishes one in the first place</h2>
+    <table class="data">
+      <tbody>
+        <tr><th>Sites that answered</th><td>332</td><td>66.4%</td></tr>
+        <tr><th>Publish a security.txt</th><td>158</td><td>47.6%</td></tr>
+        <tr><th>Never answered</th><td>168</td><td>33.6%</td></tr>
+      </tbody>
+    </table>
+    <p class="note">
+      The 168 that never answered are counted here and nowhere else. A ranking of
+      the most visited domains is full of content-delivery and API hostnames
+      that serve nothing at their root; calling those "sites without a
+      security.txt" would be a made-up number.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>And the rest of what sites publish at their root</h2>
+    <table class="data">
+      <tbody>
+        <tr><th><code>robots.txt</code><br><span class="hint">what crawlers may read</span></th><td>233</td><td>70.2%</td></tr>
+        <tr><th><code>security.txt</code><br><span class="hint">where to report a hole</span></th><td>158</td><td>47.6%</td></tr>
+        <tr><th><code>assetlinks.json</code><br><span class="hint">Android app links</span></th><td>138</td><td>41.6%</td></tr>
+        <tr><th><code>apple-app-site-association</code><br><span class="hint">iOS universal links</span></th><td>127</td><td>38.3%</td></tr>
+        <tr><th><code>change-password</code><br><span class="hint">where a password manager sends you</span></th><td>77</td><td>23.2%</td></tr>
+        <tr><th><code>llms.txt</code><br><span class="hint">what an AI assistant should read</span></th><td>70</td><td>21.1%</td></tr>
+        <tr><th><code>gpc.json</code><br><span class="hint">Global Privacy Control</span></th><td>21</td><td>6.3%</td></tr>
+        <tr><th><code>openid-configuration</code><br><span class="hint">OIDC discovery</span></th><td>19</td><td>5.7%</td></tr>
+        <tr><th><code>mta-sts.txt</code><br><span class="hint">mail transport security</span></th><td>6</td><td>1.8%</td></tr>
+        <tr><th><code>ai.txt</code><br><span class="hint">what AI crawlers may use</span></th><td>4</td><td>1.2%</td></tr>
+        <tr><th><code>ucp</code><br><span class="hint">Universal Commerce Protocol profile</span></th><td>4</td><td>1.2%</td></tr>
+        <tr><th><code>dnt-policy.txt</code><br><span class="hint">Do Not Track policy</span></th><td>4</td><td>1.2%</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="method">
+  <div class="wrap">
+    <h2>How it was measured</h2>
+    <ul class="plain">
+      <li><strong>Population.</strong> The Tranco top 500, taken as it is — no filtering by kind of site.</li>
+      <li><strong>Measurement.</strong> One HTTPS GET per file, four at a time for a single domain, one domain at a time, with a pause and a user agent naming the tool. Both locations RFC 9116 allows are checked.</li>
+      <li><strong>Date.</strong> 2026-09-18.</li>
+      <li><strong>Tool.</strong> <a href="https://github.com/dkautomation23/well-known-audit">well-known-audit</a> — open source, zero runtime dependencies, tests on recorded responses.</li>
+      <li><strong>Checked by hand before publishing.</strong> Four of the flagged sites were confirmed with <code>curl</code>, because a number like this is only worth having if it is right.</li>
+      <li><strong>Repeat it.</strong> <code>well-known-audit --batch survey/domains-top500.txt --csv out.csv</code> rebuilds every table above.</li>
+    </ul>
+    <h2>What this does not say</h2>
+    <ul class="plain">
+      <li>An invalid security.txt does not mean a site is insecure. It means the one document a researcher reads first cannot be relied on.</li>
+      <li>This was run from one machine. A site that serves different files by region, or blocks an unknown user agent, is counted as unverified rather than guessed at.</li>
+      <li>No site is named on this page. The per-domain results are in the repository for anyone who wants to check their own.</li>
+    </ul>
+    <p class="cta">
+      Want to know what your own domains publish? <code>npx well-known-audit yourdomain.com</code>
+      once it is released, or write to <a href="mailto:hello@dkautomation.dev?subject=well-known%20audit">hello@dkautomation.dev</a>.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a href="./">All tools</a> ·
+    <a href="https://github.com/dkautomation23/well-known-audit">well-known-audit on GitHub</a> ·
+    Data and code MIT licensed
+  </div>
+</footer>
+
+</body>
+</html>
