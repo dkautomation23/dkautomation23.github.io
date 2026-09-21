@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>llm-doc-extractor — Stop retyping fields out of invoices by hand</title>
+<meta name="description" content="Every company does the same loop: open a PDF or an email, find a handful of fields, type them into something structured. It is the most widely duplicated manual work there is. This does that loop once, repeatably: you describe the fields in YAML, and the tool returns exactly those keys every time - ">
+<meta name="keywords" content="document extraction, invoice parsing, LLM, structured output, JSON schema, Anthropic, OpenAI, Ollama, provider agnostic">
+<link rel="canonical" href="https://dkautomation23.github.io/tools/llm-doc-extractor.html">
+<meta property="og:title" content="llm-doc-extractor — Stop retyping fields out of invoices by hand">
+<meta property="og:description" content="Every company does the same loop: open a PDF or an email, find a handful of fields, type them into something structured. It is the most widely duplicated manual work there is. This does that loop once, repeatably: you describe the fields in YAML, and the tool returns exactly those keys every time - ">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dkautomation23.github.io/tools/llm-doc-extractor.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../style.css">
+<link rel="icon" href="../favicon.svg">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"llm-doc-extractor","alternateName":"Stop retyping fields out of invoices by hand","description":"Every company does the same loop: open a PDF or an email, find a handful of fields, type them into something structured. It is the most widely duplicated manual work there is. This does that loop once, repeatably: you describe the fields in YAML, and the tool returns exactly those keys every time - across Anthropic, OpenAI or a local Ollama model with one flag.","applicationCategory":"DeveloperApplication","operatingSystem":"Linux, macOS, Windows","url":"https://dkautomation23.github.io/tools/llm-doc-extractor.html","codeRepository":"https://github.com/dkautomation23/llm-doc-extractor","license":"https://opensource.org/licenses/MIT","keywords":"document extraction, invoice parsing, LLM, structured output, JSON schema, Anthropic, OpenAI, Ollama, provider agnostic","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"author":{"@type":"Person","name":"Dmytro Galko","url":"https://dkautomation23.github.io","email":"hello@dkautomation.dev"}}</script>
+</head>
+<body>
+
+<header class="compact">
+  <div class="wrap">
+    <p class="crumb"><a href="../">Dmytro Galko</a> · open-source tools</p>
+    <h1>llm-doc-extractor</h1>
+    <p class="role">Stop retyping fields out of invoices by hand</p>
+    <p class="lede">Every company does the same loop: open a PDF or an email, find a handful of fields, type them into something structured. It is the most widely duplicated manual work there is. This does that loop once, repeatably: you describe the fields in YAML, and the tool returns exactly those keys every time - across Anthropic, OpenAI or a local Ollama model with one flag.</p>
+    
+    <div class="links">
+      <a class="primary" href="https://github.com/dkautomation23/llm-doc-extractor">Source on GitHub</a>
+      <a href="../#work">Work with me</a>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>What it does</h2>
+    <ul class="plain">
+      <li>A built-in demo provider runs the whole pipeline with no API key, so the shape can be tested before a vendor is chosen.</li>
+      <li>The interesting part is the failure: a reply that does not fit the schema is caught, reported and retried against the declared shape, never written downstream.</li>
+      <li>One schema, three providers - so a price rise or an outage at one vendor is a flag change, not a rewrite.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>How it is proved</h2>
+    <p class="note">The sample invoice returns invoice_number, date, vendor, total and line_items as typed JSON with no key missing and no key invented. Same schema, same output shape whether the call went to Anthropic, OpenAI, a local model, or the offline demo provider.</p>
+    <p class="tags"><span>Python</span><span>YAML schema</span><span>Anthropic / OpenAI / Ollama</span><span>runs offline with no key</span></p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>People find this looking for</h2>
+    <p class="note">extract fields from invoices with an LLM, document to JSON schema, provider-agnostic LLM extraction, Anthropic OpenAI Ollama one schema, test document extraction without an API key.</p>
+    <p class="cta">
+      If that is your week and you would rather someone else did it, write to
+      <a href="mailto:hello@dkautomation.dev?subject=llm-doc-extractor">hello@dkautomation.dev</a>
+      or <a href="https://github.com/dkautomation23/llm-doc-extractor/issues/new/choose">open an issue</a>.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a href="../">All tools</a> ·
+    <a href="https://github.com/dkautomation23/llm-doc-extractor">llm-doc-extractor on GitHub</a> ·
+    MIT licensed
+  </div>
+</footer>
+
+</body>
+</html>
