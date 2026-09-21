@@ -251,10 +251,10 @@
       "Refuses private and loopback addresses, checks every redirect hop rather than the first URL, and stops reading a body at 5 MB.",
       "Audits a list of domains in one run and writes the totals as CSV, one polite domain at a time."
     ],
-    "proof": "Run against the Tranco top 500 on 2026-09-18: of the 158 sites that publish a security.txt, 92 have no Expires field at all and 6 have expired - nearly two thirds are invalid under RFC 9116. Four of the flagged sites were checked by hand with curl before the number was published. 106 tests, none of which touch a network.",
+    "proof": "Run against the Tranco top 500 on 2026-09-18: of the 158 sites that publish a security.txt, 92 have no Expires field at all and 6 have expired - nearly two thirds are invalid under RFC 9116. Four of the flagged sites were checked by hand with curl before the number was published. 117 tests, none of which touch a network.",
     "stack": [
       "TypeScript",
-      "99 tests",
+      "117 tests",
       "no runtime dependencies",
       "refuses private addresses"
     ],
@@ -368,7 +368,7 @@
     "proof": "41 tests across office documents, PDFs and images.",
     "stack": [
       "Rust",
-      "38 tests",
+      "41 tests",
       "no network",
       "prebuilt binaries"
     ],
