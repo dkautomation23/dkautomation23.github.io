@@ -1,5 +1,65 @@
 [
   {
+    "slug": "agent-hijack-bench",
+    "name": "agent-hijack-bench",
+    "tagline": "Does your agent obey the website instead of you?",
+    "search": "indirect prompt injection benchmark, llms.txt instruction injection, agent hijack rate, local LLM red-teaming, spotlighting datamarking defence measured",
+    "summary": "An llms.txt is a file a site publishes so that an assistant will read it. This measures how often a model used as an agent obeys an instruction planted in that file instead of the user's request - nineteen local models, temperature 0, scored by a canary substring so no judge model is involved.",
+    "how": [
+      "A control case with nothing planted voids a model's numbers if it emits the canary unprompted.",
+      "Scoring is a substring search, not another model's opinion, so anyone can reproduce the table.",
+      "Runs entirely offline against Ollama: no key, no account, no request leaves the host."
+    ],
+    "proof": "Nineteen models span the whole scale: six refuse everything, gemma3:12b and glm4:9b fall for three families out of four. The data-exfiltration framing beats twelve of the thirteen hijackable models every single time, while the blunt SYSTEM OVERRIDE spoof works on exactly one. Parameter count predicts nothing. A published mitigation helps ten models and makes two measurably worse.",
+    "stack": [
+      "Python",
+      "standard library only",
+      "19 tests",
+      "control group",
+      "exit 1 for CI"
+    ],
+    "keywords": [
+      "prompt injection",
+      "indirect prompt injection",
+      "llms.txt",
+      "AI agent security",
+      "LLM evaluation",
+      "red teaming",
+      "Ollama",
+      "benchmark",
+      "spotlighting"
+    ]
+  },
+  {
+    "slug": "embed-drift",
+    "name": "embed-drift",
+    "tagline": "Your vector index broke and nothing raised an error",
+    "search": "embedding model silently changed, embedding drift detection, RAG retrieval broke after provider update, pin embedding model version, vector index stale",
+    "summary": "When a provider swaps the embedding model under a live index, nothing raises an error. The nearest neighbours are simply the wrong ones from then on, and the blame lands on the language model rather than the retrieval step feeding it. This pins a fingerprint and tells you when the space moved.",
+    "how": [
+      "Two numbers, not one: vector drift catches any change, including a harmless renormalisation.",
+      "Drift in the geometry between probes only moves when retrieval will actually return different rows.",
+      "Twelve frozen probes, hashed into the fingerprint: a check against a different set refuses to run."
+    ],
+    "proof": "A baseline on all-minilm checked three ways: the same model returns 1.0000 on both numbers; a different model of the same 384 dimensions collapses direct to -0.0052 while geometry lands at 0.349; a 768-dimension model is a hard fail with no arithmetic attempted. The synthetic proof is in the suite - a uniform rotation drops direct below 0.95 and leaves geometry at 1.0.",
+    "stack": [
+      "Python",
+      "standard library only",
+      "18 tests",
+      "exit 1 on drift, 2 when unaskable"
+    ],
+    "keywords": [
+      "embeddings",
+      "embedding drift",
+      "RAG",
+      "vector search",
+      "retrieval quality",
+      "Ollama",
+      "OpenAI embeddings",
+      "AI infrastructure"
+    ]
+  },
+  {
     "slug": "ucp-audit",
     "name": "ucp-audit",
     "tagline": "Is your shop reachable by AI shopping agents?",

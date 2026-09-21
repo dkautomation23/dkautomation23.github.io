@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="style.css">
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Person", "name": "Dmytro Galko", "url": "https://dkautomation23.github.io", "email": "hello@dkautomation.dev", "jobTitle": "Automation and integration engineer", "address": {"@type": "PostalAddress", "addressCountry": "BG"}, "knowsAbout": ["business automation", "API integration", "data reconciliation", "webhook integration", "vulnerability management", "EU Cyber Resilience Act", "n8n", "Shopify", "WhatsApp Business API"], "sameAs": ["https://github.com/dkautomation23"]}, {"@type": "ItemList", "name": "Open-source tools by Dmytro Galko", "itemListElement": [{"@type": "ListItem", "position": 1, "url": "https://dkautomation23.github.io/tools/ucp-audit.html", "name": "ucp-audit"}, {"@type": "ListItem", "position": 2, "url": "https://dkautomation23.github.io/tools/cra-report.html", "name": "cra-report"}, {"@type": "ListItem", "position": 3, "url": "https://dkautomation23.github.io/tools/webhook-rewind.html", "name": "webhook-rewind"}, {"@type": "ListItem", "position": 4, "url": "https://dkautomation23.github.io/tools/api-drift.html", "name": "api-drift"}, {"@type": "ListItem", "position": 5, "url": "https://dkautomation23.github.io/tools/csvdiff.html", "name": "csvdiff"}, {"@type": "ListItem", "position": 6, "url": "https://dkautomation23.github.io/tools/leakscan.html", "name": "leakscan"}, {"@type": "ListItem", "position": 7, "url": "https://dkautomation23.github.io/tools/invoice-reconciler.html", "name": "invoice-reconciler"}, {"@type": "ListItem", "position": 8, "url": "https://dkautomation23.github.io/tools/whatsapp-crm-connector.html", "name": "whatsapp-crm-connector"}, {"@type": "ListItem", "position": 9, "url": "https://dkautomation23.github.io/tools/email-deliverability-check.html", "name": "email-deliverability-check"}]}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Person", "name": "Dmytro Galko", "url": "https://dkautomation23.github.io", "email": "hello@dkautomation.dev", "jobTitle": "AI and data pipeline engineer", "address": {"@type": "PostalAddress", "addressCountry": "BG"}, "knowsAbout": ["LLM evaluation", "prompt injection", "AI agent security", "retrieval-augmented generation", "embedding drift", "data reconciliation", "API integration", "vulnerability management", "EU Cyber Resilience Act"], "sameAs": ["https://github.com/dkautomation23"]}, {"@type": "ItemList", "name": "Open-source tools by Dmytro Galko", "itemListElement": [{"@type": "ListItem", "position": 1, "url": "https://dkautomation23.github.io/tools/agent-hijack-bench.html", "name": "agent-hijack-bench"}, {"@type": "ListItem", "position": 2, "url": "https://dkautomation23.github.io/tools/embed-drift.html", "name": "embed-drift"}, {"@type": "ListItem", "position": 3, "url": "https://dkautomation23.github.io/tools/ucp-audit.html", "name": "ucp-audit"}, {"@type": "ListItem", "position": 4, "url": "https://dkautomation23.github.io/tools/cra-report.html", "name": "cra-report"}, {"@type": "ListItem", "position": 5, "url": "https://dkautomation23.github.io/tools/webhook-rewind.html", "name": "webhook-rewind"}, {"@type": "ListItem", "position": 6, "url": "https://dkautomation23.github.io/tools/api-drift.html", "name": "api-drift"}, {"@type": "ListItem", "position": 7, "url": "https://dkautomation23.github.io/tools/csvdiff.html", "name": "csvdiff"}, {"@type": "ListItem", "position": 8, "url": "https://dkautomation23.github.io/tools/leakscan.html", "name": "leakscan"}, {"@type": "ListItem", "position": 9, "url": "https://dkautomation23.github.io/tools/invoice-reconciler.html", "name": "invoice-reconciler"}, {"@type": "ListItem", "position": 10, "url": "https://dkautomation23.github.io/tools/whatsapp-crm-connector.html", "name": "whatsapp-crm-connector"}, {"@type": "ListItem", "position": 11, "url": "https://dkautomation23.github.io/tools/email-deliverability-check.html", "name": "email-deliverability-check"}]}]}</script>
 </head>
 <body>
 
@@ -61,6 +61,24 @@
       <h3><a href="ucp-survey.html">A census of 5,356 live Shopify storefronts</a></h3>
       <p>Google and Shopify published the Universal Commerce Protocol so an agent can read a shop and buy from it. Nobody had published a count of how many shops actually speak it, so I measured it: 98.9% publish a valid profile, every one of them on the current release, none with a blocker. The only thing they differ on is whether an agent may sign the shopper into their own account — and 47.5% do not allow it, which turns a returning customer into an anonymous visitor.</p>
       <p class="tags"><span>5,356 shops</span><span>2026-09-18</span><span>domain list and raw results published</span><span>repeatable in one command</span></p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>AI, measured</h2>
+
+    <div class="tool">
+      <h3><a href="tools/agent-hijack-bench.html">agent-hijack-bench</a></h3>
+      <p>An <code>llms.txt</code> is a file a site publishes so that an assistant will read it. This measures how often a model used as an agent obeys an instruction planted in that file instead of your request. Nineteen local models, temperature 0, scored by a canary substring so no judge model is involved — and a control case that voids a model's numbers if it emits the canary unprompted. The data-exfiltration framing beats twelve of the thirteen hijackable models every single time; parameter count predicts nothing; a published mitigation helps ten models and makes two measurably worse.</p>
+      <p class="tags"><span>Python</span><span>19 tests</span><span>control group</span><span>runs offline</span></p>
+    </div>
+
+    <div class="tool">
+      <h3><a href="tools/embed-drift.html">embed-drift</a></h3>
+      <p>When a provider swaps the embedding model under a live vector index, nothing raises an error — the nearest neighbours are simply wrong from then on, and the blame lands on the language model rather than the retrieval step. This pins a fingerprint and reports two numbers: vector drift catches any change including a harmless renormalisation, while drift in the geometry between probes only moves when retrieval will actually return different rows.</p>
+      <p class="tags"><span>Python</span><span>18 tests</span><span>no dependencies</span><span>exit 1 on drift</span></p>
     </div>
   </div>
 </section>

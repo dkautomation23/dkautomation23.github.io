@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>embed-drift — Your vector index broke and nothing raised an error</title>
+<meta name="description" content="When a provider swaps the embedding model under a live index, nothing raises an error. The nearest neighbours are simply the wrong ones from then on, and the blame lands on the language model rather than the retrieval step feeding it. This pins a fingerprint and tells you when the space moved.">
+<meta name="keywords" content="embeddings, embedding drift, RAG, vector search, retrieval quality, Ollama, OpenAI embeddings, AI infrastructure">
+<link rel="canonical" href="https://dkautomation23.github.io/tools/embed-drift.html">
+<meta property="og:title" content="embed-drift — Your vector index broke and nothing raised an error">
+<meta property="og:description" content="When a provider swaps the embedding model under a live index, nothing raises an error. The nearest neighbours are simply the wrong ones from then on, and the blame lands on the language model rather than the retrieval step feeding it. This pins a fingerprint and tells you when the space moved.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dkautomation23.github.io/tools/embed-drift.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../style.css">
+<link rel="icon" href="../favicon.svg">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"embed-drift","alternateName":"Your vector index broke and nothing raised an error","description":"When a provider swaps the embedding model under a live index, nothing raises an error. The nearest neighbours are simply the wrong ones from then on, and the blame lands on the language model rather than the retrieval step feeding it. This pins a fingerprint and tells you when the space moved.","applicationCategory":"DeveloperApplication","operatingSystem":"Linux, macOS, Windows","url":"https://dkautomation23.github.io/tools/embed-drift.html","codeRepository":"https://github.com/dkautomation23/embed-drift","license":"https://opensource.org/licenses/MIT","keywords":"embeddings, embedding drift, RAG, vector search, retrieval quality, Ollama, OpenAI embeddings, AI infrastructure","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"author":{"@type":"Person","name":"Dmytro Galko","url":"https://dkautomation23.github.io","email":"hello@dkautomation.dev"}}</script>
+</head>
+<body>
+
+<header class="compact">
+  <div class="wrap">
+    <p class="crumb"><a href="../">Dmytro Galko</a> · open-source tools</p>
+    <h1>embed-drift</h1>
+    <p class="role">Your vector index broke and nothing raised an error</p>
+    <p class="lede">When a provider swaps the embedding model under a live index, nothing raises an error. The nearest neighbours are simply the wrong ones from then on, and the blame lands on the language model rather than the retrieval step feeding it. This pins a fingerprint and tells you when the space moved.</p>
+    
+    <div class="links">
+      <a class="primary" href="https://github.com/dkautomation23/embed-drift">Source on GitHub</a>
+      <a href="../#work">Work with me</a>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>What it does</h2>
+    <ul class="plain">
+      <li>Two numbers, not one: vector drift catches any change, including a harmless renormalisation.</li>
+      <li>Drift in the geometry between probes only moves when retrieval will actually return different rows.</li>
+      <li>Twelve frozen probes, hashed into the fingerprint: a check against a different set refuses to run.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>How it is proved</h2>
+    <p class="note">A baseline on all-minilm checked three ways: the same model returns 1.0000 on both numbers; a different model of the same 384 dimensions collapses direct to -0.0052 while geometry lands at 0.349; a 768-dimension model is a hard fail with no arithmetic attempted. The synthetic proof is in the suite - a uniform rotation drops direct below 0.95 and leaves geometry at 1.0.</p>
+    <p class="tags"><span>Python</span><span>standard library only</span><span>18 tests</span><span>exit 1 on drift, 2 when unaskable</span></p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>People find this looking for</h2>
+    <p class="note">embedding model silently changed, embedding drift detection, RAG retrieval broke after provider update, pin embedding model version, vector index stale.</p>
+    <p class="cta">
+      If that is your week and you would rather someone else did it, write to
+      <a href="mailto:hello@dkautomation.dev?subject=embed-drift">hello@dkautomation.dev</a>
+      or <a href="https://github.com/dkautomation23/embed-drift/issues/new/choose">open an issue</a>.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a href="../">All tools</a> ·
+    <a href="https://github.com/dkautomation23/embed-drift">embed-drift on GitHub</a> ·
+    MIT licensed
+  </div>
+</footer>
+
+</body>
+</html>

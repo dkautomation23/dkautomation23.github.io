@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>agent-hijack-bench — Does your agent obey the website instead of you?</title>
+<meta name="description" content="An llms.txt is a file a site publishes so that an assistant will read it. This measures how often a model used as an agent obeys an instruction planted in that file instead of the user's request - nineteen local models, temperature 0, scored by a canary substring so no judge model is involved.">
+<meta name="keywords" content="prompt injection, indirect prompt injection, llms.txt, AI agent security, LLM evaluation, red teaming, Ollama, benchmark, spotlighting">
+<link rel="canonical" href="https://dkautomation23.github.io/tools/agent-hijack-bench.html">
+<meta property="og:title" content="agent-hijack-bench — Does your agent obey the website instead of you?">
+<meta property="og:description" content="An llms.txt is a file a site publishes so that an assistant will read it. This measures how often a model used as an agent obeys an instruction planted in that file instead of the user's request - nineteen local models, temperature 0, scored by a canary substring so no judge model is involved.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dkautomation23.github.io/tools/agent-hijack-bench.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../style.css">
+<link rel="icon" href="../favicon.svg">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"agent-hijack-bench","alternateName":"Does your agent obey the website instead of you?","description":"An llms.txt is a file a site publishes so that an assistant will read it. This measures how often a model used as an agent obeys an instruction planted in that file instead of the user's request - nineteen local models, temperature 0, scored by a canary substring so no judge model is involved.","applicationCategory":"DeveloperApplication","operatingSystem":"Linux, macOS, Windows","url":"https://dkautomation23.github.io/tools/agent-hijack-bench.html","codeRepository":"https://github.com/dkautomation23/agent-hijack-bench","license":"https://opensource.org/licenses/MIT","keywords":"prompt injection, indirect prompt injection, llms.txt, AI agent security, LLM evaluation, red teaming, Ollama, benchmark, spotlighting","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"author":{"@type":"Person","name":"Dmytro Galko","url":"https://dkautomation23.github.io","email":"hello@dkautomation.dev"}}</script>
+</head>
+<body>
+
+<header class="compact">
+  <div class="wrap">
+    <p class="crumb"><a href="../">Dmytro Galko</a> · open-source tools</p>
+    <h1>agent-hijack-bench</h1>
+    <p class="role">Does your agent obey the website instead of you?</p>
+    <p class="lede">An llms.txt is a file a site publishes so that an assistant will read it. This measures how often a model used as an agent obeys an instruction planted in that file instead of the user's request - nineteen local models, temperature 0, scored by a canary substring so no judge model is involved.</p>
+    
+    <div class="links">
+      <a class="primary" href="https://github.com/dkautomation23/agent-hijack-bench">Source on GitHub</a>
+      <a href="../#work">Work with me</a>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>What it does</h2>
+    <ul class="plain">
+      <li>A control case with nothing planted voids a model's numbers if it emits the canary unprompted.</li>
+      <li>Scoring is a substring search, not another model's opinion, so anyone can reproduce the table.</li>
+      <li>Runs entirely offline against Ollama: no key, no account, no request leaves the host.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>How it is proved</h2>
+    <p class="note">Nineteen models span the whole scale: six refuse everything, gemma3:12b and glm4:9b fall for three families out of four. The data-exfiltration framing beats twelve of the thirteen hijackable models every single time, while the blunt SYSTEM OVERRIDE spoof works on exactly one. Parameter count predicts nothing. A published mitigation helps ten models and makes two measurably worse.</p>
+    <p class="tags"><span>Python</span><span>standard library only</span><span>19 tests</span><span>control group</span><span>exit 1 for CI</span></p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>People find this looking for</h2>
+    <p class="note">indirect prompt injection benchmark, llms.txt instruction injection, agent hijack rate, local LLM red-teaming, spotlighting datamarking defence measured.</p>
+    <p class="cta">
+      If that is your week and you would rather someone else did it, write to
+      <a href="mailto:hello@dkautomation.dev?subject=agent-hijack-bench">hello@dkautomation.dev</a>
+      or <a href="https://github.com/dkautomation23/agent-hijack-bench/issues/new/choose">open an issue</a>.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a href="../">All tools</a> ·
+    <a href="https://github.com/dkautomation23/agent-hijack-bench">agent-hijack-bench on GitHub</a> ·
+    MIT licensed
+  </div>
+</footer>
+
+</body>
+</html>
