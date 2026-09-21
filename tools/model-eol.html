@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>model-eol — What in your repo stops working, and when</title>
+<meta name="description" content="On 23 October 2026 OpenAI retires eighteen model identifiers in one day, five days after four more go on 28 September. GitHub code search puts 96,640 files on gpt-4-0613 alone and 86,528 on gpt-4-turbo in Python. Every one is a hardcoded string that starts returning an error on a published date, and">
+<meta name="keywords" content="OpenAI, deprecation, model retirement, technical debt, migration, CI check, gpt-4-turbo, end of life">
+<link rel="canonical" href="https://dkautomation23.github.io/tools/model-eol.html">
+<meta property="og:title" content="model-eol — What in your repo stops working, and when">
+<meta property="og:description" content="On 23 October 2026 OpenAI retires eighteen model identifiers in one day, five days after four more go on 28 September. GitHub code search puts 96,640 files on gpt-4-0613 alone and 86,528 on gpt-4-turbo in Python. Every one is a hardcoded string that starts returning an error on a published date, and">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dkautomation23.github.io/tools/model-eol.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../style.css">
+<link rel="icon" href="../favicon.svg">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"model-eol","alternateName":"What in your repo stops working, and when","description":"On 23 October 2026 OpenAI retires eighteen model identifiers in one day, five days after four more go on 28 September. GitHub code search puts 96,640 files on gpt-4-0613 alone and 86,528 on gpt-4-turbo in Python. Every one is a hardcoded string that starts returning an error on a published date, and nothing warns first. This answers the only question that matters first: does it affect me, and how long have I got.","applicationCategory":"DeveloperApplication","operatingSystem":"Linux, macOS, Windows","url":"https://dkautomation23.github.io/tools/model-eol.html","codeRepository":"https://github.com/dkautomation23/model-eol","license":"https://opensource.org/licenses/MIT","keywords":"OpenAI, deprecation, model retirement, technical debt, migration, CI check, gpt-4-turbo, end of life","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"author":{"@type":"Person","name":"Dmytro Galko","url":"https://dkautomation23.github.io","email":"hello@dkautomation.dev"}}</script>
+</head>
+<body>
+
+<header class="compact">
+  <div class="wrap">
+    <p class="crumb"><a href="../">Dmytro Galko</a> · open-source tools</p>
+    <h1>model-eol</h1>
+    <p class="role">What in your repo stops working, and when</p>
+    <p class="lede">On 23 October 2026 OpenAI retires eighteen model identifiers in one day, five days after four more go on 28 September. GitHub code search puts 96,640 files on gpt-4-0613 alone and 86,528 on gpt-4-turbo in Python. Every one is a hardcoded string that starts returning an error on a published date, and nothing warns first. This answers the only question that matters first: does it affect me, and how long have I got.</p>
+    
+    <div class="links">
+      <a class="primary" href="https://github.com/dkautomation23/model-eol">Source on GitHub</a>
+      <a href="../#work">Work with me</a>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>What it does</h2>
+    <ul class="plain">
+      <li>One run over the repository, no API key and no account, and exit 1 so it fails a build while there is still time.</li>
+      <li>A retired id is a prefix of live ones - gpt-4 dies, gpt-4o does not - so matching is bounded on both sides and ordered longest-first, and the suite asserts that none of ten live look-alikes is ever reported.</li>
+      <li>The table is a dated snapshot printed in every report, and the tool says out loud when it is more than sixty days old.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>How it is proved</h2>
+    <p class="note">Run against a real agent repository on 21 September 2026 it found davinci-002 seven days from retirement and gpt-3.5-turbo in seven places thirty-two days out, each with file and line, and exited 1. Eighteen tests, including one per live look-alike.</p>
+    <p class="tags"><span>Python</span><span>standard library only</span><span>18 tests</span><span>exit 1 for CI</span></p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>People find this looking for</h2>
+    <p class="note">openai model deprecation checker, gpt-4-0613 retired october 2026, find hardcoded retired model ids, gpt-3.5-turbo shutdown date, migrate off retired gpt models, deprecation scanner CI.</p>
+    <p class="cta">
+      If that is your week and you would rather someone else did it, write to
+      <a href="mailto:hello@dkautomation.dev?subject=model-eol">hello@dkautomation.dev</a>
+      or <a href="https://github.com/dkautomation23/model-eol/issues/new/choose">open an issue</a>.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a href="../">All tools</a> ·
+    <a href="https://github.com/dkautomation23/model-eol">model-eol on GitHub</a> ·
+    MIT licensed
+  </div>
+</footer>
+
+</body>
+</html>

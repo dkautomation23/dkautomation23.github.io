@@ -1,5 +1,34 @@
 [
   {
+    "slug": "model-eol",
+    "name": "model-eol",
+    "tagline": "What in your repo stops working, and when",
+    "search": "openai model deprecation checker, gpt-4-0613 retired october 2026, find hardcoded retired model ids, gpt-3.5-turbo shutdown date, migrate off retired gpt models, deprecation scanner CI",
+    "summary": "On 23 October 2026 OpenAI retires eighteen model identifiers in one day, five days after four more go on 28 September. GitHub code search puts 96,640 files on gpt-4-0613 alone and 86,528 on gpt-4-turbo in Python. Every one is a hardcoded string that starts returning an error on a published date, and nothing warns first. This answers the only question that matters first: does it affect me, and how long have I got.",
+    "how": [
+      "One run over the repository, no API key and no account, and exit 1 so it fails a build while there is still time.",
+      "A retired id is a prefix of live ones - gpt-4 dies, gpt-4o does not - so matching is bounded on both sides and ordered longest-first, and the suite asserts that none of ten live look-alikes is ever reported.",
+      "The table is a dated snapshot printed in every report, and the tool says out loud when it is more than sixty days old."
+    ],
+    "proof": "Run against a real agent repository on 21 September 2026 it found davinci-002 seven days from retirement and gpt-3.5-turbo in seven places thirty-two days out, each with file and line, and exited 1. Eighteen tests, including one per live look-alike.",
+    "stack": [
+      "Python",
+      "standard library only",
+      "18 tests",
+      "exit 1 for CI"
+    ],
+    "keywords": [
+      "OpenAI",
+      "deprecation",
+      "model retirement",
+      "technical debt",
+      "migration",
+      "CI check",
+      "gpt-4-turbo",
+      "end of life"
+    ]
+  },
+  {
     "slug": "agent-hijack-bench",
     "name": "agent-hijack-bench",
     "tagline": "Does your agent obey the website instead of you?",
