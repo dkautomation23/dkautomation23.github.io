@@ -4,17 +4,17 @@
     "name": "model-eol",
     "tagline": "What in your repo stops working, and when",
     "search": "openai model deprecation checker, gpt-4-0613 retired october 2026, find hardcoded retired model ids, gpt-3.5-turbo shutdown date, migrate off retired gpt models, deprecation scanner CI",
-    "summary": "On 23 October 2026 OpenAI retires twenty-nine model identifiers in one day; four more went on 28 September, twenty-five days earlier. GitHub code search puts 96,640 files on gpt-4-0613 alone and 86,528 on gpt-4-turbo in Python. Every one is a hardcoded string that starts returning an error on a published date, and nothing warns first. This answers the only question that matters first: does it affect me, and how long have I got — across OpenAI, Anthropic and Google, 189 identifiers from three published schedules.",
+    "summary": "On 23 October 2026 OpenAI retires twenty-nine model identifiers in one day; four more went on 28 September, twenty-five days earlier. GitHub code search puts 96,640 files on gpt-4-0613 alone and 86,528 on gpt-4-turbo in Python. Every one is a hardcoded string that starts returning an error on a published date, and nothing warns first. This answers the only question that matters first: does it affect me, and how long have I got — across OpenAI, Anthropic and Google, 183 identifiers from three published schedules.",
     "how": [
       "One run over the repository, no API key and no account, and exit 1 so it fails a build while there is still time.",
       "A retired id is a prefix of live ones - gpt-4 dies, gpt-4o does not - so matching is bounded on both sides and ordered longest-first, and the suite asserts that none of ten live look-alikes is ever reported.",
       "The table is a dated snapshot printed in every report, and the tool says out loud when it is more than sixty days old."
     ],
-    "proof": "Run against a real agent repository on 21 September 2026 it found davinci-002 seven days from retirement and gpt-3.5-turbo in seven places thirty-two days out, each with file and line, and exited 1. Twenty-two tests, including one per live look-alike and one that Google's own page chains eight models to a replacement that is itself retired.",
+    "proof": "Run against a real agent repository on 21 September 2026 it found davinci-002 seven days from retirement and gpt-3.5-turbo in seven places thirty-two days out, each with file and line, and exited 1. Twenty-three tests, including one per live look-alike and one that Google's own page chains eight models to a replacement that is itself retired.",
     "stack": [
       "Python",
       "standard library only",
-      "22 tests",
+      "23 tests",
       "exit 1 for CI"
     ],
     "keywords": [
@@ -42,11 +42,11 @@
       "--check-source asks the feeds whether these dates are still the published ones. endoflife.date serves JSON, so a moved date is reported with both values rather than guessed at from prose.",
       "Eleven of the tests are cases of naming a thing rather than using it: an image inside echo, the half of a line after a hash, python-version inside old-python-version, a matrix written over several lines. A matcher earns trust by the ways it refuses to fire."
     ],
-    "proof": "Run against 31 of my own repositories it found Python 3.10 in seventeen of them, forty days from the end of upstream support, and Node 20 in one, already 144 days past it — including its own CI, which is the point. 45 tests, standard library only.",
+    "proof": "Run against 31 of my own repositories it found Python 3.10 in seventeen of them, forty days from the end of upstream support, and Node 20 in one, already 144 days past it — including its own CI, which is the point. 48 tests, standard library only.",
     "stack": [
       "Python",
       "standard library only",
-      "45 tests",
+      "48 tests",
       "exit 1 for CI"
     ],
     "keywords": [

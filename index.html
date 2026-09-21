@@ -72,13 +72,13 @@
     <div class="tool">
       <h3><a href="tools/model-eol.html">model-eol</a></h3>
       <p>On 23 October 2026 OpenAI retires eighteen model identifiers in one day, five days after four more go on 28 September. GitHub code search puts <strong>96,640 files</strong> on <code>gpt-4-0613</code> alone. Every one is a hardcoded string that starts returning an error on a published date, and nothing warns first. This answers the question that comes before &ldquo;how do I migrate&rdquo;: does it affect me, and how long have I got. One run, no key, exit 1 for CI &mdash; and it will not flag <code>gpt-4o</code> as dead just because <code>gpt-4</code> is.</p>
-      <p class="tags"><span>Python</span><span>22 tests</span><span>no dependencies</span><span>dated table, printed every run</span></p>
+      <p class="tags"><span>Python</span><span>23 tests</span><span>no dependencies</span><span>dated table, printed every run</span></p>
     </div>
 
     <div class="tool">
       <h3><a href="tools/ci-eol.html">ci-eol</a></h3>
       <p>A workflow keeps running right up to the day it does not: the runner image is retired, the language version stops getting security fixes, the action's major is switched off — each on a date published months earlier, none of which warns you first. GitHub code search counts 1,335,296 files naming <code>actions/checkout@v3</code>. Dependabot moves versions; it does not say what stops working on the eleventh of a month. Run against my own repositories it found Python 3.10 in seventeen of them, forty days out — including its own CI.</p>
-      <p class="tags"><span>Python</span><span>standard library only</span><span>45 tests</span><span>exit 1 for CI</span></p>
+      <p class="tags"><span>Python</span><span>standard library only</span><span>48 tests</span><span>exit 1 for CI</span></p>
     </div>
 
     <div class="tool">
