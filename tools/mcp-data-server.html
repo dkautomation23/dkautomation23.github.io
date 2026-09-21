@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>mcp-data-server — Claude reads the business database, and cannot write to it</title>
+<meta name="description" content="The blocker in most “connect AI to our data” projects is not the wiring, it is the sentence nobody can say out loud: what exactly stops the model writing, dropping, or reading the salaries table. This answers it in configuration rather than in trust — a read-only connection, an explicit table allowl">
+<meta name="keywords" content="MCP, Claude Desktop, database, read-only, PII masking, audit log, guardrails">
+<link rel="canonical" href="https://dkautomation23.github.io/tools/mcp-data-server.html">
+<meta property="og:title" content="mcp-data-server — Claude reads the business database, and cannot write to it">
+<meta property="og:description" content="The blocker in most “connect AI to our data” projects is not the wiring, it is the sentence nobody can say out loud: what exactly stops the model writing, dropping, or reading the salaries table. This answers it in configuration rather than in trust — a read-only connection, an explicit table allowl">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dkautomation23.github.io/tools/mcp-data-server.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../style.css">
+<link rel="icon" href="../favicon.svg">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"mcp-data-server","alternateName":"Claude reads the business database, and cannot write to it","description":"The blocker in most “connect AI to our data” projects is not the wiring, it is the sentence nobody can say out loud: what exactly stops the model writing, dropping, or reading the salaries table. This answers it in configuration rather than in trust — a read-only connection, an explicit table allowlist, PII masking, a row cap, a query timeout and an audit log of every question asked.","applicationCategory":"DeveloperApplication","operatingSystem":"Linux, macOS, Windows","url":"https://dkautomation23.github.io/tools/mcp-data-server.html","codeRepository":"https://github.com/dkautomation23/mcp-data-server","license":"https://opensource.org/licenses/MIT","keywords":"MCP, Claude Desktop, database, read-only, PII masking, audit log, guardrails","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"author":{"@type":"Person","name":"Dmytro Galko","url":"https://dkautomation23.github.io","email":"hello@dkautomation.dev"}}</script>
+</head>
+<body>
+
+<header class="compact">
+  <div class="wrap">
+    <p class="crumb"><a href="../">Dmytro Galko</a> · open-source tools</p>
+    <h1>mcp-data-server</h1>
+    <p class="role">Claude reads the business database, and cannot write to it</p>
+    <p class="lede">The blocker in most “connect AI to our data” projects is not the wiring, it is the sentence nobody can say out loud: what exactly stops the model writing, dropping, or reading the salaries table. This answers it in configuration rather than in trust — a read-only connection, an explicit table allowlist, PII masking, a row cap, a query timeout and an audit log of every question asked.</p>
+    
+    <div class="links">
+      <a class="primary" href="https://github.com/dkautomation23/mcp-data-server">Source on GitHub</a>
+      <a href="../#work">Work with me</a>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>What it does</h2>
+    <ul class="plain">
+      <li>The connection itself is read-only, so a write is refused by the database and not by a prompt.</li>
+      <li>A table not on the allowlist does not exist as far as the server is concerned; there is nothing to jailbreak into.</li>
+      <li>Every query is capped by rows and by time, because a model asking for a full table scan is a normal accident.</li>
+      <li>Every question and its answer go to an audit log, which is what makes the arrangement reviewable after the fact.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>How it is proved</h2>
+    <p class="note">31 tests, run on a clean machine in its own virtual environment. Ask it which countries order most and what refunds cost last quarter in Claude Desktop, and the answer comes from the real database.</p>
+    <p class="tags"><span>Python</span><span>MCP</span><span>read-only connection</span><span>31 tests</span></p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>People find this looking for</h2>
+    <p class="note">mcp server read only database, connect claude to postgres safely, llm sql guardrails, table allowlist PII masking, audit log for AI database access.</p>
+    <p class="cta">
+      If that is your week and you would rather someone else did it, write to
+      <a href="mailto:hello@dkautomation.dev?subject=mcp-data-server">hello@dkautomation.dev</a>
+      or <a href="https://github.com/dkautomation23/mcp-data-server/issues/new/choose">open an issue</a>.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a href="../">All tools</a> ·
+    <a href="https://github.com/dkautomation23/mcp-data-server">mcp-data-server on GitHub</a> ·
+    MIT licensed
+  </div>
+</footer>
+
+</body>
+</html>

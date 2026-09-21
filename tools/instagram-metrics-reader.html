@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>instagram-metrics-reader — Creator metrics that are never older than they claim</title>
+<meta name="description" content="A creator marketplace shows a follower count on a profile card, and that number has to be true. The awkward parts are not the API call: dozens of connected creators share one rate limit, tokens expire every sixty days, and a card showing a stale number while implying it is live is worse than showing">
+<meta name="keywords" content="Instagram, Meta Graph API, creator metrics, rate limits, read-only">
+<link rel="canonical" href="https://dkautomation23.github.io/tools/instagram-metrics-reader.html">
+<meta property="og:title" content="instagram-metrics-reader — Creator metrics that are never older than they claim">
+<meta property="og:description" content="A creator marketplace shows a follower count on a profile card, and that number has to be true. The awkward parts are not the API call: dozens of connected creators share one rate limit, tokens expire every sixty days, and a card showing a stale number while implying it is live is worse than showing">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dkautomation23.github.io/tools/instagram-metrics-reader.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../style.css">
+<link rel="icon" href="../favicon.svg">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"instagram-metrics-reader","alternateName":"Creator metrics that are never older than they claim","description":"A creator marketplace shows a follower count on a profile card, and that number has to be true. The awkward parts are not the API call: dozens of connected creators share one rate limit, tokens expire every sixty days, and a card showing a stale number while implying it is live is worse than showing nothing.","applicationCategory":"DeveloperApplication","operatingSystem":"Linux, macOS, Windows","url":"https://dkautomation23.github.io/tools/instagram-metrics-reader.html","codeRepository":"https://github.com/dkautomation23/instagram-metrics-reader","license":"https://opensource.org/licenses/MIT","keywords":"Instagram, Meta Graph API, creator metrics, rate limits, read-only","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"author":{"@type":"Person","name":"Dmytro Galko","url":"https://dkautomation23.github.io","email":"hello@dkautomation.dev"}}</script>
+</head>
+<body>
+
+<header class="compact">
+  <div class="wrap">
+    <p class="crumb"><a href="../">Dmytro Galko</a> · open-source tools</p>
+    <h1>instagram-metrics-reader</h1>
+    <p class="role">Creator metrics that are never older than they claim</p>
+    <p class="lede">A creator marketplace shows a follower count on a profile card, and that number has to be true. The awkward parts are not the API call: dozens of connected creators share one rate limit, tokens expire every sixty days, and a card showing a stale number while implying it is live is worse than showing nothing.</p>
+    
+    <div class="links">
+      <a class="primary" href="https://github.com/dkautomation23/instagram-metrics-reader">Source on GitHub</a>
+      <a href="../#work">Work with me</a>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>What it does</h2>
+    <ul class="plain">
+      <li>Read-only scopes are enforced in the code, not merely requested — the app cannot post even if something later asks it to.</li>
+      <li>Every stored number carries when it was fetched, and the card shows that age rather than implying freshness.</li>
+      <li>Token expiry and the shared rate limit are handled as normal states with a plan, not as errors that surface to the creator.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>How it is proved</h2>
+    <p class="note">31 tests pass on a clean machine. The whole flow runs with python run_demo.py — no Meta app, no Facebook Page, no tokens.</p>
+    <p class="tags"><span>Python</span><span>Meta Graph API</span><span>read-only scopes</span><span>31 tests</span></p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>People find this looking for</h2>
+    <p class="note">instagram graph api read only metrics, creator marketplace follower reach engagement, meta token expiry 60 days, instagram api rate limit many accounts.</p>
+    <p class="cta">
+      If that is your week and you would rather someone else did it, write to
+      <a href="mailto:hello@dkautomation.dev?subject=instagram-metrics-reader">hello@dkautomation.dev</a>
+      or <a href="https://github.com/dkautomation23/instagram-metrics-reader/issues/new/choose">open an issue</a>.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a href="../">All tools</a> ·
+    <a href="https://github.com/dkautomation23/instagram-metrics-reader">instagram-metrics-reader on GitHub</a> ·
+    MIT licensed
+  </div>
+</footer>
+
+</body>
+</html>

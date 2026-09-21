@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>n8n-workflow-reliability-kit — The layer production n8n instances are missing</title>
+<meta name="description" content="An n8n automation fails in one of two ways: loudly, or by quietly not running any more. The second is worse, and nothing in a default install tells you it happened. Three importable workflows cover the gap — normalise a failure and route it to an alert, catch the workflow that stopped, and prove the">
+<meta name="keywords" content="n8n, reliability, monitoring, heartbeat, alerting, error handling">
+<link rel="canonical" href="https://dkautomation23.github.io/tools/n8n-workflow-reliability-kit.html">
+<meta property="og:title" content="n8n-workflow-reliability-kit — The layer production n8n instances are missing">
+<meta property="og:description" content="An n8n automation fails in one of two ways: loudly, or by quietly not running any more. The second is worse, and nothing in a default install tells you it happened. Three importable workflows cover the gap — normalise a failure and route it to an alert, catch the workflow that stopped, and prove the">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dkautomation23.github.io/tools/n8n-workflow-reliability-kit.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../style.css">
+<link rel="icon" href="../favicon.svg">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"n8n-workflow-reliability-kit","alternateName":"The layer production n8n instances are missing","description":"An n8n automation fails in one of two ways: loudly, or by quietly not running any more. The second is worse, and nothing in a default install tells you it happened. Three importable workflows cover the gap — normalise a failure and route it to an alert, catch the workflow that stopped, and prove the alert route works before you need it.","applicationCategory":"DeveloperApplication","operatingSystem":"Linux, macOS, Windows","url":"https://dkautomation23.github.io/tools/n8n-workflow-reliability-kit.html","codeRepository":"https://github.com/dkautomation23/n8n-workflow-reliability-kit","license":"https://opensource.org/licenses/MIT","keywords":"n8n, reliability, monitoring, heartbeat, alerting, error handling","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"author":{"@type":"Person","name":"Dmytro Galko","url":"https://dkautomation23.github.io","email":"hello@dkautomation.dev"}}</script>
+</head>
+<body>
+
+<header class="compact">
+  <div class="wrap">
+    <p class="crumb"><a href="../">Dmytro Galko</a> · open-source tools</p>
+    <h1>n8n-workflow-reliability-kit</h1>
+    <p class="role">The layer production n8n instances are missing</p>
+    <p class="lede">An n8n automation fails in one of two ways: loudly, or by quietly not running any more. The second is worse, and nothing in a default install tells you it happened. Three importable workflows cover the gap — normalise a failure and route it to an alert, catch the workflow that stopped, and prove the alert route works before you need it.</p>
+    
+    <div class="links">
+      <a class="primary" href="https://github.com/dkautomation23/n8n-workflow-reliability-kit">Source on GitHub</a>
+      <a href="../#work">Work with me</a>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>What it does</h2>
+    <ul class="plain">
+      <li>The heartbeat is the point: a workflow that stops firing produces no error, so absence has to be watched for deliberately.</li>
+      <li>Failures are normalised before they are sent, so an alert names the workflow, the node and the input instead of pasting a stack trace.</li>
+      <li>The third workflow exists to test the other two — an alert route nobody has fired is a guess.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>How it is proved</h2>
+    <p class="note">A validator in CI checks all three exports and the configuration contract the README documents: 3 workflow exports validated, README contract passed.</p>
+    <p class="tags"><span>n8n</span><span>JSON exports</span><span>validated in CI</span><span>3 workflows</span></p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>People find this looking for</h2>
+    <p class="note">n8n error handling workflow, heartbeat monitoring for automations, alert route test n8n, workflow silently stopped running, n8n production reliability.</p>
+    <p class="cta">
+      If that is your week and you would rather someone else did it, write to
+      <a href="mailto:hello@dkautomation.dev?subject=n8n-workflow-reliability-kit">hello@dkautomation.dev</a>
+      or <a href="https://github.com/dkautomation23/n8n-workflow-reliability-kit/issues/new/choose">open an issue</a>.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a href="../">All tools</a> ·
+    <a href="https://github.com/dkautomation23/n8n-workflow-reliability-kit">n8n-workflow-reliability-kit on GitHub</a> ·
+    MIT licensed
+  </div>
+</footer>
+
+</body>
+</html>

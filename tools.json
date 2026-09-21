@@ -4,17 +4,17 @@
     "name": "model-eol",
     "tagline": "What in your repo stops working, and when",
     "search": "openai model deprecation checker, gpt-4-0613 retired october 2026, find hardcoded retired model ids, gpt-3.5-turbo shutdown date, migrate off retired gpt models, deprecation scanner CI",
-    "summary": "On 23 October 2026 OpenAI retires eighteen model identifiers in one day, five days after four more go on 28 September. GitHub code search puts 96,640 files on gpt-4-0613 alone and 86,528 on gpt-4-turbo in Python. Every one is a hardcoded string that starts returning an error on a published date, and nothing warns first. This answers the only question that matters first: does it affect me, and how long have I got.",
+    "summary": "On 23 October 2026 OpenAI retires eighteen model identifiers in one day, five days after four more go on 28 September. GitHub code search puts 96,640 files on gpt-4-0613 alone and 86,528 on gpt-4-turbo in Python. Every one is a hardcoded string that starts returning an error on a published date, and nothing warns first. This answers the only question that matters first: does it affect me, and how long have I got - now across OpenAI, Anthropic and Google, 87 identifiers from three published schedules.",
     "how": [
       "One run over the repository, no API key and no account, and exit 1 so it fails a build while there is still time.",
       "A retired id is a prefix of live ones - gpt-4 dies, gpt-4o does not - so matching is bounded on both sides and ordered longest-first, and the suite asserts that none of ten live look-alikes is ever reported.",
       "The table is a dated snapshot printed in every report, and the tool says out loud when it is more than sixty days old."
     ],
-    "proof": "Run against a real agent repository on 21 September 2026 it found davinci-002 seven days from retirement and gpt-3.5-turbo in seven places thirty-two days out, each with file and line, and exited 1. Eighteen tests, including one per live look-alike.",
+    "proof": "Run against a real agent repository on 21 September 2026 it found davinci-002 seven days from retirement and gpt-3.5-turbo in seven places thirty-two days out, each with file and line, and exited 1. Twenty tests, including one per live look-alike and one that Google's own page chains eight models to a replacement that is itself retired.",
     "stack": [
       "Python",
       "standard library only",
-      "18 tests",
+      "20 tests",
       "exit 1 for CI"
     ],
     "keywords": [
@@ -222,7 +222,7 @@
     "proof": "On a dependency tree containing log4j-core 2.14.1 it reports 2 findings with a deadline out of 19 advisories, both flagged as used in ransomware campaigns. On lodash 4.17.15 it reports 0 out of 6 - equally worth being able to say.",
     "stack": [
       "TypeScript",
-      "31 tests",
+      "34 tests",
       "no runtime dependencies",
       "no API key"
     ],
@@ -511,6 +511,284 @@
       "API keys",
       "CI gate",
       "redaction"
+    ],
+    "npm": null
+  },
+  {
+    "slug": "mcp-data-server",
+    "name": "mcp-data-server",
+    "tagline": "Claude reads the business database, and cannot write to it",
+    "search": "mcp server read only database, connect claude to postgres safely, llm sql guardrails, table allowlist PII masking, audit log for AI database access",
+    "summary": "The blocker in most “connect AI to our data” projects is not the wiring, it is the sentence nobody can say out loud: what exactly stops the model writing, dropping, or reading the salaries table. This answers it in configuration rather than in trust — a read-only connection, an explicit table allowlist, PII masking, a row cap, a query timeout and an audit log of every question asked.",
+    "how": [
+      "The connection itself is read-only, so a write is refused by the database and not by a prompt.",
+      "A table not on the allowlist does not exist as far as the server is concerned; there is nothing to jailbreak into.",
+      "Every query is capped by rows and by time, because a model asking for a full table scan is a normal accident.",
+      "Every question and its answer go to an audit log, which is what makes the arrangement reviewable after the fact."
+    ],
+    "proof": "31 tests, run on a clean machine in its own virtual environment. Ask it which countries order most and what refunds cost last quarter in Claude Desktop, and the answer comes from the real database.",
+    "stack": [
+      "Python",
+      "MCP",
+      "read-only connection",
+      "31 tests"
+    ],
+    "keywords": [
+      "MCP",
+      "Claude Desktop",
+      "database",
+      "read-only",
+      "PII masking",
+      "audit log",
+      "guardrails"
+    ],
+    "npm": null
+  },
+  {
+    "slug": "lead-responder",
+    "name": "lead-responder",
+    "tagline": "Answer the enquiry while they are still on the page",
+    "search": "instant lead response automation, auto reply to web enquiry under a second, lead scoring and call slots, filter job applications from leads",
+    "summary": "Most small businesses answer a web enquiry whenever someone next opens the inbox — after lunch, next morning, Monday. By then the person has messaged three competitors. The fix is not a bigger CRM: it is replying in under a second, and not spending that speed on the job applications and SEO pitches that arrive through the same form.",
+    "how": [
+      "Scores the enquiry, writes a reply that quotes what they actually asked, and offers real slots from a calendar rather than “we will be in touch”.",
+      "Escalates what is worth a human and quietly files what is not — the spam arrives through the same form as the money.",
+      "Runs offline end to end with --demo, so the behaviour can be judged before any credential is issued."
+    ],
+    "proof": "19 of 19 self-checks pass offline, each pinning one routing decision.",
+    "stack": [
+      "Python",
+      "offline demo",
+      "19 self-checks",
+      "calendar slots"
+    ],
+    "keywords": [
+      "lead response",
+      "speed to lead",
+      "scoring",
+      "autoresponder",
+      "small business"
+    ],
+    "npm": null
+  },
+  {
+    "slug": "shopify-catalog-auditor",
+    "name": "shopify-catalog-auditor",
+    "tagline": "The catalogue gaps that quietly cost sales, without store access",
+    "search": "shopify catalog audit no api key, find missing product images, thin product descriptions report, sold out pages still indexed, shopify seo gaps csv",
+    "summary": "Merchants export their whole catalogue to spreadsheets just to find what is broken: products with no image, descriptions of nine words, sold-out pages still collecting clicks. This reads any Shopify store from the outside — no API key, no app install, no permission needed — and returns a prioritised report and a CSV fix-list in under a minute.",
+    "how": [
+      "Reads the public storefront the way a shopper's browser does, so there is nothing to install and nobody to ask.",
+      "Ranks what it finds by what it costs, not by how many there are: one sold-out bestseller outranks forty tidy typos.",
+      "Writes a CSV keyed by product, so the fix list goes straight to whoever edits the catalogue."
+    ],
+    "proof": "20 of 20 self-checks pass offline. Runs against any live store from a domain alone.",
+    "stack": [
+      "Python",
+      "no API key",
+      "20 self-checks",
+      "CSV fix-list"
+    ],
+    "keywords": [
+      "Shopify",
+      "catalogue audit",
+      "e-commerce",
+      "conversion",
+      "missing images",
+      "CSV"
+    ],
+    "npm": null
+  },
+  {
+    "slug": "price-stock-monitor",
+    "name": "price-stock-monitor",
+    "tagline": "Price and stock changes, with the history to prove them",
+    "search": "competitor price monitoring python, track stock changes css selector, price drop alert cli, restock notification scraper, price history sqlite",
+    "summary": "Operators track competitor prices and restocks by opening tabs and typing numbers into a spreadsheet, which means they learn about a change whenever they next look. Point this at a product URL with a CSS selector and it watches on a schedule, keeps every observation, and says what moved and by how much.",
+    "how": [
+      "A CSS selector rather than a per-shop integration, so Shopify, WooCommerce, a marketplace and a hand-written page are all the same case.",
+      "Every observation is stored, so a claim about a price two weeks ago can be checked instead of remembered.",
+      "Change detection reports the delta and the direction, including out-of-stock and back-in-stock, which is usually the more valuable of the two."
+    ],
+    "proof": "25 of 25 self-checks pass offline, covering parsing, change detection and the history it keeps.",
+    "stack": [
+      "Python",
+      "SQLite history",
+      "25 self-checks",
+      "CSS selectors"
+    ],
+    "keywords": [
+      "price monitoring",
+      "stock alerts",
+      "competitor tracking",
+      "e-commerce",
+      "scraping"
+    ],
+    "npm": null
+  },
+  {
+    "slug": "automation-pipelines",
+    "name": "automation-pipelines",
+    "tagline": "n8n owns the plumbing, Python owns the logic",
+    "search": "n8n python webhook pipeline, lead cleaning scoring dedupe, document field extraction auto approval, n8n google sheets slack automation",
+    "summary": "This is the shape of most “connect these tools and stop doing it by hand” jobs. A webhook arrives, Python cleans, validates, scores and de-duplicates the payload, then it is written to a sheet and announced in Slack; a second module reads a PDF and decides whether it can be auto-approved or has to go to a human. The split matters: the logic that would be painful inside a no-code node lives where it can be tested.",
+    "how": [
+      "Cleaning is where the money is: a mistyped domain, a phone in four formats and the same person submitting twice are the normal case, not the edge case.",
+      "Nothing is auto-approved on a guess — a document missing a field it needs goes to a person, with the reason attached.",
+      "The Python half has its own suite, which is the half a no-code canvas cannot give you."
+    ],
+    "proof": "47 tests pass on a clean machine, covering cleaning, scoring, the extractor and the HTTP surface.",
+    "stack": [
+      "Python",
+      "n8n",
+      "47 tests",
+      "Google Sheets and Slack"
+    ],
+    "keywords": [
+      "n8n",
+      "automation",
+      "webhook",
+      "data cleaning",
+      "document extraction",
+      "integration"
+    ],
+    "npm": null
+  },
+  {
+    "slug": "web-scraper-toolkit",
+    "name": "web-scraper-toolkit",
+    "tagline": "A paginated listing to a clean CSV, built the way a paid job is",
+    "search": "polite web scraper cli python, retries exponential backoff user agent rotation, paginated listing to csv, deduplicated scrape output, scraper tests without network",
+    "summary": "Most scraping scripts work on the author's machine and fail on the fifth page: no pacing, no retry, no idea what to do with a row that is missing a field. This is the same job done the way a paid one has to be — request pacing, retries with exponential backoff, user-agent rotation, field normalisation, deduplication — and its tests run without touching the network.",
+    "how": [
+      "Politeness is a setting, not an afterthought: pacing and rotation are on by default, because a blocked scraper returns no data at all.",
+      "A row that does not parse is reported, not silently dropped — a CSV that is quietly short is worse than one that says what is missing.",
+      "The tests run offline against recorded pages, so the suite does not depend on a site nobody here controls."
+    ],
+    "proof": "21 tests pass without a network. Targets are the two public sandboxes published for scraping practice.",
+    "stack": [
+      "Python",
+      "offline tests",
+      "21 tests",
+      "CSV output"
+    ],
+    "keywords": [
+      "web scraping",
+      "pagination",
+      "backoff",
+      "deduplication",
+      "CSV",
+      "politeness"
+    ],
+    "npm": null
+  },
+  {
+    "slug": "imgdupe",
+    "name": "imgdupe",
+    "tagline": "The same photo twice, found by what it looks like",
+    "search": "find duplicate photos perceptual hash, near duplicate image finder cli, resized recompressed same picture, rust image dedupe 31000 photos",
+    "summary": "Byte-comparison finds only files that are literally identical, and misses the case everyone actually has: the same photo at 4K and at 1920, the JPEG re-saved by a phone, the export that changed nothing but the metadata. This groups by what a picture looks like, tells you which copy to keep, and never deletes anything.",
+    "how": [
+      "Perceptual hashing, so a resize or a recompress lands in the same group as its original.",
+      "Complete-linkage grouping, so unrelated pictures never chain together through a shared near-neighbour — the failure that makes a duplicate finder untrustworthy.",
+      "It writes a delete script instead of deleting: the decision stays with the person who knows which copy matters."
+    ],
+    "proof": "31,662 JPEGs from a real photo folder hashed in 37 seconds on 16 threads. 23 tests, plus a benchmark that rebuilds its own test folder so the grouping can be checked rather than believed.",
+    "stack": [
+      "Rust",
+      "single binary",
+      "23 tests",
+      "31,662 photos in 37s"
+    ],
+    "keywords": [
+      "duplicate images",
+      "perceptual hash",
+      "photo library",
+      "Rust",
+      "CLI"
+    ],
+    "npm": null
+  },
+  {
+    "slug": "instagram-metrics-reader",
+    "name": "instagram-metrics-reader",
+    "tagline": "Creator metrics that are never older than they claim",
+    "search": "instagram graph api read only metrics, creator marketplace follower reach engagement, meta token expiry 60 days, instagram api rate limit many accounts",
+    "summary": "A creator marketplace shows a follower count on a profile card, and that number has to be true. The awkward parts are not the API call: dozens of connected creators share one rate limit, tokens expire every sixty days, and a card showing a stale number while implying it is live is worse than showing nothing.",
+    "how": [
+      "Read-only scopes are enforced in the code, not merely requested — the app cannot post even if something later asks it to.",
+      "Every stored number carries when it was fetched, and the card shows that age rather than implying freshness.",
+      "Token expiry and the shared rate limit are handled as normal states with a plan, not as errors that surface to the creator."
+    ],
+    "proof": "31 tests pass on a clean machine. The whole flow runs with python run_demo.py — no Meta app, no Facebook Page, no tokens.",
+    "stack": [
+      "Python",
+      "Meta Graph API",
+      "read-only scopes",
+      "31 tests"
+    ],
+    "keywords": [
+      "Instagram",
+      "Meta Graph API",
+      "creator metrics",
+      "rate limits",
+      "read-only"
+    ],
+    "npm": null
+  },
+  {
+    "slug": "n8n-workflow-reliability-kit",
+    "name": "n8n-workflow-reliability-kit",
+    "tagline": "The layer production n8n instances are missing",
+    "search": "n8n error handling workflow, heartbeat monitoring for automations, alert route test n8n, workflow silently stopped running, n8n production reliability",
+    "summary": "An n8n automation fails in one of two ways: loudly, or by quietly not running any more. The second is worse, and nothing in a default install tells you it happened. Three importable workflows cover the gap — normalise a failure and route it to an alert, catch the workflow that stopped, and prove the alert route works before you need it.",
+    "how": [
+      "The heartbeat is the point: a workflow that stops firing produces no error, so absence has to be watched for deliberately.",
+      "Failures are normalised before they are sent, so an alert names the workflow, the node and the input instead of pasting a stack trace.",
+      "The third workflow exists to test the other two — an alert route nobody has fired is a guess."
+    ],
+    "proof": "A validator in CI checks all three exports and the configuration contract the README documents: 3 workflow exports validated, README contract passed.",
+    "stack": [
+      "n8n",
+      "JSON exports",
+      "validated in CI",
+      "3 workflows"
+    ],
+    "keywords": [
+      "n8n",
+      "reliability",
+      "monitoring",
+      "heartbeat",
+      "alerting",
+      "error handling"
+    ],
+    "npm": null
+  },
+  {
+    "slug": "n8n-workflow-templates",
+    "name": "n8n-workflow-templates",
+    "tagline": "Seven imports for the jobs that come up every time",
+    "search": "n8n templates lead webhook google sheets, rss digest to slack daily, form submission to crm without duplicates, authenticated webhook n8n status code",
+    "summary": "Capturing leads, digesting feeds, pushing form submissions into a CRM without creating duplicates, and receiving an authenticated webhook that answers with a proper status code. Each file is a clean export: import it, plug in credentials, run. The value is in the parts people get wrong the first time — de-duplication, authentication, and the response code a sender actually reads.",
+    "how": [
+      "De-duplication is built in, because the second submission of the same form is the normal case and a duplicate CRM record costs someone an hour.",
+      "The webhook template answers with a real status code, which is what decides whether the sender retries.",
+      "A validator in CI parses every export, so a template that would fail on import fails here first."
+    ],
+    "proof": "7 of 7 templates validate in CI, parsed as n8n exports rather than eyeballed as JSON.",
+    "stack": [
+      "n8n",
+      "7 templates",
+      "validated in CI",
+      "ready to import"
+    ],
+    "keywords": [
+      "n8n",
+      "templates",
+      "webhook",
+      "Google Sheets",
+      "CRM",
+      "deduplication"
     ],
     "npm": null
   }

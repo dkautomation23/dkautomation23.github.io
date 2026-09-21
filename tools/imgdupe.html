@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>imgdupe — The same photo twice, found by what it looks like</title>
+<meta name="description" content="Byte-comparison finds only files that are literally identical, and misses the case everyone actually has: the same photo at 4K and at 1920, the JPEG re-saved by a phone, the export that changed nothing but the metadata. This groups by what a picture looks like, tells you which copy to keep, and neve">
+<meta name="keywords" content="duplicate images, perceptual hash, photo library, Rust, CLI">
+<link rel="canonical" href="https://dkautomation23.github.io/tools/imgdupe.html">
+<meta property="og:title" content="imgdupe — The same photo twice, found by what it looks like">
+<meta property="og:description" content="Byte-comparison finds only files that are literally identical, and misses the case everyone actually has: the same photo at 4K and at 1920, the JPEG re-saved by a phone, the export that changed nothing but the metadata. This groups by what a picture looks like, tells you which copy to keep, and neve">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dkautomation23.github.io/tools/imgdupe.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../style.css">
+<link rel="icon" href="../favicon.svg">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"imgdupe","alternateName":"The same photo twice, found by what it looks like","description":"Byte-comparison finds only files that are literally identical, and misses the case everyone actually has: the same photo at 4K and at 1920, the JPEG re-saved by a phone, the export that changed nothing but the metadata. This groups by what a picture looks like, tells you which copy to keep, and never deletes anything.","applicationCategory":"DeveloperApplication","operatingSystem":"Linux, macOS, Windows","url":"https://dkautomation23.github.io/tools/imgdupe.html","codeRepository":"https://github.com/dkautomation23/imgdupe","license":"https://opensource.org/licenses/MIT","keywords":"duplicate images, perceptual hash, photo library, Rust, CLI","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"author":{"@type":"Person","name":"Dmytro Galko","url":"https://dkautomation23.github.io","email":"hello@dkautomation.dev"}}</script>
+</head>
+<body>
+
+<header class="compact">
+  <div class="wrap">
+    <p class="crumb"><a href="../">Dmytro Galko</a> · open-source tools</p>
+    <h1>imgdupe</h1>
+    <p class="role">The same photo twice, found by what it looks like</p>
+    <p class="lede">Byte-comparison finds only files that are literally identical, and misses the case everyone actually has: the same photo at 4K and at 1920, the JPEG re-saved by a phone, the export that changed nothing but the metadata. This groups by what a picture looks like, tells you which copy to keep, and never deletes anything.</p>
+    
+    <div class="links">
+      <a class="primary" href="https://github.com/dkautomation23/imgdupe">Source on GitHub</a>
+      <a href="../#work">Work with me</a>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>What it does</h2>
+    <ul class="plain">
+      <li>Perceptual hashing, so a resize or a recompress lands in the same group as its original.</li>
+      <li>Complete-linkage grouping, so unrelated pictures never chain together through a shared near-neighbour — the failure that makes a duplicate finder untrustworthy.</li>
+      <li>It writes a delete script instead of deleting: the decision stays with the person who knows which copy matters.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>How it is proved</h2>
+    <p class="note">31,662 JPEGs from a real photo folder hashed in 37 seconds on 16 threads. 23 tests, plus a benchmark that rebuilds its own test folder so the grouping can be checked rather than believed.</p>
+    <p class="tags"><span>Rust</span><span>single binary</span><span>23 tests</span><span>31,662 photos in 37s</span></p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>People find this looking for</h2>
+    <p class="note">find duplicate photos perceptual hash, near duplicate image finder cli, resized recompressed same picture, rust image dedupe 31000 photos.</p>
+    <p class="cta">
+      If that is your week and you would rather someone else did it, write to
+      <a href="mailto:hello@dkautomation.dev?subject=imgdupe">hello@dkautomation.dev</a>
+      or <a href="https://github.com/dkautomation23/imgdupe/issues/new/choose">open an issue</a>.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a href="../">All tools</a> ·
+    <a href="https://github.com/dkautomation23/imgdupe">imgdupe on GitHub</a> ·
+    MIT licensed
+  </div>
+</footer>
+
+</body>
+</html>
