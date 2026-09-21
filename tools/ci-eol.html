@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ci-eol — What in your CI is already dead, and what dies on a date</title>
+<meta name="description" content="A workflow keeps running right up to the day it does not. The runner image is retired, the language version stops getting security fixes, the action's major version is switched off — each on a date published months earlier, and none of it produces a warning in your repository first. GitHub code sear">
+<meta name="keywords" content="GitHub Actions, CI, end of life, runner images, deprecation, technical debt">
+<link rel="canonical" href="https://dkautomation23.github.io/tools/ci-eol.html">
+<meta property="og:title" content="ci-eol — What in your CI is already dead, and what dies on a date">
+<meta property="og:description" content="A workflow keeps running right up to the day it does not. The runner image is retired, the language version stops getting security fixes, the action's major version is switched off — each on a date published months earlier, and none of it produces a warning in your repository first. GitHub code sear">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dkautomation23.github.io/tools/ci-eol.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../style.css">
+<link rel="icon" href="../favicon.svg">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"ci-eol","alternateName":"What in your CI is already dead, and what dies on a date","description":"A workflow keeps running right up to the day it does not. The runner image is retired, the language version stops getting security fixes, the action's major version is switched off — each on a date published months earlier, and none of it produces a warning in your repository first. GitHub code search counts 1,335,296 files naming actions/checkout@v3 and 230,400 naming ubuntu-22.04, which left support on 17 September 2026.","applicationCategory":"DeveloperApplication","operatingSystem":"Linux, macOS, Windows","url":"https://dkautomation23.github.io/tools/ci-eol.html","codeRepository":"https://github.com/dkautomation23/ci-eol","license":"https://opensource.org/licenses/MIT","keywords":"GitHub Actions, CI, end of life, runner images, deprecation, technical debt","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"author":{"@type":"Person","name":"Dmytro Galko","url":"https://dkautomation23.github.io","email":"hello@dkautomation.dev"}}</script>
+</head>
+<body>
+
+<header class="compact">
+  <div class="wrap">
+    <p class="crumb"><a href="../">Dmytro Galko</a> · open-source tools</p>
+    <h1>ci-eol</h1>
+    <p class="role">What in your CI is already dead, and what dies on a date</p>
+    <p class="lede">A workflow keeps running right up to the day it does not. The runner image is retired, the language version stops getting security fixes, the action's major version is switched off — each on a date published months earlier, and none of it produces a warning in your repository first. GitHub code search counts 1,335,296 files naming actions/checkout@v3 and 230,400 naming ubuntu-22.04, which left support on 17 September 2026.</p>
+    
+    <div class="links">
+      <a class="primary" href="https://github.com/dkautomation23/ci-eol">Source on GitHub</a>
+      <a href="../#work">Work with me</a>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>What it does</h2>
+    <ul class="plain">
+      <li>Three tables from three sources with one snapshot date, copied rather than fetched: a check that needs the network fails in an air-gapped build, and a table that refreshes itself cannot be reviewed in a pull request.</li>
+      <li>ubuntu-22.04 is a prefix of ubuntu-22.04-arm64 and @v3 of @v3.1.0, so matches are bounded and longest-first; a SHA pin is not guessed at; a matrix list yields every version in it while ${{ matrix.python-version }} yields none.</li>
+      <li>Being four majors behind is printed separately from having a published end date. The first is worth knowing; only the second should fail a build.</li>
+      <li>Dependabot raises a pull request when a version moves. It does not tell you the thing you have stops working on a named day.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>How it is proved</h2>
+    <p class="note">Run against 31 of my own repositories it found Python 3.10 in seventeen of them, forty days from the end of upstream support, and Node 20 in one, already 144 days past it — including its own CI, which is the point. 27 tests, standard library only.</p>
+    <p class="tags"><span>Python</span><span>standard library only</span><span>27 tests</span><span>exit 1 for CI</span></p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>People find this looking for</h2>
+    <p class="note">github actions deprecation checker, ubuntu-20.04 runner retired, actions/checkout v3 outdated, python 3.10 end of life CI, node 18 eol workflow, runner image retirement date.</p>
+    <p class="cta">
+      If that is your week and you would rather someone else did it, write to
+      <a href="mailto:hello@dkautomation.dev?subject=ci-eol">hello@dkautomation.dev</a>
+      or <a href="https://github.com/dkautomation23/ci-eol/issues/new/choose">open an issue</a>.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a href="../">All tools</a> ·
+    <a href="https://github.com/dkautomation23/ci-eol">ci-eol on GitHub</a> ·
+    MIT licensed
+  </div>
+</footer>
+
+</body>
+</html>
