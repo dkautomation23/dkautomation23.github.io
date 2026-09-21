@@ -148,6 +148,36 @@
     ]
   },
   {
+    "slug": "ai-visibility-audit",
+    "name": "ai-visibility-audit",
+    "tagline": "What an AI assistant can actually read on your site",
+    "search": "can chatgpt read my website, gptbot blocked robots.txt check, claudebot crawler access audit, llms.txt validator, why is my site not cited by AI, AI visibility checker",
+    "summary": "An assistant's crawler fetches HTML and stops there: it renders no JavaScript and infers nothing. A site built for Google can therefore be invisible to it while every SEO tool reports the site as fine - a robots.txt copied from a template years ago blocks GPTBot by name, or the page ships forty words of markup behind nine hundred kilobytes of script. This prints the specific things standing between a page and being quoted.",
+    "how": [
+      "Reads robots.txt as the assistants' crawlers read it, per named agent, so a blanket rule and a rule aimed at one bot are told apart.",
+      "Parses llms.txt and follows its links: a guide that points at pages that are gone is worse than no guide, and that is the common case.",
+      "Judges each page on what is in the HTML - word count, who published it, usable structured data, whether the copy answers a question anyone asks.",
+      "Every check runs offline in the self-test, so a change to the scoring cannot pass unnoticed."
+    ],
+    "proof": "31 of 31 offline self-checks pass, each pinning one rule, and the same audit found the survey finding published on this site: of the top 1,500 sites, one in ten that publish an llms.txt also ban a crawler that would read it.",
+    "stack": [
+      "Python",
+      "requests",
+      "31 offline self-checks",
+      "per-crawler robots.txt"
+    ],
+    "keywords": [
+      "AI visibility",
+      "GPTBot",
+      "ClaudeBot",
+      "llms.txt",
+      "robots.txt",
+      "structured data",
+      "generative engine optimisation"
+    ],
+    "npm": null
+  },
+  {
     "slug": "ucp-audit",
     "name": "ucp-audit",
     "tagline": "Is your shop reachable by AI shopping agents?",
@@ -352,6 +382,35 @@
     ]
   },
   {
+    "slug": "linkscan",
+    "name": "linkscan",
+    "tagline": "The broken links, without the false alarms",
+    "search": "broken link checker no false positives, link checker ignores cloudflare 403, rust site crawler 404 report, linkedin 999 not broken, CI broken link check",
+    "summary": "Run an ordinary link checker against an ordinary site and the report fills with 403s from Cloudflare, 999s from LinkedIn and timeouts from a slow CDN, none of which are broken links. After the second false alarm nobody opens the report again, which is the same as not having one. This separates a link a visitor would find dead from a link a bot was refused.",
+    "how": [
+      "Three outcomes, not one: broken (404, 410, a 5xx a visitor would see), could not verify (refused or timed out), and works but sends your traffic off your domain. Only the first sets a non-zero exit code.",
+      "Every unique URL is checked once however many pages point at it, and every one of those pages is remembered, so the report says where to go and fix it.",
+      "HEAD first, GET when HEAD is refused - plenty of servers answer 405 to HEAD while serving GET perfectly.",
+      "A 404 on a domain's root is never a deleted page: crates.io answers 404 to anything that is not a browser, and the first version duly reported the Rust homepage as linking to a dead site. Both rules that fixed it are covered by tests."
+    ],
+    "proof": "Six pages of rust-lang.org, 220 unique links checked in 10.5 seconds at 24 concurrent requests. 28 tests, none of which touch the internet.",
+    "stack": [
+      "Rust",
+      "single binary",
+      "28 tests",
+      "CSV output"
+    ],
+    "keywords": [
+      "link checker",
+      "broken links",
+      "crawler",
+      "false positives",
+      "CI",
+      "site audit"
+    ],
+    "npm": null
+  },
+  {
     "slug": "invoice-reconciler",
     "name": "invoice-reconciler",
     "tagline": "Match a bank statement against open invoices",
@@ -425,5 +484,34 @@
       "MTA-STS",
       "email authentication"
     ]
+  },
+  {
+    "slug": "repo-secret-scanner",
+    "name": "repo-secret-scanner",
+    "tagline": "Catch the key before the push, in one file",
+    "search": "pre-commit secret scanner no dependencies, find api keys before commit, python leaked token scanner CI, aws key committed by accident, redacted secret report",
+    "summary": "A key in a commit is public the moment it is pushed and stays in the history after it is deleted, so the only cheap moment to catch it is before the push. The scanners that do this well want an install, a config file and a service account; this is one Python file with no dependencies that exits non-zero on a hit, which is all a pre-commit hook or a CI step needs.",
+    "how": [
+      "Nine rules for the shapes that actually leak: AWS access keys, GitHub, Slack and Google tokens, Stripe live keys, OpenAI-style keys, PEM private-key blocks, JWTs, and bare api_key or password assignments.",
+      "Findings are always redacted to first and last four characters plus a length - a report that prints the secret in a CI log has moved the leak rather than stopped it.",
+      "--selftest plants a dummy secret and confirms it is caught, so a broken scanner cannot sit there quietly reporting clean.",
+      "--entropy is opt-in, because flagging every long string is how a gate gets switched off."
+    ],
+    "proof": "One file, 167 lines, no dependencies; selftest passes on a planted secret. It is the gate I run over my own repositories before every push.",
+    "stack": [
+      "Python",
+      "standard library only",
+      "9 rules",
+      "exit 1 for CI"
+    ],
+    "keywords": [
+      "secret scanning",
+      "pre-commit",
+      "leaked credentials",
+      "API keys",
+      "CI gate",
+      "redaction"
+    ],
+    "npm": null
   }
 ]

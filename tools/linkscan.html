@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>linkscan — The broken links, without the false alarms</title>
+<meta name="description" content="Run an ordinary link checker against an ordinary site and the report fills with 403s from Cloudflare, 999s from LinkedIn and timeouts from a slow CDN, none of which are broken links. After the second false alarm nobody opens the report again, which is the same as not having one. This separates a lin">
+<meta name="keywords" content="link checker, broken links, crawler, false positives, CI, site audit">
+<link rel="canonical" href="https://dkautomation23.github.io/tools/linkscan.html">
+<meta property="og:title" content="linkscan — The broken links, without the false alarms">
+<meta property="og:description" content="Run an ordinary link checker against an ordinary site and the report fills with 403s from Cloudflare, 999s from LinkedIn and timeouts from a slow CDN, none of which are broken links. After the second false alarm nobody opens the report again, which is the same as not having one. This separates a lin">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dkautomation23.github.io/tools/linkscan.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../style.css">
+<link rel="icon" href="../favicon.svg">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"linkscan","alternateName":"The broken links, without the false alarms","description":"Run an ordinary link checker against an ordinary site and the report fills with 403s from Cloudflare, 999s from LinkedIn and timeouts from a slow CDN, none of which are broken links. After the second false alarm nobody opens the report again, which is the same as not having one. This separates a link a visitor would find dead from a link a bot was refused.","applicationCategory":"DeveloperApplication","operatingSystem":"Linux, macOS, Windows","url":"https://dkautomation23.github.io/tools/linkscan.html","codeRepository":"https://github.com/dkautomation23/linkscan","license":"https://opensource.org/licenses/MIT","keywords":"link checker, broken links, crawler, false positives, CI, site audit","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"author":{"@type":"Person","name":"Dmytro Galko","url":"https://dkautomation23.github.io","email":"hello@dkautomation.dev"}}</script>
+</head>
+<body>
+
+<header class="compact">
+  <div class="wrap">
+    <p class="crumb"><a href="../">Dmytro Galko</a> · open-source tools</p>
+    <h1>linkscan</h1>
+    <p class="role">The broken links, without the false alarms</p>
+    <p class="lede">Run an ordinary link checker against an ordinary site and the report fills with 403s from Cloudflare, 999s from LinkedIn and timeouts from a slow CDN, none of which are broken links. After the second false alarm nobody opens the report again, which is the same as not having one. This separates a link a visitor would find dead from a link a bot was refused.</p>
+    
+    <div class="links">
+      <a class="primary" href="https://github.com/dkautomation23/linkscan">Source on GitHub</a>
+      <a href="../#work">Work with me</a>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>What it does</h2>
+    <ul class="plain">
+      <li>Three outcomes, not one: broken (404, 410, a 5xx a visitor would see), could not verify (refused or timed out), and works but sends your traffic off your domain. Only the first sets a non-zero exit code.</li>
+      <li>Every unique URL is checked once however many pages point at it, and every one of those pages is remembered, so the report says where to go and fix it.</li>
+      <li>HEAD first, GET when HEAD is refused - plenty of servers answer 405 to HEAD while serving GET perfectly.</li>
+      <li>A 404 on a domain's root is never a deleted page: crates.io answers 404 to anything that is not a browser, and the first version duly reported the Rust homepage as linking to a dead site. Both rules that fixed it are covered by tests.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>How it is proved</h2>
+    <p class="note">Six pages of rust-lang.org, 220 unique links checked in 10.5 seconds at 24 concurrent requests. 28 tests, none of which touch the internet.</p>
+    <p class="tags"><span>Rust</span><span>single binary</span><span>28 tests</span><span>CSV output</span></p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>People find this looking for</h2>
+    <p class="note">broken link checker no false positives, link checker ignores cloudflare 403, rust site crawler 404 report, linkedin 999 not broken, CI broken link check.</p>
+    <p class="cta">
+      If that is your week and you would rather someone else did it, write to
+      <a href="mailto:hello@dkautomation.dev?subject=linkscan">hello@dkautomation.dev</a>
+      or <a href="https://github.com/dkautomation23/linkscan/issues/new/choose">open an issue</a>.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a href="../">All tools</a> ·
+    <a href="https://github.com/dkautomation23/linkscan">linkscan on GitHub</a> ·
+    MIT licensed
+  </div>
+</footer>
+
+</body>
+</html>

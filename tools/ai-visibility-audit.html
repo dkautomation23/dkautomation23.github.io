@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ai-visibility-audit — What an AI assistant can actually read on your site</title>
+<meta name="description" content="An assistant's crawler fetches HTML and stops there: it renders no JavaScript and infers nothing. A site built for Google can therefore be invisible to it while every SEO tool reports the site as fine - a robots.txt copied from a template years ago blocks GPTBot by name, or the page ships forty word">
+<meta name="keywords" content="AI visibility, GPTBot, ClaudeBot, llms.txt, robots.txt, structured data, generative engine optimisation">
+<link rel="canonical" href="https://dkautomation23.github.io/tools/ai-visibility-audit.html">
+<meta property="og:title" content="ai-visibility-audit — What an AI assistant can actually read on your site">
+<meta property="og:description" content="An assistant's crawler fetches HTML and stops there: it renders no JavaScript and infers nothing. A site built for Google can therefore be invisible to it while every SEO tool reports the site as fine - a robots.txt copied from a template years ago blocks GPTBot by name, or the page ships forty word">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dkautomation23.github.io/tools/ai-visibility-audit.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../style.css">
+<link rel="icon" href="../favicon.svg">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"ai-visibility-audit","alternateName":"What an AI assistant can actually read on your site","description":"An assistant's crawler fetches HTML and stops there: it renders no JavaScript and infers nothing. A site built for Google can therefore be invisible to it while every SEO tool reports the site as fine - a robots.txt copied from a template years ago blocks GPTBot by name, or the page ships forty words of markup behind nine hundred kilobytes of script. This prints the specific things standing between a page and being quoted.","applicationCategory":"DeveloperApplication","operatingSystem":"Linux, macOS, Windows","url":"https://dkautomation23.github.io/tools/ai-visibility-audit.html","codeRepository":"https://github.com/dkautomation23/ai-visibility-audit","license":"https://opensource.org/licenses/MIT","keywords":"AI visibility, GPTBot, ClaudeBot, llms.txt, robots.txt, structured data, generative engine optimisation","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"author":{"@type":"Person","name":"Dmytro Galko","url":"https://dkautomation23.github.io","email":"hello@dkautomation.dev"}}</script>
+</head>
+<body>
+
+<header class="compact">
+  <div class="wrap">
+    <p class="crumb"><a href="../">Dmytro Galko</a> · open-source tools</p>
+    <h1>ai-visibility-audit</h1>
+    <p class="role">What an AI assistant can actually read on your site</p>
+    <p class="lede">An assistant's crawler fetches HTML and stops there: it renders no JavaScript and infers nothing. A site built for Google can therefore be invisible to it while every SEO tool reports the site as fine - a robots.txt copied from a template years ago blocks GPTBot by name, or the page ships forty words of markup behind nine hundred kilobytes of script. This prints the specific things standing between a page and being quoted.</p>
+    
+    <div class="links">
+      <a class="primary" href="https://github.com/dkautomation23/ai-visibility-audit">Source on GitHub</a>
+      <a href="../#work">Work with me</a>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>What it does</h2>
+    <ul class="plain">
+      <li>Reads robots.txt as the assistants' crawlers read it, per named agent, so a blanket rule and a rule aimed at one bot are told apart.</li>
+      <li>Parses llms.txt and follows its links: a guide that points at pages that are gone is worse than no guide, and that is the common case.</li>
+      <li>Judges each page on what is in the HTML - word count, who published it, usable structured data, whether the copy answers a question anyone asks.</li>
+      <li>Every check runs offline in the self-test, so a change to the scoring cannot pass unnoticed.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>How it is proved</h2>
+    <p class="note">31 of 31 offline self-checks pass, each pinning one rule, and the same audit found the survey finding published on this site: of the top 1,500 sites, one in ten that publish an llms.txt also ban a crawler that would read it.</p>
+    <p class="tags"><span>Python</span><span>requests</span><span>31 offline self-checks</span><span>per-crawler robots.txt</span></p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>People find this looking for</h2>
+    <p class="note">can chatgpt read my website, gptbot blocked robots.txt check, claudebot crawler access audit, llms.txt validator, why is my site not cited by AI, AI visibility checker.</p>
+    <p class="cta">
+      If that is your week and you would rather someone else did it, write to
+      <a href="mailto:hello@dkautomation.dev?subject=ai-visibility-audit">hello@dkautomation.dev</a>
+      or <a href="https://github.com/dkautomation23/ai-visibility-audit/issues/new/choose">open an issue</a>.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a href="../">All tools</a> ·
+    <a href="https://github.com/dkautomation23/ai-visibility-audit">ai-visibility-audit on GitHub</a> ·
+    MIT licensed
+  </div>
+</footer>
+
+</body>
+</html>

@@ -46,6 +46,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://dkautomation23.github.io/tools/ai-visibility-audit.html</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://dkautomation23.github.io/tools/ucp-audit.html</loc>
     <lastmod>2026-09-21</lastmod>
     <priority>0.8</priority>
@@ -81,6 +86,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://dkautomation23.github.io/tools/linkscan.html</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://dkautomation23.github.io/tools/invoice-reconciler.html</loc>
     <lastmod>2026-09-21</lastmod>
     <priority>0.8</priority>
@@ -92,6 +102,11 @@
   </url>
   <url>
     <loc>https://dkautomation23.github.io/tools/email-deliverability-check.html</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dkautomation23.github.io/tools/repo-secret-scanner.html</loc>
     <lastmod>2026-09-21</lastmod>
     <priority>0.8</priority>
   </url>
