@@ -42,6 +42,7 @@
       <li>ubuntu-22.04 is a prefix of ubuntu-22.04-arm64 and @v3 of @v3.1.0, so matches are bounded and longest-first; a SHA pin is not guessed at; a matrix list yields every version in it while ${{ matrix.python-version }} yields none.</li>
       <li>Being four majors behind is printed separately from having a published end date. The first is worth knowing; only the second should fail a build.</li>
       <li>Dependabot raises a pull request when a version moves. It does not tell you the thing you have stops working on a named day.</li>
+      <li>--check-source asks the feeds whether these dates are still the published ones. endoflife.date serves JSON, so a moved date is reported with both values rather than guessed at from prose.</li>
     </ul>
   </div>
 </section>
@@ -49,8 +50,8 @@
 <section>
   <div class="wrap">
     <h2>How it is proved</h2>
-    <p class="note">Run against 31 of my own repositories it found Python 3.10 in seventeen of them, forty days from the end of upstream support, and Node 20 in one, already 144 days past it — including its own CI, which is the point. 27 tests, standard library only.</p>
-    <p class="tags"><span>Python</span><span>standard library only</span><span>27 tests</span><span>exit 1 for CI</span></p>
+    <p class="note">Run against 31 of my own repositories it found Python 3.10 in seventeen of them, forty days from the end of upstream support, and Node 20 in one, already 144 days past it — including its own CI, which is the point. 32 tests, standard library only.</p>
+    <p class="tags"><span>Python</span><span>standard library only</span><span>32 tests</span><span>exit 1 for CI</span></p>
   </div>
 </section>
 

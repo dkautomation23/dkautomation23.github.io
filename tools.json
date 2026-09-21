@@ -38,13 +38,14 @@
       "Three tables from three sources with one snapshot date, copied rather than fetched: a check that needs the network fails in an air-gapped build, and a table that refreshes itself cannot be reviewed in a pull request.",
       "ubuntu-22.04 is a prefix of ubuntu-22.04-arm64 and @v3 of @v3.1.0, so matches are bounded and longest-first; a SHA pin is not guessed at; a matrix list yields every version in it while ${{ matrix.python-version }} yields none.",
       "Being four majors behind is printed separately from having a published end date. The first is worth knowing; only the second should fail a build.",
-      "Dependabot raises a pull request when a version moves. It does not tell you the thing you have stops working on a named day."
+      "Dependabot raises a pull request when a version moves. It does not tell you the thing you have stops working on a named day.",
+      "--check-source asks the feeds whether these dates are still the published ones. endoflife.date serves JSON, so a moved date is reported with both values rather than guessed at from prose."
     ],
-    "proof": "Run against 31 of my own repositories it found Python 3.10 in seventeen of them, forty days from the end of upstream support, and Node 20 in one, already 144 days past it — including its own CI, which is the point. 27 tests, standard library only.",
+    "proof": "Run against 31 of my own repositories it found Python 3.10 in seventeen of them, forty days from the end of upstream support, and Node 20 in one, already 144 days past it — including its own CI, which is the point. 32 tests, standard library only.",
     "stack": [
       "Python",
       "standard library only",
-      "27 tests",
+      "32 tests",
       "exit 1 for CI"
     ],
     "keywords": [
