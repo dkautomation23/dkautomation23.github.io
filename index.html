@@ -52,7 +52,7 @@
     </div>
 
     <div class="tool">
-      <h3><a href="security-txt-survey.html">Half the security.txt files at the top of the web are invalid</a></h3>
+      <h3><a href="security-txt-survey.html">Nearly two-thirds of the security.txt files at the top of the web are invalid</a></h3>
       <p>A <code>security.txt</code> tells a researcher where to report a hole in your site, and RFC 9116 makes its <code>Expires</code> field mandatory — an expired file is, in the words of the specification, as good as no file. Of the 158 such files among the 500 most visited sites, 92 carry no <code>Expires</code> at all and 6 have expired: 62% are not valid. Nothing warns when that happens.</p>
       <p class="tags"><span>500 sites</span><span>2026-09-18</span><span>raw results published</span><span>repeatable in one command</span></p>
     </div>
@@ -71,7 +71,7 @@
 
     <div class="tool">
       <h3><a href="tools/model-eol.html">model-eol</a></h3>
-      <p>On 23 October 2026 OpenAI retires eighteen model identifiers in one day, five days after four more go on 28 September. GitHub code search puts <strong>96,640 files</strong> on <code>gpt-4-0613</code> alone. Every one is a hardcoded string that starts returning an error on a published date, and nothing warns first. This answers the question that comes before &ldquo;how do I migrate&rdquo;: does it affect me, and how long have I got. One run, no key, exit 1 for CI &mdash; and it will not flag <code>gpt-4o</code> as dead just because <code>gpt-4</code> is.</p>
+      <p>On 23 October 2026 a batch of OpenAI identifiers retires in one day &mdash; twenty-nine of them in this tool&rsquo;s table, counting every section of the deprecation page. Four more went twenty-five days earlier, on 28 September. GitHub code search puts <strong>96,640 files</strong> on <code>gpt-4-0613</code> alone. Every one is a hardcoded string that starts returning an error on a published date, and nothing warns first. This answers the question that comes before &ldquo;how do I migrate&rdquo;: does it affect me, and how long have I got. One run, no key, exit 1 for CI &mdash; and it will not flag <code>gpt-4o</code> as dead just because <code>gpt-4</code> is.</p>
       <p class="tags"><span>Python</span><span>23 tests</span><span>no dependencies</span><span>dated table, printed every run</span></p>
     </div>
 

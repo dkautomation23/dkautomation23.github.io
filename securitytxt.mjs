@@ -89,11 +89,11 @@ const html = `<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Half the security.txt files at the top of the web are invalid</title>
+<title>Nearly two-thirds of the security.txt files at the top of the web are invalid</title>
 <meta name="description" content="${escape(headline)}. Measured on ${date} across the ${num(s.total)} most visited sites, with the tool, the domain list and the raw results published.">
 <meta name="keywords" content="security.txt, RFC 9116, Expires field, vulnerability disclosure, well-known files, open data">
 <link rel="canonical" href="${SITE}/security-txt-survey.html">
-<meta property="og:title" content="Half the security.txt files at the top of the web are invalid">
+<meta property="og:title" content="Nearly two-thirds of the security.txt files at the top of the web are invalid">
 <meta property="og:description" content="${escape(headline)}.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="${SITE}/security-txt-survey.html">
