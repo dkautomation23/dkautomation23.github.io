@@ -4,83 +4,263 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Quote Drafts for freight brokers — Dmytro Galko</title>
-<meta name="description" content="Rate requests in your Gmail get a ready draft reply from your own rate history. Nothing is sent without you. Set up for you over email.">
+<meta name="description" content="Rate requests in your Gmail get a ready draft reply from your own rate history. Nothing is sent without you. Set up for you over email, no calls.">
 <meta property="og:title" content="Quote Drafts for freight brokers">
 <meta property="og:description" content="Rate requests in your Gmail get a ready draft reply from your own rate history. Nothing is sent without you.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://dkautomation23.github.io/quote-drafts/">
 <link rel="icon" href="../favicon.svg">
 <style>
-  :root { --ink:#16202c; --muted:#5a6675; --line:#e3e8ee; --bg:#ffffff; --soft:#f5f7fa; --accent:#1a5fb4; }
+  :root {
+    --ink:#16202c; --muted:#4b5563; --line:#dde3ea; --bg:#ffffff; --soft:#f5f7fa;
+    --accent:#154a8f; --accent-ink:#ffffff; --good:#1c6b3a; --warn:#8a4b00;
+  }
   * { box-sizing:border-box; }
-  body { margin:0; font:18px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif; color:var(--ink); background:var(--bg); }
-  main { max-width:860px; margin:0 auto; padding:40px 20px 60px; }
-  h1 { font-size:2.1rem; line-height:1.2; margin:0 0 14px; }
-  h2 { font-size:1.35rem; margin:44px 0 12px; }
-  p.lead { font-size:1.2rem; color:var(--muted); margin:0 0 26px; }
-  .cta { display:inline-block; background:var(--accent); color:#fff; text-decoration:none; padding:14px 22px; border-radius:8px; font-weight:600; }
-  .cta:hover { filter:brightness(1.08); }
-  .mail { margin-left:12px; color:var(--muted); font-size:1rem; }
-  figure { margin:28px 0; border:1px solid var(--line); border-radius:10px; overflow:hidden; background:var(--soft); }
-  figure img { display:block; width:100%; height:auto; }
-  figcaption { padding:10px 14px; font-size:.95rem; color:var(--muted); border-top:1px solid var(--line); background:#fff; }
-  ol, ul { padding-left:1.3em; } li { margin:6px 0; }
-  .box { background:var(--soft); border:1px solid var(--line); border-radius:10px; padding:16px 20px; }
-  footer { margin-top:50px; padding-top:18px; border-top:1px solid var(--line); font-size:.9rem; color:var(--muted); }
+  html { -webkit-text-size-adjust:100%; }
+  body {
+    margin:0; font:18px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+    color:var(--ink); background:var(--bg); overflow-x:hidden;
+  }
+  main { max-width:920px; margin:0 auto; padding:0 20px 60px; }
+  h1 { font-size:2.3rem; line-height:1.25; margin:0 0 16px; }
+  h2 { font-size:1.5rem; margin:52px 0 16px; }
+  h3 { font-size:1.15rem; margin:0 0 8px; }
+  p { margin:0 0 16px; }
+  p.lead { font-size:1.25rem; color:var(--muted); margin:0 0 28px; max-width:65ch; }
   a { color:var(--accent); }
-  @media (max-width:560px){ h1{font-size:1.6rem;} body{font-size:17px;} .mail{display:block; margin:10px 0 0;} }
+  ul, ol { padding-left:1.3em; }
+  li { margin:8px 0; }
+  strong { color:var(--ink); }
+
+  /* header */
+  header.top {
+    border-bottom:1px solid var(--line); background:var(--bg);
+  }
+  .top-inner {
+    max-width:920px; margin:0 auto; padding:16px 20px;
+    display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;
+  }
+  .brand { font-weight:700; font-size:1.05rem; color:var(--ink); text-decoration:none; }
+
+  /* buttons */
+  .cta {
+    display:inline-block; background:var(--accent); color:var(--accent-ink) !important;
+    text-decoration:none; padding:16px 26px; border-radius:10px; font-weight:700;
+    font-size:1.05rem; line-height:1.3; border:2px solid var(--accent);
+  }
+  .cta:hover { filter:brightness(1.1); }
+  .cta.small { padding:12px 20px; font-size:1rem; }
+  .mail-line { margin-top:10px; color:var(--muted); font-size:1rem; }
+
+  section.hero { padding:44px 0 8px; }
+
+  /* gallery */
+  .gallery-wrap { position:relative; margin:28px 0; }
+  .gallery {
+    display:flex; gap:18px; overflow-x:auto; scroll-snap-type:x mandatory;
+    padding:6px 6px 14px; -webkit-overflow-scrolling:touch;
+    scrollbar-width:thin;
+  }
+  .gallery figure {
+    flex:0 0 80%; max-width:720px; scroll-snap-align:start; margin:0;
+    border:1px solid var(--line); border-radius:12px; overflow:hidden; background:var(--soft);
+  }
+  .gallery { align-items:flex-start; }
+  .gallery a.zoom { display:block; cursor:zoom-in; }
+  .gallery img { display:block; width:100%; height:auto; }
+  .gallery figcaption { padding:12px 16px; font-size:.98rem; color:var(--muted); border-top:1px solid var(--line); background:#fff; }
+  .gal-btn {
+    position:absolute; top:45%; transform:translateY(-50%);
+    width:46px; height:46px; border-radius:50%; border:1px solid var(--line);
+    background:#fff; color:var(--ink); font-size:1.3rem; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; box-shadow:0 2px 8px rgba(0,0,0,.12);
+  }
+  .gal-btn:hover { background:var(--soft); }
+  .gal-prev { left:-8px; } .gal-next { right:-8px; }
+  .gal-hint { display:none; font-size:.9rem; color:var(--muted); margin:-18px 0 0; }
+  @media (max-width:700px){ .gal-btn { display:none; } .gallery figure { flex-basis:90%; } .gal-hint { display:block; } }
+
+  /* steps */
+  .steps { list-style:none; padding:0; margin:0; display:grid; gap:16px; }
+  .steps li {
+    display:flex; gap:16px; align-items:flex-start; margin:0;
+    border:1px solid var(--line); border-radius:12px; padding:18px 20px; background:var(--soft);
+  }
+  .step-num {
+    flex:0 0 auto; width:38px; height:38px; border-radius:50%; background:var(--accent); color:#fff;
+    display:flex; align-items:center; justify-content:center; font-weight:700; font-size:1.1rem;
+  }
+
+  .box { background:var(--soft); border:1px solid var(--line); border-radius:12px; padding:20px 24px; }
+  .box ul { margin:0; }
+
+  details.faq {
+    border:1px solid var(--line); border-radius:10px; padding:16px 20px; margin:0 0 12px; background:#fff;
+  }
+  details.faq summary {
+    cursor:pointer; font-weight:700; font-size:1.05rem; list-style:none; display:flex; justify-content:space-between; gap:12px;
+  }
+  details.faq summary::-webkit-details-marker { display:none; }
+  details.faq summary::after { content:"+"; color:var(--accent); font-size:1.3rem; flex:0 0 auto; }
+  details.faq[open] summary::after { content:"–"; }
+  details.faq p { margin-top:12px; color:var(--muted); }
+
+  .final {
+    margin-top:56px; padding:32px 24px; border-radius:14px; background:var(--soft);
+    border:1px solid var(--line); text-align:center;
+  }
+  .final h2 { margin-top:0; }
+
+  footer.site {
+    margin-top:50px; padding:24px 20px; border-top:1px solid var(--line);
+    font-size:.95rem; color:var(--muted); text-align:center;
+  }
+  footer.site a { color:var(--muted); }
+
+  @media (max-width:560px){
+    h1 { font-size:1.7rem; }
+    body { font-size:18px; }
+    .top-inner { padding:14px 16px; }
+    section.hero { padding:32px 0 8px; }
+  }
 </style>
 </head>
 <body>
+
+<header class="top">
+  <div class="top-inner">
+    <a class="brand" href="../">Dmytro Galko</a>
+    <a class="cta small" href="mailto:dkautomation.lab@gmail.com?subject=Quote%20drafts%20for%20my%20inbox">Email me to set it up</a>
+  </div>
+</header>
+
 <main>
-  <h1>Every rate request in your inbox gets a draft reply before you open it</h1>
-  <p class="lead">A small tool inside your Gmail. It reads each rate request, checks your own past rates on that lane,
-  and leaves a ready draft in the same thread. You check it and press Send. Nothing goes out on its own.</p>
 
-  <a class="cta" href="mailto:dkautomation.lab@gmail.com?subject=Quote%20drafts%20for%20my%20inbox">Email me to set it up</a>
-  <span class="mail">dkautomation.lab@gmail.com</span>
+  <section class="hero">
+    <h1>Every rate request in your inbox gets a draft reply before you open it</h1>
+    <p class="lead">A small tool inside your own Gmail. It reads each rate request, checks your own past rates on
+    that lane, and leaves a ready draft in the same thread. You read it, you press Send. It never sends anything
+    on its own.</p>
+    <a class="cta" href="mailto:dkautomation.lab@gmail.com?subject=Quote%20drafts%20for%20my%20inbox">Email me to set it up</a>
+    <div class="mail-line">dkautomation.lab@gmail.com &middot; written setup only, no calls</div>
+  </section>
 
-  <figure>
-    <img src="draft.png" alt="A Gmail rate request from Dallas TX to Atlanta GA with a draft reply underneath: lane, equipment, weight, pickup date and the rate." width="1568" height="726">
-    <figcaption>A real run in a test Gmail inbox: the request arrived, the draft with the rate from the broker's history appeared in the same thread.</figcaption>
-  </figure>
+  <section aria-label="Screenshots from a real test inbox">
+    <div class="gallery-wrap">
+      <button class="gal-btn gal-prev" type="button" aria-label="Previous screenshot" onclick="galGo(-1)">&#8249;</button>
+      <div class="gallery" id="gal">
+        <figure>
+          <a class="zoom" href="shot-draft-dallas.webp" target="_blank" rel="noopener"><img src="shot-draft-dallas.webp" alt="Draft reply for a Dallas TX to Atlanta GA rate request, quoting a dry van rate from the broker's own history." width="1440" height="1036" loading="lazy"></a>
+          <figcaption>One lane, one draft: dry van, 40,000 lbs, the rate comes from the broker's own history sheet.</figcaption>
+        </figure>
+        <figure>
+          <a class="zoom" href="shot-draft-two-lanes.webp" target="_blank" rel="noopener"><img src="shot-draft-two-lanes.webp" alt="Draft reply covering two lanes from one email, one with a rate and one marked RATE no history for this lane." width="1440" height="1095" loading="lazy"></a>
+          <figcaption>Two lanes in one email: a rate where there is history, a plain placeholder where there isn't &mdash; never a guess.</figcaption>
+        </figure>
+        <figure>
+          <a class="zoom" href="shot-draft-typos.webp" target="_blank" rel="noopener"><img src="shot-draft-typos.webp" alt="Draft reply correctly reading Los Angelas and San Antonoi despite the typos in the original request." width="1440" height="964" loading="lazy"></a>
+          <figcaption>Typos in the original ("Los Angelas", "San Antonoi") don't stop it from reading the lane correctly.</figcaption>
+        </figure>
+        <figure>
+          <a class="zoom" href="shot-inbox.webp" target="_blank" rel="noopener"><img src="shot-inbox.webp" alt="Gmail inbox with ten test rate requests, most labelled Quote ready and one invoice labelled Not a quote." width="1440" height="672" loading="lazy"></a>
+          <figcaption>A test Gmail inbox after a run: rate requests labelled <b>Quote ready</b>, an invoice labelled <b>Not a quote</b>.</figcaption>
+        </figure>
+      </div>
+      <button class="gal-btn gal-next" type="button" aria-label="Next screenshot" onclick="galGo(1)">&#8250;</button>
+    </div>
+    <p class="gal-hint">Swipe for more &middot; tap a screenshot to open it full size.</p>
+  </section>
 
-  <h2>What it does</h2>
-  <ul>
-    <li>Picks up new rate requests: lane, equipment, weight, pickup date, even when they are only in the subject line or have typos in city names.</li>
-    <li>Looks up your last rate on that lane in your own rate history sheet. No history? The draft says so instead of guessing a number.</li>
-    <li>Handles several lanes in one email and skips emails that are not rate requests, such as invoices.</li>
-    <li>Marks each thread <b>Quote ready</b> so you see at a glance what is waiting.</li>
-  </ul>
+  <!-- VIDEO: placeholder -->
 
-  <figure>
-    <img src="inbox.png" alt="Gmail inbox where rate requests are labelled Quote ready and an invoice is labelled Not a quote." width="1568" height="552">
-    <figcaption>Rate requests labelled Quote ready; an invoice labelled Not a quote.</figcaption>
-  </figure>
-
-  <h2>How setup works</h2>
-  <ol>
-    <li>You open a link, click <b>Make a copy</b> of a Google Sheet, then <b>Allow</b>. About five minutes.</li>
-    <li>You share that sheet with me. I load your rate history and tune the replies to how you write.</li>
-    <li>We test it on ten of your real requests. It is done when the drafts are right.</li>
+  <h2>How it works</h2>
+  <ol class="steps">
+    <li><span class="step-num">1</span><div><h3>It reads the request</h3><p>Lane, equipment, weight, pickup date &mdash; even when the whole request is only in the subject line, spread across a few replies in the same thread, or has typos in city names. Several lanes in one email are handled separately.</p></div></li>
+    <li><span class="step-num">2</span><div><h3>It checks your own rate history</h3><p>A Google Sheet with your past rates. A lane you've quoted before gets that rate. No history on that lane? The draft says so instead of guessing a number.</p></div></li>
+    <li><span class="step-num">3</span><div><h3>It leaves a draft, not a sent email</h3><p>The draft goes into the same Gmail thread, labelled <b>Quote ready</b>. Invoices and anything that isn't a rate request get labelled <b>Not a quote</b> and no draft is written. You open it, check it, press Send.</p></div></li>
   </ol>
-  <p>Everything happens by email. No calls, no software to install. Works with Gmail and Google Workspace.</p>
 
   <h2>What it does not do</h2>
   <div class="box">
     <ul>
-      <li>It never sends an email. A person always opens the draft, checks it and presses Send.</li>
-      <li>It does not set your prices. Rates come from your own history; you decide what goes out.</li>
-      <li>Email text is processed by an AI model (Anthropic's API, not used for model training) and is not stored by me.</li>
+      <li>It never sends an email by itself. A person always opens the draft, checks it, and presses Send.</li>
+      <li>It does not set your prices. Rates come only from your own history sheet; you decide what actually goes out.</li>
+      <li>No history on a lane means a plain placeholder in the draft, never a made-up number.</li>
+      <li>Cities are matched by name. "Dallas" and "Fort Worth" are treated as different lanes.</li>
+      <li>Gmail and Google Workspace only, for now &mdash; no Outlook.</li>
+      <li>The email text is read by an AI model through my own proxy to write the draft; it is not used to train models.</li>
     </ul>
   </div>
 
-  <h2>Want it on your inbox?</h2>
-  <p>Write to <a href="mailto:dkautomation.lab@gmail.com?subject=Quote%20drafts%20for%20my%20inbox">dkautomation.lab@gmail.com</a>
-  with one line about how you receive rate requests today. Agencies and consultants who want to offer it to their clients are welcome too.</p>
-  <p>The code is public: <a href="https://github.com/dkautomation23/freight-quote-drafts">github.com/dkautomation23/freight-quote-drafts</a>.</p>
+  <h2>Installation by email, no calls</h2>
+  <p>Everything happens over written email. No video calls, no screen shares, nothing to install on your computer.</p>
+  <ol>
+    <li>You get a link to a Google Sheet with your settings already filled in. You click <b>Make a copy</b>, then <b>Allow</b>. About five minutes.</li>
+    <li>You reply with the sheet shared back to me. I load your rate history and adjust the wording to match how you write.</li>
+    <li>We test it on your real requests by email until the drafts are right, then it runs on its own.</li>
+  </ol>
 
-  <footer>Dmytro Galko · Burgas, Bulgaria · <a href="../">dkautomation23.github.io</a></footer>
+  <h2>FAQ</h2>
+
+  <details class="faq">
+    <summary>Is my email data safe?</summary>
+    <p>The text of a rate request is sent to an AI model (Anthropic's API, through a proxy I run) so it can write the
+    draft. That text is not stored afterwards and is not used to train any model. Your rate history stays in your own
+    Google Sheet the whole time.</p>
+  </details>
+
+  <details class="faq">
+    <summary>Does it work with Outlook?</summary>
+    <p>Not yet. Right now it only runs inside Gmail and Google Workspace.</p>
+  </details>
+
+  <details class="faq">
+    <summary>How long does setup take?</summary>
+    <p>About five minutes on your side to copy the sheet and click Allow. After that we go back and forth by email,
+    testing it on your real requests, until every draft looks right &mdash; that part moves at whatever pace suits you.</p>
+  </details>
+
+  <details class="faq">
+    <summary>What if it turns out not to fit my inbox?</summary>
+    <p>If we test it and it doesn't work for how your rate requests come in, whatever you paid up front is refunded.</p>
+  </details>
+
+  <details class="faq">
+    <summary>Can an agency resell this to its broker clients?</summary>
+    <p>Yes. Agencies and consultants who set up inboxes for their own broker clients can offer it white-label, by
+    agreement &mdash; write in and we'll work out the terms.</p>
+  </details>
+
+  <details class="faq">
+    <summary>Will it ever send an email without me?</summary>
+    <p>No. It only ever leaves a draft in the thread. Sending is always a person clicking Send.</p>
+  </details>
+
+  <div class="final">
+    <h2>Want it on your own inbox?</h2>
+    <p>Write to <a href="mailto:dkautomation.lab@gmail.com?subject=Quote%20drafts%20for%20my%20inbox">dkautomation.lab@gmail.com</a>
+    with one line about how rate requests reach you today.</p>
+    <a class="cta" href="mailto:dkautomation.lab@gmail.com?subject=Quote%20drafts%20for%20my%20inbox">Email me to set it up</a>
+  </div>
+
+  <p style="margin-top:36px;">The code is public: <a href="https://github.com/dkautomation23/freight-quote-drafts">github.com/dkautomation23/freight-quote-drafts</a>.</p>
+
 </main>
+
+<footer class="site">
+  Dmytro Galko &middot; Burgas, Bulgaria &middot; <a href="../">dkautomation23.github.io</a>
+</footer>
+
+<script>
+function galGo(d){
+  var g=document.getElementById('gal'), f=g.querySelectorAll('figure'), x0=f[0].offsetLeft, i=0;
+  for (var k=0;k<f.length;k++){ if (Math.abs(f[k].offsetLeft-x0-g.scrollLeft) < Math.abs(f[i].offsetLeft-x0-g.scrollLeft)) i=k; }
+  i=Math.max(0,Math.min(f.length-1,i+d));
+  var to=f[i].offsetLeft-x0;
+  g.scrollTo({left:to, behavior:'smooth'});
+  setTimeout(function(){ if (Math.abs(g.scrollLeft-to) > 20) g.scrollLeft=to; }, 700);
+}
+</script>
+
 </body>
 </html>
