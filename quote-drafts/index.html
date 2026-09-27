@@ -91,6 +91,12 @@
     display:flex; align-items:center; justify-content:center; font-weight:700; font-size:1.1rem;
   }
 
+  .proof { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:8px 0 0; }
+  .proof div { border:1px solid var(--line); border-radius:12px; padding:16px 18px; background:#fff; }
+  .proof b { display:block; font-size:1.6rem; color:var(--accent); line-height:1.2; }
+  .proof span { display:block; font-size:.95rem; color:var(--muted); line-height:1.45; margin-top:4px; }
+  @media (max-width:700px){ .proof { grid-template-columns:1fr; } }
+
   .box { background:var(--soft); border:1px solid var(--line); border-radius:12px; padding:20px 24px; }
   .box ul { margin:0; }
 
@@ -137,7 +143,7 @@
 <main>
 
   <section class="hero">
-    <h1>Every rate request in your inbox gets a draft reply before you open it</h1>
+    <h1>Every rate request in your Gmail gets a draft reply within 5 minutes</h1>
     <p class="lead">A small tool inside your own Gmail. It reads each rate request, checks your own past rates on
     that lane, and leaves a ready draft in the same thread. You read it, you press Send. It never sends anything
     on its own.</p>
@@ -171,12 +177,18 @@
     <p class="gal-hint">Swipe for more &middot; tap a screenshot to open it full size.</p>
   </section>
 
+  <div class="proof">
+    <div><b>11 of 11</b><span>test rate requests read correctly by the live model, field by field</span></div>
+    <div><b>5 min</b><span>between checks of your inbox; the draft is waiting when you look</span></div>
+    <div><b>0 sent</b><span>in the automated tests, any attempt to send, reply or forward fails the test</span></div>
+  </div>
+
   <!-- VIDEO: placeholder -->
 
   <h2>How it works</h2>
   <ol class="steps">
     <li><span class="step-num">1</span><div><h3>It reads the request</h3><p>Lane, equipment, weight, pickup date &mdash; even when the whole request is only in the subject line, spread across a few replies in the same thread, or has typos in city names. Several lanes in one email are handled separately.</p></div></li>
-    <li><span class="step-num">2</span><div><h3>It checks your own rate history</h3><p>A Google Sheet with your past rates. A lane you've quoted before gets that rate. No history on that lane? The draft says so instead of guessing a number.</p></div></li>
+    <li><span class="step-num">2</span><div><h3>It checks your own rate history</h3><p>A Google Sheet with your past loads. A lane you've run before gets the median of your last five loads on it. Only the same states? You get a range to pick from. No history at all? The draft says so instead of guessing a number. Details missing from the request? The draft asks the shipper for them.</p></div></li>
     <li><span class="step-num">3</span><div><h3>It leaves a draft, not a sent email</h3><p>The draft goes into the same Gmail thread, labelled <b>Quote ready</b>. Invoices and anything that isn't a rate request get labelled <b>Not a quote</b> and no draft is written. You open it, check it, press Send.</p></div></li>
   </ol>
 
@@ -205,7 +217,8 @@
   <details class="faq">
     <summary>Is my email data safe?</summary>
     <p>The text of a rate request is sent to an AI model (Anthropic's API, through a proxy I run) so it can write the
-    draft. That text is not stored afterwards and is not used to train any model. Your rate history stays in your own
+    draft. The model sees only the last few messages of that thread &mdash; no attachments, no other emails, no sheet
+    data. That text is not stored afterwards and is not used to train any model. Your rate history stays in your own
     Google Sheet the whole time.</p>
   </details>
 
