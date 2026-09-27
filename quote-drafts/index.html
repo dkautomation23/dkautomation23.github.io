@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Quote Drafts for freight brokers — Dmytro Galko</title>
+<title>Quote Drafts for freight brokers</title>
 <meta name="description" content="Rate requests in your Gmail get a ready draft reply from your own rate history. Nothing is sent without you. Set up for you over email, no calls.">
 <meta property="og:title" content="Quote Drafts for freight brokers">
 <meta property="og:description" content="Rate requests in your Gmail get a ready draft reply from your own rate history. Nothing is sent without you.">
@@ -124,6 +124,12 @@
   .vp-sound { position:absolute; left:50%; top:16px; transform:translateX(-50%); display:none; padding:10px 18px;
     border:0; border-radius:999px; background:rgba(11,22,40,.88); color:#fff; font:600 1rem/1 inherit; cursor:pointer; }
   .vp.ask-sound .vp-sound { display:block; }
+  .vp-go { position:absolute; left:50%; top:calc(50% - 26px); transform:translate(-50%,-50%); display:none; align-items:center; gap:10px;
+    padding:16px 26px; border:0; border-radius:999px; background:var(--accent); color:#fff; font:700 1.1rem/1.2 inherit;
+    cursor:pointer; box-shadow:0 4px 24px rgba(0,0,0,.35); white-space:nowrap; }
+  .vp.ask-go .vp-go { display:flex; } .vp.ask-go .vp-big, .vp.ask-go .vp-sound { display:none; }
+  .vp-vol { flex:0 0 90px; width:90px; accent-color:var(--accent-bright, #f5b400); cursor:pointer; }
+  @media (max-width:560px){ .vp-vol { display:none; } .vp-go { font-size:.95rem; padding:12px 18px; } }
   .video-cap { font-size:.98rem; color:var(--muted); margin:10px 0 0; }
 
   .lb { position:fixed; inset:0; z-index:50; background:rgba(15,20,28,.92); display:none;
@@ -182,7 +188,7 @@
 
 <header class="top">
   <div class="top-inner">
-    <a class="brand" href="../">Dmytro Galko</a>
+    <a class="brand" href="./">Quote Drafts</a>
     <a class="cta small" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=dkautomation.lab%40gmail.com&amp;su=Set%20up%20Quote%20Drafts%20on%20my%20inbox&amp;body=Hi%20Dmytro%2C%0A%0AI%27d%20like%20Quote%20Drafts%20set%20up%20on%20our%20inbox.%20Please%20send%20me%20the%20details%20and%20next%20steps.%0A%0ACompany%3A%20%0AInbox%3A%20Gmail%20%2F%20Google%20Workspace%0ARate%20requests%20per%20day%2C%20roughly%3A%20%0A%0AThanks%2C%0A" target="_blank" rel="noopener">Email me to set it up</a>
   </div>
 </header>
@@ -235,11 +241,13 @@
         disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noplaybackrate noremoteplayback"></video>
       <button class="vp-big" type="button" aria-label="Play video">&#9654;</button>
       <button class="vp-sound" type="button">&#128266; Tap for sound</button>
+      <button class="vp-go" type="button"><span>&#9654;</span> Watch full screen with sound</button>
       <div class="vp-bar">
         <button class="vp-toggle" type="button" aria-label="Play">&#9654;</button>
         <div class="vp-track" role="presentation"><div class="vp-fill"></div></div>
         <span class="vp-time"></span>
         <button class="vp-mute" type="button" aria-label="Mute"><svg class="ic-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 8v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg><svg class="ic-off" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm18.7 0-1.4-1.4L17.5 10.4 14.7 7.6 13.3 9l2.8 2.8-2.8 2.8 1.4 1.4 2.8-2.8 2.8 2.8 1.4-1.4-2.8-2.8z"/></svg></button>
+        <input class="vp-vol" type="range" min="0" max="1" step="0.05" value="1" aria-label="Volume">
         <button class="vp-full" type="button" aria-label="Full screen"><svg class="ic-in" viewBox="0 0 24 24"><path d="M4 4h6v2H6v4H4V4zm10 0h6v6h-2V6h-4V4zM4 14h2v4h4v2H4v-6zm14 0h2v6h-6v-2h4v-4z"/></svg><svg class="ic-out" viewBox="0 0 24 24"><path d="M8 4h2v6H4V8h4V4zm6 0h2v4h4v2h-6V4zM4 14h6v6H8v-4H4v-2zm10 0h6v2h-4v4h-2v-6z"/></svg></button>
       </div>
     </div>
@@ -421,13 +429,35 @@ function galGo(d){
   ['fullscreenchange','webkitfullscreenchange'].forEach(function(n){ document.addEventListener(n,function(){
     box.classList.toggle('full',isFull()); full.setAttribute('aria-label',isFull()?'Exit full screen':'Full screen'); }); });
   sound.addEventListener('click',function(e){ e.stopPropagation(); setMuted(false); if(v.paused) v.play(); });
-  // Link from an email (?v=1 or #video): scroll to the video and start it. Browsers allow autoplay only
-  // without sound, so if sound is refused it plays muted with a "Tap for sound" button on top.
-  var q=new URLSearchParams(location.search);
+  // Volume (phones use their own buttons, the slider is hidden there).
+  var vol=box.querySelector('.vp-vol');
+  vol.addEventListener('input',function(){ v.volume=+vol.value; setMuted(+vol.value===0); });
+  v.addEventListener('volumechange',function(){ vol.value=v.muted?0:v.volume; });
+  // Link from an email (?v=1 or #video): scroll to the video and play it muted in place. Browsers allow full
+  // screen and sound only after a tap, so one big button does both and starts from the beginning.
+  var q=new URLSearchParams(location.search), go=box.querySelector('.vp-go');
+  function goFull(){ var f=box.requestFullscreen||box.webkitRequestFullscreen;
+    if(f) f.call(box); else if(v.webkitEnterFullscreen) v.webkitEnterFullscreen(); }
+  go.addEventListener('click',function(e){ e.stopPropagation(); box.classList.remove('ask-go');
+    v.currentTime=0; setMuted(false); v.play(); goFull(); });
   if(q.has('v')||location.hash==='#video'){
     var sec=box.closest('section'), to=function(){ sec.scrollIntoView({block:'center'}); };
     to(); window.addEventListener('load',to);  // again after the screenshots above have loaded and moved it
-    v.play().catch(function(){ setMuted(true); box.classList.add('ask-sound'); return v.play(); }).catch(function(){});
+    box.classList.add('ask-go'); setMuted(true); box.classList.remove('ask-sound');
+    v.play().catch(function(){});
+    ['click','keydown'].forEach(function(n){ box.addEventListener(n,function(){ box.classList.remove('ask-go'); },{once:true}); });
+  }
+  // Views counter: at most two events per visit (open; how far the video got), company from ?c=, no IP, kept 30 days.
+  var T='https://quote-track.dkautomation.workers.dev/e', vid=Math.random().toString(36).slice(2,10), sent=-1, fsSeen=false, sndSeen=false;
+  function beacon(d){ d.c=q.get('c')||''; d.s=q.get('s')||''; d.vid=vid; d.phone=/Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    try{ navigator.sendBeacon(T, JSON.stringify(d)); }catch(_){} }
+  if(!/^(localhost|127\.)/.test(location.hostname)) {
+    beacon({e:'open'});
+    ['fullscreenchange','webkitfullscreenchange'].forEach(function(n){ document.addEventListener(n,function(){ if(isFull()) fsSeen=true; }); });
+    v.addEventListener('timeupdate',function(){ if(!v.muted && v.volume>0) sndSeen=true; });
+    var flush=function(){ var p=Math.round(100*seen/(v.duration||1)); if(p>0 && p>sent){ sent=p; beacon({e:'watch',pct:p,fs:fsSeen,snd:sndSeen}); } };
+    document.addEventListener('visibilitychange',function(){ if(document.visibilityState==='hidden') flush(); });
+    window.addEventListener('pagehide',flush);
   }
   sync();
 })();
