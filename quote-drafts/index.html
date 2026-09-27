@@ -100,6 +100,26 @@
   .proof span { display:block; font-size:.95rem; color:var(--muted); line-height:1.45; margin-top:4px; }
   @media (max-width:700px){ .proof { grid-template-columns:1fr; } }
 
+  /* video: play/pause only, no seeking forward */
+  section.video { margin:44px 0 0; }
+  .vp { position:relative; border:1px solid var(--line); border-radius:12px; overflow:hidden; background:#0b1628; }
+  .vp video { display:block; width:100%; height:auto; aspect-ratio:var(--vp-ratio, 16/9); background:#0b1628; cursor:pointer; }
+  .vp-big { position:absolute; left:50%; top:calc(50% - 26px); transform:translate(-50%,-50%);
+    width:84px; height:84px; border-radius:50%; border:0; background:var(--accent); color:#fff;
+    font-size:2rem; cursor:pointer; box-shadow:0 4px 24px rgba(0,0,0,.35); display:flex; align-items:center; justify-content:center; padding-left:6px; }
+  .vp.playing .vp-big { display:none; }
+  .vp.ended .vp-big { display:flex; padding-left:0; }
+  .vp-bar { display:flex; align-items:center; gap:12px; padding:10px 14px; background:#0b1628; color:#fff; }
+  .vp-bar button { flex:0 0 auto; width:40px; height:40px; border-radius:8px; border:0; background:rgba(255,255,255,.12);
+    color:#fff; font-size:1rem; cursor:pointer; display:flex; align-items:center; justify-content:center; }
+  .vp-bar button:hover { background:rgba(255,255,255,.22); }
+  .vp-track { flex:1 1 auto; height:6px; border-radius:3px; background:rgba(255,255,255,.2); overflow:hidden; }
+  .vp-fill { height:100%; width:0; background:var(--accent-bright, #f5b400); }
+  .vp-time { flex:0 0 auto; font-size:.9rem; font-variant-numeric:tabular-nums; color:#c9d3e3; min-width:3.2em; text-align:right; }
+  .vp-bar svg { width:20px; height:20px; fill:currentColor; }
+  .vp .ic-off, .vp.muted .ic-on { display:none; } .vp.muted .ic-off { display:block; }
+  .video-cap { font-size:.98rem; color:var(--muted); margin:10px 0 0; }
+
   .lb { position:fixed; inset:0; z-index:50; background:rgba(15,20,28,.92); display:none;
     align-items:center; justify-content:center; padding:16px; cursor:zoom-out; }
   .lb.open { display:flex; }
@@ -163,11 +183,10 @@
 
 <main>
 
+
   <section class="hero">
     <h1>Every rate request in your Gmail gets a draft reply within 5 minutes</h1>
-    <p class="lead">A small tool inside your own Gmail. It reads each rate request, checks your own past rates on
-    that lane, and leaves a ready draft in the same thread. You read it, you press Send. It never sends anything
-    on its own.</p>
+    <p class="lead">A small tool inside your own Gmail. It reads each rate request, checks your own past rates on that lane, and leaves a ready draft in the same thread. You read it, you press Send. It never sends anything on its own.</p>
     <a class="cta" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=dkautomation.lab%40gmail.com&amp;su=Set%20up%20Quote%20Drafts%20on%20my%20inbox&amp;body=Hi%20Dmytro%2C%0A%0AI%27d%20like%20Quote%20Drafts%20set%20up%20on%20our%20inbox.%20Please%20send%20me%20the%20details%20and%20next%20steps.%0A%0ACompany%3A%20%0AInbox%3A%20Gmail%20%2F%20Google%20Workspace%0ARate%20requests%20per%20day%2C%20roughly%3A%20%0A%0AThanks%2C%0A" target="_blank" rel="noopener">Email me to set it up</a>
     <div class="mail-line">Opens a ready email in Gmail, you just press Send &middot; not on Gmail? <a href="mailto:dkautomation.lab@gmail.com?subject=Set%20up%20Quote%20Drafts%20on%20my%20inbox&amp;body=Hi%20Dmytro%2C%0A%0AI%27d%20like%20Quote%20Drafts%20set%20up%20on%20our%20inbox.%20Please%20send%20me%20the%20details%20and%20next%20steps.%0A%0ACompany%3A%20%0AInbox%3A%20Gmail%20%2F%20Google%20Workspace%0ARate%20requests%20per%20day%2C%20roughly%3A%20%0A%0AThanks%2C%0A">use your email app</a> &middot; written setup only, no calls</div>
   </section>
@@ -177,7 +196,7 @@
       <button class="gal-btn gal-prev" type="button" aria-label="Previous screenshot" onclick="galGo(-1)">&#8249;</button>
       <div class="gallery" id="gal">
         <figure>
-          <a class="zoom" href="shot-draft-dallas.webp"><img src="shot-draft-dallas.webp" alt="Draft reply for a Dallas TX to Atlanta GA rate request, quoting a dry van rate from the broker's own history." width="1476" height="1230" loading="lazy"></a>
+          <a class="zoom" href="shot-draft-dallas.webp"><img src="shot-draft-dallas.webp" alt="Draft reply for a Dallas TX to Atlanta GA rate request, quoting a dry van rate from the broker&#x27;s own history." width="1476" height="1230" loading="lazy"></a>
           <figcaption><span class="n1">1</span> A shipper asks for a rate. <span class="n2">2</span> Within 5 minutes a reply sits in Drafts, same thread, rate from the broker's own history. Nothing is sent.</figcaption>
         </figure>
         <figure>
@@ -237,19 +256,12 @@
 
   <details class="faq">
     <summary>Is my email data safe?</summary>
-    <p>The text of a rate request is sent to an AI model (Anthropic's API, through a proxy I run) so it can write the
-    draft. The model sees only the last few messages of that thread &mdash; no attachments, no other emails, no sheet
-    data. That text is not stored afterwards and is not used to train any model. Your rate history stays in your own
-    Google Sheet the whole time.</p>
+    <p>The text of a rate request is sent to an AI model (Anthropic's API, through a proxy I run) so it can write the draft. The model sees only the last few messages of that thread &mdash; no attachments, no other emails, no sheet data. That text is not stored afterwards and is not used to train any model. Your rate history stays in your own Google Sheet the whole time.</p>
   </details>
 
   <details class="faq">
     <summary>Will Google show a warning when I give it access?</summary>
-    <p>On a Google Workspace address on your own domain, usually not. On a personal gmail.com address, yes: Google shows
-    "Google hasn't verified this app", because the script runs as your own copy inside your account and you are the
-    "developer" of that copy. You click <b>Advanced</b>, then <b>Go to Quote Assistant (unsafe)</b>, then <b>Continue</b>, tick
-    <b>Select all</b>, and <b>Continue</b> again. I tell
-    you in the setup email exactly what you'll see, so it isn't a surprise.</p>
+    <p>On a Google Workspace address on your own domain, usually not. On a personal gmail.com address, yes: Google shows "Google hasn't verified this app", because the script runs as your own copy inside your account and you are the "developer" of that copy. You click <b>Advanced</b>, then <b>Go to Quote Assistant (unsafe)</b>, then <b>Continue</b>, tick <b>Select all</b>, and <b>Continue</b> again. I tell you in the setup email exactly what you'll see, so it isn't a surprise.</p>
   </details>
 
   <details class="faq">
@@ -259,8 +271,7 @@
 
   <details class="faq">
     <summary>How long does setup take?</summary>
-    <p>About five minutes on your side to copy the sheet and give it access. After that we go back and forth by email,
-    testing it on your real requests, until every draft looks right &mdash; that part moves at whatever pace suits you.</p>
+    <p>About five minutes on your side to copy the sheet and give it access. After that we go back and forth by email, testing it on your real requests, until every draft looks right &mdash; that part moves at whatever pace suits you.</p>
   </details>
 
   <details class="faq">
@@ -270,8 +281,7 @@
 
   <details class="faq">
     <summary>Can an agency resell this to its broker clients?</summary>
-    <p>Yes. Agencies and consultants who set up inboxes for their own broker clients can offer it white-label, by
-    agreement &mdash; write in and we'll work out the terms.</p>
+    <p>Yes. Agencies and consultants who set up inboxes for their own broker clients can offer it white-label, by agreement &mdash; write in and we'll work out the terms.</p>
   </details>
 
   <details class="faq">
@@ -281,14 +291,13 @@
 
   <div class="final">
     <h2>Want it on your own inbox?</h2>
-    <p>Write to <a href="mailto:dkautomation.lab@gmail.com?subject=Set%20up%20Quote%20Drafts%20on%20my%20inbox&amp;body=Hi%20Dmytro%2C%0A%0AI%27d%20like%20Quote%20Drafts%20set%20up%20on%20our%20inbox.%20Please%20send%20me%20the%20details%20and%20next%20steps.%0A%0ACompany%3A%20%0AInbox%3A%20Gmail%20%2F%20Google%20Workspace%0ARate%20requests%20per%20day%2C%20roughly%3A%20%0A%0AThanks%2C%0A">dkautomation.lab@gmail.com</a>
-    with one line about how rate requests reach you today.</p>
+    <p>Write to <a href="mailto:dkautomation.lab@gmail.com?subject=Set%20up%20Quote%20Drafts%20on%20my%20inbox&amp;body=Hi%20Dmytro%2C%0A%0AI%27d%20like%20Quote%20Drafts%20set%20up%20on%20our%20inbox.%20Please%20send%20me%20the%20details%20and%20next%20steps.%0A%0ACompany%3A%20%0AInbox%3A%20Gmail%20%2F%20Google%20Workspace%0ARate%20requests%20per%20day%2C%20roughly%3A%20%0A%0AThanks%2C%0A">dkautomation.lab@gmail.com</a> with one line about how rate requests reach you today.</p>
     <a class="cta" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=dkautomation.lab%40gmail.com&amp;su=Set%20up%20Quote%20Drafts%20on%20my%20inbox&amp;body=Hi%20Dmytro%2C%0A%0AI%27d%20like%20Quote%20Drafts%20set%20up%20on%20our%20inbox.%20Please%20send%20me%20the%20details%20and%20next%20steps.%0A%0ACompany%3A%20%0AInbox%3A%20Gmail%20%2F%20Google%20Workspace%0ARate%20requests%20per%20day%2C%20roughly%3A%20%0A%0AThanks%2C%0A" target="_blank" rel="noopener">Email me to set it up</a>
     <div class="mail-line">Opens a ready email in Gmail &middot; not on Gmail? <a href="mailto:dkautomation.lab@gmail.com?subject=Set%20up%20Quote%20Drafts%20on%20my%20inbox&amp;body=Hi%20Dmytro%2C%0A%0AI%27d%20like%20Quote%20Drafts%20set%20up%20on%20our%20inbox.%20Please%20send%20me%20the%20details%20and%20next%20steps.%0A%0ACompany%3A%20%0AInbox%3A%20Gmail%20%2F%20Google%20Workspace%0ARate%20requests%20per%20day%2C%20roughly%3A%20%0A%0AThanks%2C%0A">use your email app</a></div>
   </div>
 
-  <p style="margin-top:36px;">I'm Dmytro Galko, a developer in Burgas, Bulgaria. I built this tool and set it up for you
-  myself; you write to me directly, and everything stays in writing. The code is public: <a href="https://github.com/dkautomation23/freight-quote-drafts">github.com/dkautomation23/freight-quote-drafts</a>.</p>
+  <p style="margin-top:36px;">I'm Dmytro Galko, a developer in Burgas, Bulgaria. I built this tool and set it up for you myself; you write to me directly, and everything stays in writing. The code is public: <a href="https://github.com/dkautomation23/freight-quote-drafts">github.com/dkautomation23/freight-quote-drafts</a>.</p>
+
 
 </main>
 
@@ -326,6 +335,60 @@ function galGo(d){
   lb.querySelector('.lb-next').onclick=function(){ show(cur+1); };
   document.addEventListener('keydown',function(e){ if(!lb.classList.contains('open')) return;
     if(e.key==='Escape') close(); else if(e.key==='ArrowLeft') show(cur-1); else if(e.key==='ArrowRight') show(cur+1); });
+})();
+// ?c=Company in the page link (sent in a reply to a prospect) fills "Company:" in the ready email.
+(function(){
+  var c=(new URLSearchParams(location.search).get('c')||'').replace(/[\r\n<>]/g,' ').trim().slice(0,80);
+  if(!c) return;
+  [].forEach.call(document.querySelectorAll('a[href^="https://mail.google.com/mail/?view=cm"], a[href^="mailto:"]'),function(a){
+    a.setAttribute('href', a.getAttribute('href').replace(/([?&]body=)([^&]*)/, function(m,k,v){
+      return k+encodeURIComponent(decodeURIComponent(v).replace('Company: \n','Company: '+c+'\n'));
+    }));
+  });
+})();
+// Phones: the Gmail web compose link opens the inbox or the app without a draft, so use mailto there;
+// it opens the phone's mail app (usually Gmail) with the same subject and text.
+(function(){
+  var phone=/Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || (window.matchMedia && matchMedia('(pointer:coarse)').matches);
+  if(!phone) return;
+  [].forEach.call(document.querySelectorAll('a[href^="https://mail.google.com/mail/?view=cm"]'),function(a){
+    var q=new URL(a.href).searchParams;
+    a.href='mailto:'+q.get('to')+'?subject='+encodeURIComponent(q.get('su')||'')+'&body='+encodeURIComponent(q.get('body')||'');
+    a.removeAttribute('target');
+  });
+  [].forEach.call(document.querySelectorAll('.mail-line'),function(el){
+    el.innerHTML=el.innerHTML.replace('Opens a ready email in Gmail','Opens a ready email in your mail app')
+      .replace(/\s*·\s*not on Gmail\?\s*<a[^>]*>[^<]*<\/a>/,'');
+  });
+})();
+// Promo player: play/pause and sound only. Any jump past the furthest point watched is pulled back,
+// so the only way to the end is to watch it. Speed is locked at 1x.
+(function(){
+  var v=document.getElementById('promo'); if(!v) return;
+  var box=v.closest('.vp'), big=box.querySelector('.vp-big'), btn=box.querySelector('.vp-toggle'),
+      mute=box.querySelector('.vp-mute'), fill=box.querySelector('.vp-fill'), time=box.querySelector('.vp-time'), seen=0;
+  function fmt(s){ s=Math.max(0,Math.ceil(s||0)); return Math.floor(s/60)+':'+('0'+s%60).slice(-2); }
+  function toggle(){ if(v.paused||v.ended) v.play(); else v.pause(); }
+  function sync(){
+    var p=v.paused;
+    box.classList.toggle('playing',!p); box.classList.toggle('ended',v.ended);
+    btn.innerHTML=p?'&#9654;':'&#10073;&#10073;'; btn.setAttribute('aria-label',p?'Play':'Pause');
+    big.innerHTML=v.ended?'&#8635;':'&#9654;'; big.setAttribute('aria-label',v.ended?'Watch again':'Play video');
+  }
+  function tick(){
+    if(!v.seeking && v.currentTime<=seen+2) seen=Math.max(seen,v.currentTime);
+    var d=v.duration||0; fill.style.width=(d?100*v.currentTime/d:0)+'%'; time.textContent=d?fmt(d-v.currentTime):'';
+  }
+  v.addEventListener('seeking',function(){ if(v.currentTime>seen+0.5) v.currentTime=seen; });
+  v.addEventListener('ratechange',function(){ if(v.playbackRate!==1) v.playbackRate=1; });
+  v.addEventListener('timeupdate',tick); v.addEventListener('loadedmetadata',tick);
+  ['play','pause','ended'].forEach(function(n){ v.addEventListener(n,sync); });
+  v.addEventListener('ended',function(){ seen=v.duration; });
+  v.addEventListener('contextmenu',function(e){ e.preventDefault(); });
+  v.addEventListener('click',toggle); big.addEventListener('click',toggle); btn.addEventListener('click',toggle);
+  mute.addEventListener('click',function(){ v.muted=!v.muted; box.classList.toggle('muted',v.muted);
+    mute.setAttribute('aria-label',v.muted?'Unmute':'Mute'); });
+  sync();
 })();
 </script>
 
