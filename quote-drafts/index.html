@@ -97,6 +97,24 @@
   .proof span { display:block; font-size:.95rem; color:var(--muted); line-height:1.45; margin-top:4px; }
   @media (max-width:700px){ .proof { grid-template-columns:1fr; } }
 
+  .lb { position:fixed; inset:0; z-index:50; background:rgba(15,20,28,.92); display:none;
+    align-items:center; justify-content:center; padding:16px; cursor:zoom-out; }
+  .lb.open { display:flex; }
+  .lb img { max-width:100%; max-height:100%; width:auto; height:auto; border-radius:8px; background:#fff;
+    box-shadow:0 10px 40px rgba(0,0,0,.5); cursor:default; }
+  .lb button { position:absolute; width:48px; height:48px; border-radius:50%; border:0; background:#fff;
+    color:var(--ink); font-size:1.5rem; cursor:pointer; box-shadow:0 2px 10px rgba(0,0,0,.3); }
+  .lb .lb-close { top:14px; right:14px; }
+  .lb .lb-prev { left:14px; top:50%; transform:translateY(-50%); }
+  .lb .lb-next { right:14px; top:50%; transform:translateY(-50%); }
+  @media (max-width:700px){
+    .lb { padding:64px 8px 76px; overflow:auto; align-items:flex-start; justify-content:flex-start; -webkit-overflow-scrolling:touch; }
+    .lb img { max-width:none; max-height:none; width:738px; }
+    .lb button { position:fixed; }
+    .lb .lb-prev, .lb .lb-next { top:auto; bottom:14px; transform:none; }
+  }
+  body.lb-on { overflow:hidden; }
+
   .box { background:var(--soft); border:1px solid var(--line); border-radius:12px; padding:20px 24px; }
   .box ul { margin:0; }
 
@@ -136,7 +154,7 @@
 <header class="top">
   <div class="top-inner">
     <a class="brand" href="../">Dmytro Galko</a>
-    <a class="cta small" href="mailto:dkautomation.lab@gmail.com?subject=Quote%20drafts%20for%20my%20inbox">Email me to set it up</a>
+    <a class="cta small" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=dkautomation.lab%40gmail.com&amp;su=Set%20up%20Quote%20Drafts%20on%20my%20inbox&amp;body=Hi%20Dmytro%2C%0A%0AI%27d%20like%20Quote%20Drafts%20set%20up%20on%20our%20inbox.%20Please%20send%20me%20the%20details%20and%20next%20steps.%0A%0ACompany%3A%20%0AInbox%3A%20Gmail%20%2F%20Google%20Workspace%0ARate%20requests%20per%20day%2C%20roughly%3A%20%0A%0AThanks%2C%0A" target="_blank" rel="noopener">Email me to set it up</a>
   </div>
 </header>
 
@@ -147,8 +165,8 @@
     <p class="lead">A small tool inside your own Gmail. It reads each rate request, checks your own past rates on
     that lane, and leaves a ready draft in the same thread. You read it, you press Send. It never sends anything
     on its own.</p>
-    <a class="cta" href="mailto:dkautomation.lab@gmail.com?subject=Quote%20drafts%20for%20my%20inbox">Email me to set it up</a>
-    <div class="mail-line">dkautomation.lab@gmail.com &middot; written setup only, no calls</div>
+    <a class="cta" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=dkautomation.lab%40gmail.com&amp;su=Set%20up%20Quote%20Drafts%20on%20my%20inbox&amp;body=Hi%20Dmytro%2C%0A%0AI%27d%20like%20Quote%20Drafts%20set%20up%20on%20our%20inbox.%20Please%20send%20me%20the%20details%20and%20next%20steps.%0A%0ACompany%3A%20%0AInbox%3A%20Gmail%20%2F%20Google%20Workspace%0ARate%20requests%20per%20day%2C%20roughly%3A%20%0A%0AThanks%2C%0A" target="_blank" rel="noopener">Email me to set it up</a>
+    <div class="mail-line">Opens a ready email in Gmail, you just press Send &middot; not on Gmail? <a href="mailto:dkautomation.lab@gmail.com?subject=Set%20up%20Quote%20Drafts%20on%20my%20inbox&amp;body=Hi%20Dmytro%2C%0A%0AI%27d%20like%20Quote%20Drafts%20set%20up%20on%20our%20inbox.%20Please%20send%20me%20the%20details%20and%20next%20steps.%0A%0ACompany%3A%20%0AInbox%3A%20Gmail%20%2F%20Google%20Workspace%0ARate%20requests%20per%20day%2C%20roughly%3A%20%0A%0AThanks%2C%0A">use your email app</a> &middot; written setup only, no calls</div>
   </section>
 
   <section aria-label="Screenshots from a real test inbox">
@@ -156,25 +174,25 @@
       <button class="gal-btn gal-prev" type="button" aria-label="Previous screenshot" onclick="galGo(-1)">&#8249;</button>
       <div class="gallery" id="gal">
         <figure>
-          <a class="zoom" href="shot-draft-dallas.webp" target="_blank" rel="noopener"><img src="shot-draft-dallas.webp" alt="Draft reply for a Dallas TX to Atlanta GA rate request, quoting a dry van rate from the broker's own history." width="1440" height="1036" loading="lazy"></a>
+          <a class="zoom" href="shot-draft-dallas.webp"><img src="shot-draft-dallas.webp" alt="Draft reply for a Dallas TX to Atlanta GA rate request, quoting a dry van rate from the broker's own history." width="1476" height="1230" loading="lazy"></a>
           <figcaption>One lane, one draft: dry van, 40,000 lbs, the rate comes from the broker's own history sheet.</figcaption>
         </figure>
         <figure>
-          <a class="zoom" href="shot-draft-two-lanes.webp" target="_blank" rel="noopener"><img src="shot-draft-two-lanes.webp" alt="Draft reply covering two lanes from one email, one with a rate and one marked RATE no history for this lane." width="1440" height="1095" loading="lazy"></a>
+          <a class="zoom" href="shot-draft-two-lanes.webp"><img src="shot-draft-two-lanes.webp" alt="Draft reply covering two lanes from one email, one with a rate and one marked RATE no history for this lane." width="1476" height="1330" loading="lazy"></a>
           <figcaption>Two lanes in one email: a rate where there is history, a plain placeholder where there isn't &mdash; never a guess.</figcaption>
         </figure>
         <figure>
-          <a class="zoom" href="shot-draft-typos.webp" target="_blank" rel="noopener"><img src="shot-draft-typos.webp" alt="Draft reply correctly reading Los Angelas and San Antonoi despite the typos in the original request." width="1440" height="964" loading="lazy"></a>
+          <a class="zoom" href="shot-draft-typos.webp"><img src="shot-draft-typos.webp" alt="Draft reply correctly reading Los Angelas and San Antonoi despite the typos in the original request." width="1476" height="1030" loading="lazy"></a>
           <figcaption>Typos in the original ("Los Angelas", "San Antonoi") don't stop it from reading the lane correctly.</figcaption>
         </figure>
         <figure>
-          <a class="zoom" href="shot-inbox.webp" target="_blank" rel="noopener"><img src="shot-inbox.webp" alt="Gmail inbox with ten test rate requests, most labelled Quote ready and one invoice labelled Not a quote." width="1440" height="672" loading="lazy"></a>
+          <a class="zoom" href="shot-inbox.webp"><img src="shot-inbox.webp" alt="Gmail inbox with ten test rate requests, most labelled Quote ready and one invoice labelled Not a quote." width="1596" height="900" loading="lazy"></a>
           <figcaption>A test Gmail inbox after a run: rate requests labelled <b>Quote ready</b>, an invoice labelled <b>Not a quote</b>.</figcaption>
         </figure>
       </div>
       <button class="gal-btn gal-next" type="button" aria-label="Next screenshot" onclick="galGo(1)">&#8250;</button>
     </div>
-    <p class="gal-hint">Swipe for more &middot; tap a screenshot to open it full size.</p>
+    <p class="gal-hint">Swipe for more &middot; tap a screenshot to enlarge it.</p>
   </section>
 
   <div class="proof">
@@ -260,9 +278,10 @@
 
   <div class="final">
     <h2>Want it on your own inbox?</h2>
-    <p>Write to <a href="mailto:dkautomation.lab@gmail.com?subject=Quote%20drafts%20for%20my%20inbox">dkautomation.lab@gmail.com</a>
+    <p>Write to <a href="mailto:dkautomation.lab@gmail.com?subject=Set%20up%20Quote%20Drafts%20on%20my%20inbox&amp;body=Hi%20Dmytro%2C%0A%0AI%27d%20like%20Quote%20Drafts%20set%20up%20on%20our%20inbox.%20Please%20send%20me%20the%20details%20and%20next%20steps.%0A%0ACompany%3A%20%0AInbox%3A%20Gmail%20%2F%20Google%20Workspace%0ARate%20requests%20per%20day%2C%20roughly%3A%20%0A%0AThanks%2C%0A">dkautomation.lab@gmail.com</a>
     with one line about how rate requests reach you today.</p>
-    <a class="cta" href="mailto:dkautomation.lab@gmail.com?subject=Quote%20drafts%20for%20my%20inbox">Email me to set it up</a>
+    <a class="cta" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=dkautomation.lab%40gmail.com&amp;su=Set%20up%20Quote%20Drafts%20on%20my%20inbox&amp;body=Hi%20Dmytro%2C%0A%0AI%27d%20like%20Quote%20Drafts%20set%20up%20on%20our%20inbox.%20Please%20send%20me%20the%20details%20and%20next%20steps.%0A%0ACompany%3A%20%0AInbox%3A%20Gmail%20%2F%20Google%20Workspace%0ARate%20requests%20per%20day%2C%20roughly%3A%20%0A%0AThanks%2C%0A" target="_blank" rel="noopener">Email me to set it up</a>
+    <div class="mail-line">Opens a ready email in Gmail &middot; not on Gmail? <a href="mailto:dkautomation.lab@gmail.com?subject=Set%20up%20Quote%20Drafts%20on%20my%20inbox&amp;body=Hi%20Dmytro%2C%0A%0AI%27d%20like%20Quote%20Drafts%20set%20up%20on%20our%20inbox.%20Please%20send%20me%20the%20details%20and%20next%20steps.%0A%0ACompany%3A%20%0AInbox%3A%20Gmail%20%2F%20Google%20Workspace%0ARate%20requests%20per%20day%2C%20roughly%3A%20%0A%0AThanks%2C%0A">use your email app</a></div>
   </div>
 
   <p style="margin-top:36px;">I'm Dmytro Galko, a developer in Burgas, Bulgaria. I built this tool and set it up for you
@@ -274,6 +293,13 @@
   Dmytro Galko &middot; Burgas, Bulgaria &middot; <a href="../">dkautomation23.github.io</a>
 </footer>
 
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Screenshot">
+  <img id="lb-img" alt="">
+  <button class="lb-close" type="button" aria-label="Close">&times;</button>
+  <button class="lb-prev" type="button" aria-label="Previous screenshot">&#8249;</button>
+  <button class="lb-next" type="button" aria-label="Next screenshot">&#8250;</button>
+</div>
+
 <script>
 function galGo(d){
   var g=document.getElementById('gal'), f=g.querySelectorAll('figure'), x0=f[0].offsetLeft, i=0;
@@ -283,6 +309,21 @@ function galGo(d){
   g.scrollTo({left:to, behavior:'smooth'});
   setTimeout(function(){ if (Math.abs(g.scrollLeft-to) > 20) g.scrollLeft=to; }, 700);
 }
+(function(){
+  var links=[].slice.call(document.querySelectorAll('.gallery a.zoom')), lb=document.getElementById('lb'),
+      img=document.getElementById('lb-img'), cur=0;
+  function show(i){ cur=(i+links.length)%links.length; var s=links[cur].querySelector('img');
+    img.src=links[cur].getAttribute('href'); img.alt=s.alt; }
+  function open(i){ show(i); lb.classList.add('open'); document.body.classList.add('lb-on'); }
+  function close(){ lb.classList.remove('open'); document.body.classList.remove('lb-on'); }
+  links.forEach(function(a,i){ a.addEventListener('click',function(e){ e.preventDefault(); open(i); }); });
+  lb.addEventListener('click',function(e){ if(e.target===lb) close(); });
+  lb.querySelector('.lb-close').onclick=close;
+  lb.querySelector('.lb-prev').onclick=function(){ show(cur-1); };
+  lb.querySelector('.lb-next').onclick=function(){ show(cur+1); };
+  document.addEventListener('keydown',function(e){ if(!lb.classList.contains('open')) return;
+    if(e.key==='Escape') close(); else if(e.key==='ArrowLeft') show(cur-1); else if(e.key==='ArrowRight') show(cur+1); });
+})();
 </script>
 
 </body>
