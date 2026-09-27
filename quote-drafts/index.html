@@ -118,6 +118,12 @@
   .vp-time { flex:0 0 auto; font-size:.9rem; font-variant-numeric:tabular-nums; color:#c9d3e3; min-width:3.2em; text-align:right; }
   .vp-bar svg { width:20px; height:20px; fill:currentColor; }
   .vp .ic-off, .vp.muted .ic-on { display:none; } .vp.muted .ic-off { display:block; }
+  .vp .ic-out, .vp.full .ic-in { display:none; } .vp.full .ic-out { display:block; }
+  .vp.full { display:flex; flex-direction:column; border:0; border-radius:0; background:#000; }
+  .vp.full video { flex:1 1 auto; min-height:0; height:100%; aspect-ratio:auto; object-fit:contain; background:#000; }
+  .vp-sound { position:absolute; left:50%; top:16px; transform:translateX(-50%); display:none; padding:10px 18px;
+    border:0; border-radius:999px; background:rgba(11,22,40,.88); color:#fff; font:600 1rem/1 inherit; cursor:pointer; }
+  .vp.ask-sound .vp-sound { display:block; }
   .video-cap { font-size:.98rem; color:var(--muted); margin:10px 0 0; }
 
   .lb { position:fixed; inset:0; z-index:50; background:rgba(15,20,28,.92); display:none;
@@ -223,16 +229,18 @@
     <div><b>0 sent</b><span>in the automated tests, any attempt to send, reply or forward fails the test</span></div>
   </div>
 
-  <section class="video" aria-label="One-minute video of the tool working in a test inbox">
+  <section class="video" id="video" aria-label="One-minute video of the tool working in a test inbox">
     <div class="vp" style="--vp-ratio:1920/1080">
       <video id="promo" src="promo.mp4" poster="promo-poster.webp" width="1920" height="1080" preload="metadata" playsinline
         disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noplaybackrate noremoteplayback"></video>
       <button class="vp-big" type="button" aria-label="Play video">&#9654;</button>
+      <button class="vp-sound" type="button">&#128266; Tap for sound</button>
       <div class="vp-bar">
         <button class="vp-toggle" type="button" aria-label="Play">&#9654;</button>
         <div class="vp-track" role="presentation"><div class="vp-fill"></div></div>
         <span class="vp-time"></span>
         <button class="vp-mute" type="button" aria-label="Mute"><svg class="ic-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 8v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg><svg class="ic-off" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm18.7 0-1.4-1.4L17.5 10.4 14.7 7.6 13.3 9l2.8 2.8-2.8 2.8 1.4 1.4 2.8-2.8 2.8 2.8 1.4-1.4-2.8-2.8z"/></svg></button>
+        <button class="vp-full" type="button" aria-label="Full screen"><svg class="ic-in" viewBox="0 0 24 24"><path d="M4 4h6v2H6v4H4V4zm10 0h6v6h-2V6h-4V4zM4 14h2v4h4v2H4v-6zm14 0h2v6h-6v-2h4v-4z"/></svg><svg class="ic-out" viewBox="0 0 24 24"><path d="M8 4h2v6H4V8h4V4zm6 0h2v4h4v2h-6V4zM4 14h6v6H8v-4H4v-2zm10 0h6v2h-4v4h-2v-6z"/></svg></button>
       </div>
     </div>
     <p class="video-cap">One minute, filmed in the same test inbox as the screenshots above.</p>
@@ -399,8 +407,28 @@ function galGo(d){
   v.addEventListener('ended',function(){ seen=v.duration; });
   v.addEventListener('contextmenu',function(e){ e.preventDefault(); });
   v.addEventListener('click',toggle); big.addEventListener('click',toggle); btn.addEventListener('click',toggle);
-  mute.addEventListener('click',function(){ v.muted=!v.muted; box.classList.toggle('muted',v.muted);
-    mute.setAttribute('aria-label',v.muted?'Unmute':'Mute'); });
+  function setMuted(m){ v.muted=m; box.classList.toggle('muted',m); box.classList.remove('ask-sound');
+    mute.setAttribute('aria-label',m?'Unmute':'Mute'); }
+  mute.addEventListener('click',function(){ setMuted(!v.muted); });
+  // Full screen: the whole player (with its own bar, so seeking stays locked); iPhone only has the native one.
+  var full=box.querySelector('.vp-full'), sound=box.querySelector('.vp-sound');
+  function isFull(){ return (document.fullscreenElement||document.webkitFullscreenElement)===box; }
+  full.addEventListener('click',function(){
+    if(isFull()) return (document.exitFullscreen||document.webkitExitFullscreen).call(document);
+    var go=box.requestFullscreen||box.webkitRequestFullscreen;
+    if(go) go.call(box); else if(v.webkitEnterFullscreen){ v.webkitEnterFullscreen(); if(v.paused) v.play(); }
+  });
+  ['fullscreenchange','webkitfullscreenchange'].forEach(function(n){ document.addEventListener(n,function(){
+    box.classList.toggle('full',isFull()); full.setAttribute('aria-label',isFull()?'Exit full screen':'Full screen'); }); });
+  sound.addEventListener('click',function(e){ e.stopPropagation(); setMuted(false); if(v.paused) v.play(); });
+  // Link from an email (?v=1 or #video): scroll to the video and start it. Browsers allow autoplay only
+  // without sound, so if sound is refused it plays muted with a "Tap for sound" button on top.
+  var q=new URLSearchParams(location.search);
+  if(q.has('v')||location.hash==='#video'){
+    var sec=box.closest('section'), to=function(){ sec.scrollIntoView({block:'center'}); };
+    to(); window.addEventListener('load',to);  // again after the screenshots above have loaded and moved it
+    v.play().catch(function(){ setMuted(true); box.classList.add('ask-sound'); return v.play(); }).catch(function(){});
+  }
   sync();
 })();
 </script>
