@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quote Drafts for freight brokers — Dmytro Galko</title>
+<meta name="description" content="Rate requests in your Gmail get a ready draft reply from your own rate history. Nothing is sent without you. Set up for you over email.">
+<meta property="og:title" content="Quote Drafts for freight brokers">
+<meta property="og:description" content="Rate requests in your Gmail get a ready draft reply from your own rate history. Nothing is sent without you.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dkautomation23.github.io/quote-drafts/">
+<link rel="icon" href="../favicon.svg">
+<style>
+  :root { --ink:#16202c; --muted:#5a6675; --line:#e3e8ee; --bg:#ffffff; --soft:#f5f7fa; --accent:#1a5fb4; }
+  * { box-sizing:border-box; }
+  body { margin:0; font:18px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif; color:var(--ink); background:var(--bg); }
+  main { max-width:860px; margin:0 auto; padding:40px 20px 60px; }
+  h1 { font-size:2.1rem; line-height:1.2; margin:0 0 14px; }
+  h2 { font-size:1.35rem; margin:44px 0 12px; }
+  p.lead { font-size:1.2rem; color:var(--muted); margin:0 0 26px; }
+  .cta { display:inline-block; background:var(--accent); color:#fff; text-decoration:none; padding:14px 22px; border-radius:8px; font-weight:600; }
+  .cta:hover { filter:brightness(1.08); }
+  .mail { margin-left:12px; color:var(--muted); font-size:1rem; }
+  figure { margin:28px 0; border:1px solid var(--line); border-radius:10px; overflow:hidden; background:var(--soft); }
+  figure img { display:block; width:100%; height:auto; }
+  figcaption { padding:10px 14px; font-size:.95rem; color:var(--muted); border-top:1px solid var(--line); background:#fff; }
+  ol, ul { padding-left:1.3em; } li { margin:6px 0; }
+  .box { background:var(--soft); border:1px solid var(--line); border-radius:10px; padding:16px 20px; }
+  footer { margin-top:50px; padding-top:18px; border-top:1px solid var(--line); font-size:.9rem; color:var(--muted); }
+  a { color:var(--accent); }
+  @media (max-width:560px){ h1{font-size:1.6rem;} body{font-size:17px;} .mail{display:block; margin:10px 0 0;} }
+</style>
+</head>
+<body>
+<main>
+  <h1>Every rate request in your inbox gets a draft reply before you open it</h1>
+  <p class="lead">A small tool inside your Gmail. It reads each rate request, checks your own past rates on that lane,
+  and leaves a ready draft in the same thread. You check it and press Send. Nothing goes out on its own.</p>
+
+  <a class="cta" href="mailto:dkautomation.lab@gmail.com?subject=Quote%20drafts%20for%20my%20inbox">Email me to set it up</a>
+  <span class="mail">dkautomation.lab@gmail.com</span>
+
+  <figure>
+    <img src="draft.png" alt="A Gmail rate request from Dallas TX to Atlanta GA with a draft reply underneath: lane, equipment, weight, pickup date and the rate." width="1568" height="726">
+    <figcaption>A real run in a test Gmail inbox: the request arrived, the draft with the rate from the broker's history appeared in the same thread.</figcaption>
+  </figure>
+
+  <h2>What it does</h2>
+  <ul>
+    <li>Picks up new rate requests: lane, equipment, weight, pickup date, even when they are only in the subject line or have typos in city names.</li>
+    <li>Looks up your last rate on that lane in your own rate history sheet. No history? The draft says so instead of guessing a number.</li>
+    <li>Handles several lanes in one email and skips emails that are not rate requests, such as invoices.</li>
+    <li>Marks each thread <b>Quote ready</b> so you see at a glance what is waiting.</li>
+  </ul>
+
+  <figure>
+    <img src="inbox.png" alt="Gmail inbox where rate requests are labelled Quote ready and an invoice is labelled Not a quote." width="1568" height="552">
+    <figcaption>Rate requests labelled Quote ready; an invoice labelled Not a quote.</figcaption>
+  </figure>
+
+  <h2>How setup works</h2>
+  <ol>
+    <li>You open a link, click <b>Make a copy</b> of a Google Sheet, then <b>Allow</b>. About five minutes.</li>
+    <li>You share that sheet with me. I load your rate history and tune the replies to how you write.</li>
+    <li>We test it on ten of your real requests. It is done when the drafts are right.</li>
+  </ol>
+  <p>Everything happens by email. No calls, no software to install. Works with Gmail and Google Workspace.</p>
+
+  <h2>What it does not do</h2>
+  <div class="box">
+    <ul>
+      <li>It never sends an email. A person always opens the draft, checks it and presses Send.</li>
+      <li>It does not set your prices. Rates come from your own history; you decide what goes out.</li>
+      <li>Email text is processed by an AI model (Anthropic's API, not used for model training) and is not stored by me.</li>
+    </ul>
+  </div>
+
+  <h2>Want it on your inbox?</h2>
+  <p>Write to <a href="mailto:dkautomation.lab@gmail.com?subject=Quote%20drafts%20for%20my%20inbox">dkautomation.lab@gmail.com</a>
+  with one line about how you receive rate requests today. Agencies and consultants who want to offer it to their clients are welcome too.</p>
+  <p>The code is public: <a href="https://github.com/dkautomation23/freight-quote-drafts">github.com/dkautomation23/freight-quote-drafts</a>.</p>
+
+  <footer>Dmytro Galko · Burgas, Bulgaria · <a href="../">dkautomation23.github.io</a></footer>
+</main>
+</body>
+</html>
