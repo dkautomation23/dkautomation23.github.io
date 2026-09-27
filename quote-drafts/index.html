@@ -69,6 +69,9 @@
   .gallery a.zoom { display:block; cursor:zoom-in; }
   .gallery img { display:block; width:100%; height:auto; }
   .gallery figcaption { padding:12px 16px; font-size:.98rem; color:var(--muted); border-top:1px solid var(--line); background:#fff; }
+  .gallery figcaption .n1, .gallery figcaption .n2 { display:inline-block; min-width:1.5em; padding:0 .45em; border-radius:1em;
+    color:#fff; font-weight:700; font-size:.85em; text-align:center; margin-right:2px; }
+  .gallery figcaption .n1 { background:#d95312; } .gallery figcaption .n2 { background:#16803d; }
   .gal-btn {
     position:absolute; top:45%; transform:translateY(-50%);
     width:46px; height:46px; border-radius:50%; border:1px solid var(--line);
@@ -175,19 +178,19 @@
       <div class="gallery" id="gal">
         <figure>
           <a class="zoom" href="shot-draft-dallas.webp"><img src="shot-draft-dallas.webp" alt="Draft reply for a Dallas TX to Atlanta GA rate request, quoting a dry van rate from the broker's own history." width="1476" height="1230" loading="lazy"></a>
-          <figcaption>One lane, one draft: dry van, 40,000 lbs, the rate comes from the broker's own history sheet.</figcaption>
+          <figcaption><span class="n1">1</span> A shipper asks for a rate. <span class="n2">2</span> Within 5 minutes a reply sits in Drafts, same thread, rate from the broker's own history. Nothing is sent.</figcaption>
         </figure>
         <figure>
           <a class="zoom" href="shot-draft-two-lanes.webp"><img src="shot-draft-two-lanes.webp" alt="Draft reply covering two lanes from one email, one with a rate and one marked RATE no history for this lane." width="1476" height="1330" loading="lazy"></a>
-          <figcaption>Two lanes in one email: a rate where there is history, a plain placeholder where there isn't &mdash; never a guess.</figcaption>
+          <figcaption><span class="n1">1</span> Two lanes in one email. <span class="n2">2</span> A rate where there is history, a plain [RATE] note where there isn't &mdash; never a guess.</figcaption>
         </figure>
         <figure>
           <a class="zoom" href="shot-draft-typos.webp"><img src="shot-draft-typos.webp" alt="Draft reply correctly reading Los Angelas and San Antonoi despite the typos in the original request." width="1476" height="1030" loading="lazy"></a>
-          <figcaption>Typos in the original ("Los Angelas", "San Antonoi") don't stop it from reading the lane correctly.</figcaption>
+          <figcaption><span class="n1">1</span> A one-line request with typos. <span class="n2">2</span> The draft still reads the lane, weight and date correctly.</figcaption>
         </figure>
         <figure>
           <a class="zoom" href="shot-inbox.webp"><img src="shot-inbox.webp" alt="Gmail inbox with ten test rate requests, most labelled Quote ready and one invoice labelled Not a quote." width="1596" height="900" loading="lazy"></a>
-          <figcaption>A test Gmail inbox after a run: rate requests labelled <b>Quote ready</b>, an invoice labelled <b>Not a quote</b>.</figcaption>
+          <figcaption>The test inbox after one run. <span class="n1">1</span> Rate requests get <b>Quote ready</b>, the invoice gets <b>Not a quote</b>. <span class="n2">2</span> Each request has a draft waiting.</figcaption>
         </figure>
       </div>
       <button class="gal-btn gal-next" type="button" aria-label="Next screenshot" onclick="galGo(1)">&#8250;</button>
